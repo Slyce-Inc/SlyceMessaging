@@ -1,6 +1,6 @@
 # Slyce Messaging API
 
-![](https://github.com/snipsnap/SlyceMessaging/blob/master/Screenshot_20160708-162931.png?raw=true | width=100)
+![](https://github.com/snipsnap/SlyceMessaging/blob/master/ExamplePhoto.png?raw=true | width=100)
 
 Basic features of the API:
 
