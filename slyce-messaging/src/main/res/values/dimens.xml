@@ -1,0 +1,15 @@
+<resources>
+    <!-- Spacing -->
+    <dimen name="screen_horizontal_spacing">16dp</dimen>
+    <!-- Scout -->
+    <dimen name="message_bubble_margin_top">8dp</dimen>
+    <dimen name="message_timestamp_margin_bottom">12dp</dimen>
+    <dimen name="message_timestamp_margin_top">8dp</dimen>
+
+    <!-- Selectable Items -->
+    <dimen name="selectable_rounded_rect_corner_radius">3dp</dimen>
+    <dimen name="selectable_rounded_rect_corner_radius_large">12dp</dimen>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_vertical_margin">16dp</dimen>
+</resources>

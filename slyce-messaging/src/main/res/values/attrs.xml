@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- API specific theme attributes 14+ -->
+    <declare-styleable name="AppThemeAttributes">
+        <attr name="selectableCircleDrawable" format="reference"/>
+        <attr name="selectableCircleDrawableColored" format="reference"/>
+        <attr name="selectableCircleDrawableInverse" format="reference"/>
+        <attr name="selectableRectDrawable" format="reference"/>
+        <attr name="selectableRectDrawableColored" format="reference"/>
+        <attr name="selectableRectDrawableInverse" format="reference"/>
+        <attr name="selectableRoundedRectDrawable" format="reference"/>
+        <attr name="selectableRoundedRectDrawableColored" format="reference"/>
+        <attr name="selectableRoundedRectDrawableInverse" format="reference"/>
+        <attr name="selectableRoundedRectDrawableInverseLargeRadius" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="FixedAspectRatioImageView">
+        <attr name="widthToHeightRatio" format="float"/>
+    </declare-styleable>
+
+    <declare-styleable name="FixedAspectRatioRoundedImageView">
+        <attr name="roundedImageView_widthToHeightRatio" format="float"/>
+    </declare-styleable>
+
+    <declare-styleable name="FontEditText">
+        <attr name="editText_font" format="string"/>
+    </declare-styleable>
+
+    <declare-styleable name="FontTextView">
+        <attr name="font" format="string"/>
+    </declare-styleable>
+
+    <declare-styleable name="SlyceMessagingTheme">
+        <attr name="backgroundColor" format="color"/>
+        <attr name="timestampTextColor" format="color"/>
+        <attr name="localBubbleBackground" format="color"/>
+        <attr name="localBubbleTextColor" format="color"/>
+        <attr name="externalBubbleBackground" format="color"/>
+        <attr name="externalBubbleTextColor" format="color"/>
+        <attr name="snackbarBackground" format="color"/>
+        <attr name="snackbarTitleColor" format="color"/>
+        <attr name="snackbarButtonColor" format="color"/>
+    </declare-styleable>
+</resources>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:layout_marginTop="@dimen/message_bubble_margin_top">
+
+    <FrameLayout
+        android:id="@+id/message_scout_media_image_view_avatar_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/shape_oval_white">
+
+        <it.slyce.slyce_messaging.view.text.FontTextView
+            android:id="@+id/message_scout_media_text_view_initials"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:maxLines="1"
+            android:textAllCaps="true"
+            android:textColor="@color/text_white"
+            android:textSize="16sp"
+            app:font="museo_sans_500.otf"
+            tools:text="JF" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/message_scout_media_image_view_avatar"
+            android:layout_width="48dp"
+            android:layout_height="48dp" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/message_scout_media_view_group_media"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/message_scout_media_image_view_avatar_group"
+        android:background="@drawable/shape_rounded_rectangle_white">
+
+        <it.slyce.slyce_messaging.view.image.PicassoRoundedImageView
+            android:id="@+id/message_scout_media_picasso_rounded_image_view_media"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            app:riv_corner_radius="3dp"
+            app:roundedImageView_widthToHeightRatio="1.5"/>
+    </FrameLayout>
+
+    <it.slyce.slyce_messaging.view.text.FontTextView
+        android:id="@+id/message_scout_media_text_view_timestamp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/message_scout_media_view_group_media"
+        android:layout_below="@+id/message_scout_media_view_group_media"
+        android:layout_marginBottom="@dimen/message_timestamp_margin_bottom"
+        android:layout_marginTop="@dimen/message_timestamp_margin_top"
+        android:gravity="left"
+        android:singleLine="true"
+        android:textColor="@color/text_gray_darkest"
+        android:textSize="10sp"
+        tools:text="12:29pm" />
+</RelativeLayout>

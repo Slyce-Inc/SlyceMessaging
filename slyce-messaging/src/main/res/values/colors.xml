@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="background_black">#000000</color>
+    <color name="background_gray_lightest">#F3F3F9</color>
+    <color name="background_white">#FFFFFF</color>
+    <color name="background_navy">#353556</color>
+    <color name="background_gray">#BDBDBD</color>
+    <color name="background_blue">#202089</color>
+    <color name="background_gray_darkest">#82898D</color>
+    <color name="stroke_blue_lightest">#E8E8F3</color>
+    <color name="selector_black_pressed">#1F000000</color>
+    <color name="text_navy">#353556</color>
+    <color name="text_navy_transparent_50">#80353556</color>
+    <color name="text_white">#FFFFFF</color>
+    <color name="text_gray_darkest">#82898D</color>
+    <color name="text_black">#000000</color>
+    <color name="text_pink">#F21E75</color>
+    <color name="text_blue">#202089</color>
+
+</resources>

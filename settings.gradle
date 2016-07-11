@@ -1,0 +1,1 @@
+include ':slyce-messaging', ':example'

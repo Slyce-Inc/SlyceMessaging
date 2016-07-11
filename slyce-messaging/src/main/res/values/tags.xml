@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="key_default_search_screen" type="id" />
+    <item name="key_default_search_target" type="id" />
+    <item name="key_discover_item" type="id" />
+    <item name="key_discover_item_click_type" type="id" />
+    <item name="key_list_item" type="id" />
+    <item name="key_list_item_click_type" type="id" />
+    <item name="key_message_item" type="id" />
+    <item name="key_message_item_click_type" type="id" />
+</resources>

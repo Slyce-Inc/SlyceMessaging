@@ -1,0 +1,27 @@
+<resources>
+    <!-- Base Theme -->
+    <style name="BaseTheme.Light" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- App specific attributes all APIs -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorControlHighlight">@color/selector_black_pressed</item>
+    </style>
+
+    <!-- App Theme -->
+    <style name="AppTheme.Light" parent="BaseTheme.Light">
+
+    </style>
+
+    <style name="MyTheme">
+        <item name="backgroundColor">@color/background_white</item>
+        <item name="timestampTextColor">@color/text_black</item>
+        <item name="localBubbleBackground">@color/background_blue</item>
+        <item name="localBubbleTextColor">@color/text_white</item>
+        <item name="externalBubbleBackground">@color/background_gray</item>
+        <item name="externalBubbleTextColor">@color/text_black</item>
+        <item name="snackbarBackground">@color/background_gray_darkest</item>
+        <item name="snackbarTitleColor">@color/text_black</item>
+        <item name="snackbarButtonColor">@color/text_blue</item>
+    </style>
+
+</resources>
