@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:background="@color/background_black"
-    tools:context=".messenger.ViewImageActivity">
+    tools:context=".ViewImageActivity">
 
     <!--
     <ImageView

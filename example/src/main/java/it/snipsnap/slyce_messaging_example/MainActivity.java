@@ -7,14 +7,12 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
-import it.slyce.slyce_messaging.messenger.SlyceMessagingFragment;
-import it.slyce.slyce_messaging.messenger.listeners.ShouldLoadMoreMessagesListener;
-import it.slyce.slyce_messaging.messenger.listeners.UserSendsMessageListener;
-import it.slyce.slyce_messaging.messenger.message.Message;
-import it.slyce.slyce_messaging.messenger.message.MessageSource;
-import it.slyce.slyce_messaging.messenger.message.TextMessage;
+import it.slyce.messaging.SlyceMessagingFragment;
+import it.slyce.messaging.listeners.UserSendsMessageListener;
+import it.slyce.messaging.message.Message;
+import it.slyce.messaging.message.MessageSource;
+import it.slyce.messaging.message.TextMessage;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -81,37 +79,14 @@ public class MainActivity extends AppCompatActivity {
         slyceMessagingFragment.setOnSendMessageListener(new UserSendsMessageListener() {
             @Override
             public void onUserSendsTextMessage(String text) {
-                System.out.println("******************************** " + text);
+                Log.d("inf", "******************************** " + text);
             }
 
             @Override
             public void onUserSendsMediaMessage(Uri imageUri) {
-                System.out.println("******************************** " + imageUri);
+                Log.d("inf", "******************************** " + imageUri);
             }
         });
-
-
-        /*
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                for (int i = 0; true; i++) {
-                    try {
-                        Thread.sleep(2000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    TextMessage textMessage = new TextMessage();
-                    textMessage.setAvatarUrl("https://lh3.googleusercontent.com/-Y86IN-vEObo/AAAAAAAAAAI/AAAAAAAKyAM/6bec6LqLXXA/s0-c-k-no-ns/photo.jpg");
-                    textMessage.setText("MessageData # " + i);
-                    textMessage.setDate(System.currentTimeMillis());
-                    textMessage.setOrigin(MessageSource.EXTERNAL_USER);
-                    textMessage.setDisplayName("Larry Page");
-                    slyceMessagingFragment.addNewMessage(textMessage);
-                }
-            }
-        }).start();
-        */
 
     }
 

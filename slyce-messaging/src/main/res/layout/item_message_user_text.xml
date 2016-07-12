@@ -18,7 +18,7 @@
         android:layout_alignParentTop="true"
         android:background="@drawable/shape_oval_navy">
 
-        <it.slyce.slyce_messaging.view.text.FontTextView
+        <it.slyce.messaging.view.text.FontTextView
             android:id="@+id/message_user_text_text_view_initials"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
         android:background="@drawable/shape_rounded_rectangle_white"
         android:padding="16dp">
 
-        <it.slyce.slyce_messaging.view.text.FontTextView
+        <it.slyce.messaging.view.text.FontTextView
             android:id="@+id/message_user_text_text_view_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -69,7 +69,7 @@
             tools:text="In need of pizza. Can you help?"/>
     </FrameLayout>
 
-    <it.slyce.slyce_messaging.view.text.FontTextView
+    <it.slyce.messaging.view.text.FontTextView
         android:id="@+id/message_user_text_text_view_timestamp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

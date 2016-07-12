@@ -56,7 +56,7 @@
             android:src="@mipmap/ic_camera_photo"
             android:tint="@color/background_navy"/>
 
-        <it.slyce.slyce_messaging.view.text.FontEditText
+        <it.slyce.messaging.view.text.FontEditText
             android:id="@+id/scout_edit_text_entry_field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

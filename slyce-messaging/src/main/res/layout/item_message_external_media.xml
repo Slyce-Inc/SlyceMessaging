@@ -17,7 +17,7 @@
         android:layout_marginRight="16dp"
         android:background="@drawable/shape_oval_white">
 
-        <it.slyce.slyce_messaging.view.text.FontTextView
+        <it.slyce.messaging.view.text.FontTextView
             android:id="@+id/message_scout_media_text_view_initials"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
         android:layout_toRightOf="@+id/message_scout_media_image_view_avatar_group"
         android:background="@drawable/shape_rounded_rectangle_white">
 
-        <it.slyce.slyce_messaging.view.image.PicassoRoundedImageView
+        <it.slyce.messaging.view.image.PicassoRoundedImageView
             android:id="@+id/message_scout_media_picasso_rounded_image_view_media"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
             app:roundedImageView_widthToHeightRatio="1.5"/>
     </FrameLayout>
 
-    <it.slyce.slyce_messaging.view.text.FontTextView
+    <it.slyce.messaging.view.text.FontTextView
         android:id="@+id/message_scout_media_text_view_timestamp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
