@@ -21,13 +21,26 @@ Now do File -> Project Structure. On the left hand side, at the bottom, select y
 If you get compilation or runtime errors, try adding the following to your app's gradle file:
 
 ```ruby
+repositories {
+    maven {
+        url "https://s3.amazonaws.com/repo.commonsware.com"
+    }
+}
+
 dependencies {
     compile 'com.android.support:cardview-v7:23.2.1'
     compile 'com.android.support:design:23.2.1'
     compile 'com.makeramen:roundedimageview:2.2.1'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'de.hdodenhof:circleimageview:2.0.0'
+    compile 'com.commonsware.cwac:cam2:0.6.2'
 }
+```
+
+You should also add the following to your proguard-rules.pro file:
+```ruby
+-keep com.squareup.picasso.*
+-keep com.commonsware.cwac.*
 ```
 
 ## The API
