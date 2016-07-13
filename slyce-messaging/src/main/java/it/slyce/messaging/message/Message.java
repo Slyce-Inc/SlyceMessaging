@@ -9,7 +9,7 @@ import it.slyce.messaging.message.messageItem.MessageItem;
  */
 public abstract class Message {
     long date;
-    MessageSource origin;
+    MessageSource source;
     String avatarUrl;
     String displayName;
     String userId;
@@ -23,12 +23,12 @@ public abstract class Message {
         this.date = date;
     }
 
-    public MessageSource getOrigin() {
-        return origin;
+    public MessageSource getSource() {
+        return source;
     }
 
-    public void setOrigin(MessageSource origin) {
-        this.origin = origin;
+    public void setSource(MessageSource source) {
+        this.source = source;
     }
 
     public String getAvatarUrl() {

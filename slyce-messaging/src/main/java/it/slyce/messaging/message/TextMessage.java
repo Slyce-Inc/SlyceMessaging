@@ -22,7 +22,7 @@ public class TextMessage extends Message {
 
     @Override
     public MessageItem toMessageItem(Context context){
-        if (this.origin == MessageSource.EXTERNAL_USER)
+        if (this.source == MessageSource.EXTERNAL_USER)
             return new MessageExternalUserTextItem(this, context);
         else
             return new MessageInternalUserTextItem(this, context);

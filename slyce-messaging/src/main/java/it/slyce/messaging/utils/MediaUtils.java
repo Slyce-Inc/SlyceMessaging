@@ -6,7 +6,7 @@ import android.graphics.Bitmap;
 import com.squareup.picasso.Picasso;
 
 /**
- * @Auther Matthew Page
+ * @Author Matthew Page
  * @Date 7/13/16
  */
 public class MediaUtils {
@@ -19,8 +19,8 @@ public class MediaUtils {
             float height = image.getHeight();
             return width / height;
         } catch (Exception e) {
-            System.err.println("WARNING: Something went wrong. Either the context is null or the image does not exsit.");
-            e.printStackTrace();
+            // System.err.println("WARNING: Something went wrong. Either the context is null or the image does not exist.");
+            // e.printStackTrace();
             return 1f; // Try to make the program not crash anyway.
         }
     }

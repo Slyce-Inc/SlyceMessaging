@@ -40,11 +40,14 @@ public class MainActivity extends AppCompatActivity {
             "https://content.edmc.edu/assets/modules/ContentWebParts/AI/Locations/New-York-City/startpage-masthead-slide.jpg"
     };
 
+    private volatile static int n = 0;
+
     private static Message getRandomMessage() {
+        n++;
         Message message;
-        if (Math.random() < 0.9) {
+        if (Math.random() < 1.1) {
             TextMessage textMessage = new TextMessage();
-            textMessage.setText(latin[(int) (Math.random() * 10)]);
+            textMessage.setText(n + ""); // +  ": " + latin[(int) (Math.random() * 10)]);
             message = textMessage;
         } else {
             MediaMessage mediaMessage = new MediaMessage();
@@ -55,11 +58,11 @@ public class MainActivity extends AppCompatActivity {
         if (Math.random() > 0.5) {
             message.setAvatarUrl("https://lh3.googleusercontent.com/-Y86IN-vEObo/AAAAAAAAAAI/AAAAAAAKyAM/6bec6LqLXXA/s0-c-k-no-ns/photo.jpg");
             message.setUserId("LP");
-            message.setOrigin(MessageSource.EXTERNAL_USER);
+            message.setSource(MessageSource.EXTERNAL_USER);
         } else {
             message.setAvatarUrl("https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/10989174_799389040149643_722795835011402620_n.jpg?oh=bff552835c414974cc446043ac3c70ca&oe=580717A5");
             message.setUserId("MP");
-            message.setOrigin(MessageSource.LOCAL_USER);
+            message.setSource(MessageSource.LOCAL_USER);
         }
         return message;
     }

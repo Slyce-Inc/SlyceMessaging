@@ -22,7 +22,7 @@ public class MediaMessage extends Message {
 
     @Override
     public MessageItem toMessageItem(Context context){
-        if (this.origin == MessageSource.EXTERNAL_USER)
+        if (this.source == MessageSource.EXTERNAL_USER)
             return new MessageExternalUserMediaItem(this, context);
         else
             return new MessageInternalUserMediaItem(this, context);

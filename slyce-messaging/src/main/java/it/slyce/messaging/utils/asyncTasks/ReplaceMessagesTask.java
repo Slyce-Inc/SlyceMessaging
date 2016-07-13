@@ -2,7 +2,6 @@ package it.slyce.messaging.utils.asyncTasks;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import java.util.List;
 
@@ -13,7 +12,7 @@ import it.slyce.messaging.utils.MessageUtils;
 import it.slyce.messaging.utils.Refresher;
 
 /**
- * @Auther Matthew Page
+ * @Author Matthew Page
  * @Date 7/13/16
  */
 public class ReplaceMessagesTask extends AsyncTask {
@@ -24,7 +23,7 @@ public class ReplaceMessagesTask extends AsyncTask {
     private Refresher mRefresher;
     private int upTo;
 
-    public ReplaceMessagesTask(List<Message> messages, MessageRecyclerAdapter mRecyclerAdapter, int upTo, Refresher refresher, List<MessageItem> messageitems, Context context) {
+    public ReplaceMessagesTask(List<Message> messages, List<MessageItem> messageitems, MessageRecyclerAdapter mRecyclerAdapter, Context context, Refresher refresher, int upTo) {
         this.mMessages = messages;
         this.mRecyclerAdapter = mRecyclerAdapter;
         this.upTo = upTo;
@@ -36,17 +35,16 @@ public class ReplaceMessagesTask extends AsyncTask {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        Log.d("debug", "mIsRefreshing = true");
         mRefresher.setIsRefreshing(true);
     }
 
     @Override
     protected Object doInBackground(Object[] objects) {
-        for (int i = 0; i < mMessageItems.size(); i++)
+        for (int i = mMessageItems.size() - 1; i >= 0; i--)
             mMessageItems.remove(i);
         for (Message message : mMessages) {
             if (context == null)
-                return new Object();
+                return null;
             mMessageItems.add(message.toMessageItem(context)); // this call is why we need the AsyncTask
         }
         for (int i = 0; i < mMessageItems.size(); i++)
@@ -59,13 +57,10 @@ public class ReplaceMessagesTask extends AsyncTask {
         super.onPostExecute(o);
         if (o != null)
             return;
-        mRecyclerAdapter.updateMessageItemDataList(mMessageItems);
-        if (upTo >= 0)
+        if (upTo >= 0 && upTo < mMessageItems.size()) {
             mRecyclerAdapter.notifyItemRangeInserted(0, upTo);
-        else
+        } else
             mRecyclerAdapter.notifyDataSetChanged();
-        Log.d("debug", "mIsRefreshing = false");
-        Log.d("debug", mMessages.size() + "," + mMessageItems.size() + "," + mRecyclerAdapter.getItemCount());
         mRefresher.setIsRefreshing(false);
     }
 }

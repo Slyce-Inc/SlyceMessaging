@@ -86,7 +86,7 @@ public class MessageTextItem extends MessageItem {
 
     @Override
     public MessageItemType getMessageItemType() {
-        if (textMessage.getOrigin() == MessageSource.EXTERNAL_USER)
+        if (textMessage.getSource() == MessageSource.EXTERNAL_USER)
             return MessageItemType.SCOUT_TEXT;
         else
             return MessageItemType.USER_TEXT;
@@ -99,6 +99,6 @@ public class MessageTextItem extends MessageItem {
 
     @Override
     public MessageSource getMessageSource() {
-        return textMessage.getOrigin();
+        return textMessage.getSource();
     }
 }

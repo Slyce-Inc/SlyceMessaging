@@ -8,7 +8,7 @@ import it.slyce.messaging.message.messageItem.MessageItem;
 import it.slyce.messaging.message.messageItem.MessageItemType;
 
 /**
- * @Auther Matthew Page
+ * @Author Matthew Page
  * @Date 7/13/16
  */
 public class MessageUtils {
@@ -31,7 +31,6 @@ public class MessageUtils {
     }
 
     private static boolean isLast(int i, List<MessageItem> messageItems) {
-        Log.d("debug", "isLast(" + i + ")");
         if (messageItems.get(i).getMessageItemType() == MessageItemType.SPINNER)
             return false;
         return i == messageItems.size() - 1 ||

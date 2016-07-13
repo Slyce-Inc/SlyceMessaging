@@ -143,7 +143,7 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
 
     public void addNewMessages(List<Message> messages) {
         mMessages.addAll(messages);
-        new AddNewMessageTask(messages, mMessageItems, mRecyclerAdapter, mRecyclerView, getActivity().getApplicationContext(), this, customSettings).execute();
+        new AddNewMessageTask(messages, mMessageItems, mRecyclerAdapter, mRecyclerView, getActivity().getApplicationContext(), customSettings).execute();
     }
 
     public void addNewMessage(Message message) {
@@ -251,26 +251,26 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
                 }
             }
         }).start();
-
     }
 
     private void loadMoreMessages() {
-        if (moreMessagesExist)
+        if (moreMessagesExist && mMessages.get(0) instanceof SpinnerMessage) {
             mMessages.remove(0);
+        }
         List<Message> messages = loadMoreMessagesListener.loadMoreMessages();
-        if (moreMessagesExist)
-            messages.add(0, new SpinnerMessage());
         int upTo = messages.size();
         for (int i = messages.size() - 1; i >= 0; i--) {
             Message message = messages.get(i);
             mMessages.add(0, message);
         }
+        // if (moreMessagesExist)
+        //    mMessages.add(0, new SpinnerMessage());
         replaceMessages(mMessages, upTo);
     }
 
     private void replaceMessages(List<Message> messages, int upTo) {
         if (getActivity() != null)
-            new ReplaceMessagesTask(messages, mRecyclerAdapter, upTo, mRefresher, mMessageItems, getActivity().getApplicationContext()).execute();
+            new ReplaceMessagesTask(messages, mMessageItems, mRecyclerAdapter, getActivity().getApplicationContext(), mRefresher, upTo).execute();
     }
 
     private boolean shouldReloadData() {
@@ -325,45 +325,43 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 232 || (data == null && this.file.exists())) {
             return;
-        } else
-            try {
-                if (requestCode == 1) {
-                    final boolean isCamera;
-                    if (data == null) {
-                        isCamera = true;
+        }
+        try {
+            if (requestCode == 1) {
+                final boolean isCamera;
+                if (data == null) {
+                    isCamera = true;
+                } else {
+                    final String action = data.getAction();
+                    if (action == null) {
+                        isCamera = false;
                     } else {
-                        final String action = data.getAction();
-                        if (action == null) {
-                            isCamera = false;
-                        } else {
-                            isCamera = action.equals(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                        }
+                        isCamera = action.equals(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
                     }
-
-                    Uri selectedImageUri;
-                    if (isCamera && data != null) { // if there is no picture
-                        return;
-                    }
-                    if (isCamera || data == null || data.getData() == null) {
-                        selectedImageUri = outputFileUri;
-                    } else {
-                        selectedImageUri = data == null ? null : data.getData();
-                    }
-                    MediaMessage message = new MediaMessage();
-                    message.setUrl(selectedImageUri.toString());
-                    message.setDate(System.currentTimeMillis());
-                    message.setDisplayName(this.defaultDisplayName);
-                    message.setOrigin(MessageSource.LOCAL_USER);
-                    message.setAvatarUrl(this.defaultAvatarUrl);
-                    message.setUserId(this.defaultUserId);
-                    addNewMessage(message);
-                    ScrollUtils.scrollToBottomWithDelay(mRecyclerView, mRecyclerAdapter);
-                    if (listener != null)
-                        listener.onUserSendsMediaMessage(selectedImageUri);
                 }
-            } catch (RuntimeException e) {
-                System.out.println("[[[[[[[[[[[[[[[[[[" + e);
+
+                Uri selectedImageUri;
+                if (isCamera && data != null) { // if there is no picture
+                    return;
+                }
+                if (isCamera || data == null || data.getData() == null) {
+                    selectedImageUri = outputFileUri;
+                } else {
+                    selectedImageUri = data == null ? null : data.getData();
+                }
+                MediaMessage message = new MediaMessage();
+                message.setUrl(selectedImageUri.toString());
+                message.setDate(System.currentTimeMillis());
+                message.setDisplayName(this.defaultDisplayName);
+                message.setSource(MessageSource.LOCAL_USER);
+                message.setAvatarUrl(this.defaultAvatarUrl);
+                message.setUserId(this.defaultUserId);
+                addNewMessage(message);
+                ScrollUtils.scrollToBottomWithDelay(mRecyclerView, mRecyclerAdapter);
+                if (listener != null)
+                    listener.onUserSendsMediaMessage(selectedImageUri);
             }
+        } catch (RuntimeException ignored) { }
     }
 
     private void sendUserTextMessage() {
@@ -376,7 +374,7 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
         TextMessage message = new TextMessage();
         message.setDate(System.currentTimeMillis());
         message.setAvatarUrl(defaultAvatarUrl);
-        message.setOrigin(MessageSource.LOCAL_USER);
+        message.setSource(MessageSource.LOCAL_USER);
         message.setDisplayName(defaultDisplayName);
         message.setText(text);
         message.setUserId(defaultUserId);

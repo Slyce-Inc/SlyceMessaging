@@ -18,7 +18,7 @@ import it.slyce.messaging.utils.MessageUtils;
 import it.slyce.messaging.utils.ScrollUtils;
 
 /**
- * @Auther Matthew Page
+ * @Author Matthew Page
  * @Date 7/13/16
  */
 public class AddNewMessageTask extends AsyncTask {
@@ -27,7 +27,6 @@ public class AddNewMessageTask extends AsyncTask {
     private MessageRecyclerAdapter mRecyclerAdapter;
     private RecyclerView mRecyclerView;
     private Context context;
-    private SlyceMessagingFragment slyceMessagingFragment;
     private CustomSettings customSettings;
 
     public AddNewMessageTask(
@@ -36,14 +35,12 @@ public class AddNewMessageTask extends AsyncTask {
             MessageRecyclerAdapter mRecyclerAdapter,
             RecyclerView mRecyclerView,
             Context context,
-            SlyceMessagingFragment fragment,
             CustomSettings customSettings) {
         this.messages = messages;
         this.mMessageItems = mMessageItems;
         this.mRecyclerAdapter = mRecyclerAdapter;
         this.mRecyclerView = mRecyclerView;
         this.context = context;
-        this.slyceMessagingFragment = fragment;
         this.customSettings = customSettings;
     }
 
