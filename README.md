@@ -14,7 +14,7 @@ Basic features of the API:
 
 ## Installation
 
-Download the [arr file](https://github.com/snipsnap/SlyceMessaging/releases/download/1.0.0/slyce-messaging.aar). In your project do File -> New -> New Module. Select "Import .JAR/.AAR Package". Select the file you downloaded and give the subproject any name you want, and click "finish".
+Download the [arr file](https://github.com/snipsnap/SlyceMessaging/releases/download/1.0.1/slyce-messaging.aar). In your project do File -> New -> New Module. Select "Import .JAR/.AAR Package". Select the file you downloaded and give the subproject any name you want, and click "finish".
 
 Now do File -> Project Structure. On the left hand side, at the bottom, select your app's module. Under the "dependencies" tab, add a module dependency to the module you created above.
 
@@ -66,7 +66,7 @@ public void replaceMessages(List<MessageItems> messages);
 ```java
 public abstract class Message {
     public void setDate(String date);
-	public void setOrigin(MessageOrigin origin);
+	public void setSource(MessageSource source);
 	public void setAvatarUrl(String url);
 	public void setDisplayName(String name);
 	public void setUserId(String id);
@@ -80,7 +80,7 @@ public class MediaMessage extends Message{
 	public void setPhotoUrl(String url);
 }
 
-public enum MessageOrigin {
+public enum MessageSource {
 	LOCAL_USER,
 	EXTERNAL_USER
 }
@@ -119,48 +119,74 @@ You can custimize the colors of the fragment by providing a style with the follo
 ## Example
 
 ```java
-public class ExampleActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
+
+    private static String[] latin = {
+            "Vestibulum dignissim enim a mauris malesuada fermentum. Vivamus tristique consequat turpis, pellentesque.",
+            "Quisque nulla leo, venenatis ut augue nec, dictum gravida nibh. Donec augue nisi, volutpat nec libero.",
+            "Cras varius risus a magna egestas.",
+            "Mauris tristique est eget massa mattis iaculis. Aenean sed purus tempus, vestibulum ante eget, vulputate mi. Pellentesque hendrerit luctus tempus. Cras feugiat orci.",
+            "Morbi ullamcorper, sapien mattis viverra facilisis, nisi urna sagittis nisi, at luctus lectus elit.",
+            "Phasellus porttitor fermentum neque. In semper, libero id mollis.",
+            "Praesent fermentum hendrerit leo, ac rutrum ipsum vestibulum at. Curabitur pellentesque augue.",
+            "Mauris finibus mi commodo molestie placerat. Curabitur aliquam metus vitae erat vehicula ultricies. Sed non quam nunc.",
+            "Praesent vel velit at turpis vestibulum eleifend ac vehicula leo. Nunc lacinia tellus eget ipsum consequat fermentum. Nam purus erat, mollis sed ullamcorper nec, efficitur.",
+            "Suspendisse volutpat enim eros, et."
+    };
+
+    private static Message getRandomMessage() {
+        n++;
+        TextMessage textMessage = new TextMessage();
+        textMessage.setText(n + ""); // +  ": " + latin[(int) (Math.random() * 10)]);
+        textMessage.setDate(new Date().getTime());
+        if (Math.random() > 0.5) {
+            textMessage.setAvatarUrl("https://lh3.googleusercontent.com/-Y86IN-vEObo/AAAAAAAAAAI/AAAAAAAKyAM/6bec6LqLXXA/s0-c-k-no-ns/photo.jpg");
+            textMessage.setUserId("LP");
+            textMessage.setSource(MessageSource.EXTERNAL_USER);
+        } else {
+            textMessage.setAvatarUrl("https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/10989174_799389040149643_722795835011402620_n.jpg?oh=bff552835c414974cc446043ac3c70ca&oe=580717A5");
+            textMessage.setUserId("MP");
+            textMessage.setSource(MessageSource.LOCAL_USER);
+        }
+        return textMessage;
+    }
 
     SlyceMessagingFragment slyceMessagingFragment;
-    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_example);
-        slyceMessagingFragment = (SlyceMessagingFragment) getFragmentManager().findFragmentById(R.id.fragment_for_slyce);
+        setContentView(it.snipsnap.slyce_messaging_example.R.layout.activity_main);
+
+        slyceMessagingFragment = (SlyceMessagingFragment) getFragmentManager().findFragmentById(R.id.fragment_for_scout);
         slyceMessagingFragment.setDefaultAvatarUrl("https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/10989174_799389040149643_722795835011402620_n.jpg?oh=bff552835c414974cc446043ac3c70ca&oe=580717A5");
         slyceMessagingFragment.setDefaultDisplayName("Matthew Page");
         slyceMessagingFragment.setDefaultUserId("uhtnaeohnuoenhaeuonthhntouaetnheuontheuo");
-        slyceMessagingFragment.setMoreMessagesExist(true);
-        slyceMessagingFragment.setShouldLoadMoreMessagesListener(new ShouldLoadMoreMessagesListener() {
-            @Override
-            public List<Message> shouldLoadMoreMessages() {
-                Log.i("info", "shrug.txt");
-                ArrayList<Message> messages = new ArrayList<Message>();
-                for (int i = 0; i < 50; i++) {
-                    TextMessage textMessage = new TextMessage();
-                    textMessage.setAvatarUrl("https://lh3.googleusercontent.com/-Y86IN-vEObo/AAAAAAAAAAI/AAAAAAAKyAM/6bec6LqLXXA/s0-c-k-no-ns/photo.jpg");
-                    textMessage.setText("MessageData # " + i);
-                    textMessage.setDate(System.currentTimeMillis());
-                    textMessage.setOrigin(MessageSource.EXTERNAL_USER);
-                    textMessage.setDisplayName("Larry Page");
-                    messages.add(textMessage);
-                }
-                return messages;
-            }
-        });
 
         slyceMessagingFragment.setOnSendMessageListener(new UserSendsMessageListener() {
             @Override
             public void onUserSendsTextMessage(String text) {
-                Log.d("debug", "******************************** " + text);
+                Log.d("inf", "******************************** " + text);
             }
 
             @Override
             public void onUserSendsMediaMessage(Uri imageUri) {
-                Log.d("debug", "******************************** " + imageUri);
+                Log.d("inf", "******************************** " + imageUri);
             }
         });
+        
+        slyceMessagingFragment.setLoadMoreMessagesListener(new LoadMoreMessagesListener() {
+            @Override
+            public List<Message> loadMoreMessages() {
+                Log.d("info", "loadMoreMessages()");
+                ArrayList<Message> messages = new ArrayList<>();
+                for (int i = 0; i < 50; i++)
+                    messages.add(getRandomMessage());
+                Log.d("info", "loadMoreMessages() returns");
+                return messages;
+            }
+        });
+        
+        slyceMessagingFragment.setMoreMessagesExist(true);
     }
 }
 ```
