@@ -7,7 +7,8 @@ import android.view.View;
 
 import it.slyce.messaging.message.MediaMessage;
 import it.slyce.messaging.message.MessageSource;
-import it.slyce.messaging.utils.Utils;
+import it.slyce.messaging.utils.MediaUtils;
+import it.slyce.messaging.utils.DateUtils;
 import it.slyce.messaging.ViewImageActivity;
 import it.slyce.messaging.message.messageItem.MessageItem;
 import it.slyce.messaging.message.messageItem.MessageItemType;
@@ -38,8 +39,8 @@ public abstract class MessageMediaItem extends MessageItem {
             final MessageMediaViewHolder messageMediaViewHolder = (MessageMediaViewHolder) messageViewHolder;
 
             // Get content
-            float widthToHeightRatio = Utils.getWidthToHeightRatio(mediaMessage.getUrl(), context);
-            date = Utils.getTimestamp(mediaMessage.getDate());
+            float widthToHeightRatio = MediaUtils.getWidthToHeightRatio(mediaMessage.getUrl(), context);
+            date = DateUtils.getTimestamp(mediaMessage.getDate());
             final String mediaUrl = mediaMessage.getUrl();
             this.avatarUrl = mediaMessage.getAvatarUrl();
 
@@ -103,7 +104,7 @@ public abstract class MessageMediaItem extends MessageItem {
     }
 
     public boolean dateNeedsUpdated(long time) {
-        return Utils.dateNeedsUpdated(time, date);
+        return DateUtils.dateNeedsUpdated(time, date);
     }
 
     public void setInitials(String initials) {

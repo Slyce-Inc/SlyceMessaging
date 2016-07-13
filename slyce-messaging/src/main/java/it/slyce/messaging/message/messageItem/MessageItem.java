@@ -4,7 +4,7 @@ import android.view.View.OnClickListener;
 
 import it.slyce.messaging.message.Message;
 import it.slyce.messaging.message.MessageSource;
-import it.slyce.messaging.utils.Utils;
+import it.slyce.messaging.utils.DateUtils;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -56,6 +56,6 @@ public abstract class MessageItem {
     }
 
     public void updateDate(long time) {
-        this.date = Utils.getTimestamp(time);
+        this.date = DateUtils.getTimestamp(time);
     }
 }

@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import it.slyce.messaging.message.MessageSource;
 import it.slyce.messaging.message.TextMessage;
-import it.slyce.messaging.utils.Utils;
+import it.slyce.messaging.utils.DateUtils;
 import it.slyce.messaging.message.messageItem.MessageItem;
 import it.slyce.messaging.message.messageItem.MessageItemType;
 import it.slyce.messaging.message.messageItem.MessageViewHolder;
@@ -40,7 +40,7 @@ public class MessageTextItem extends MessageItem {
             final MessageTextViewHolder messageTextViewHolder = (MessageTextViewHolder) messageViewHolder;
 
             // Get content
-            String date = Utils.getTimestamp(textMessage.getDate());
+            String date = DateUtils.getTimestamp(textMessage.getDate());
             String text = textMessage.getText();
             this.avatarUrl = textMessage.getAvatarUrl();
             this.initials = textMessage.getInitials();
