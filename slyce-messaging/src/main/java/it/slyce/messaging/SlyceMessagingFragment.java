@@ -261,8 +261,8 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
             Message message = messages.get(i);
             mMessages.add(0, message);
         }
-        // if (moreMessagesExist)
-        //    mMessages.add(0, new SpinnerMessage());
+        if (moreMessagesExist)
+            mMessages.add(0, new SpinnerMessage());
         replaceMessages(mMessages, upTo);
     }
 
