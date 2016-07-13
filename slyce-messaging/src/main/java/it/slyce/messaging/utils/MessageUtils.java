@@ -1,7 +1,5 @@
 package it.slyce.messaging.utils;
 
-import android.util.Log;
-
 import java.util.List;
 
 import it.slyce.messaging.message.messageItem.MessageItem;

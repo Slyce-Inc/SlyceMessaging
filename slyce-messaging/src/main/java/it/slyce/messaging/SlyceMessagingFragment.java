@@ -239,14 +239,12 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
                         loadMoreMessages();
                         try {
                             Thread.sleep(5000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
+                        } catch (InterruptedException ignored) {
                         }
                     }
                     try {
                         Thread.sleep(200);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                    } catch (InterruptedException ignored) {
                     }
                 }
             }
@@ -317,9 +315,10 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
             ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 232);
             try {
                 startActivityForResult(chooserIntent, 1);
-            } catch (SecurityException ignored){}
+            } catch (SecurityException ignored) { }
         }
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
