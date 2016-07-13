@@ -207,6 +207,7 @@ public class SlyceMessagingFragment extends Fragment implements
             this.messages = messages;
             this.mRecyclerAdapter = mRecyclerAdapter;
             this.upTo = upTo;
+            // TODO stop scrolling
         }
 
         @Override
@@ -232,13 +233,14 @@ public class SlyceMessagingFragment extends Fragment implements
                 mRecyclerAdapter.notifyItemRangeInserted(0, upTo);
             else
                 mRecyclerAdapter.notifyDataSetChanged();
+            // TODO resume scrolling
         }
     }
 
     private void loadMoreMessages() {
         if (moreMessagesExist)
             mMessages.remove(0);
-        List<Message> messages = shouldLoadMoreMessagesListener.shouldLoadMoreMessages();
+        List<Message> messages = shouldLoadMoreMessagesListener.loadMoreMessages();
         int upTo = messages.size();
         if (moreMessagesExist)
             messages.add(0, new SpinnerMessage());

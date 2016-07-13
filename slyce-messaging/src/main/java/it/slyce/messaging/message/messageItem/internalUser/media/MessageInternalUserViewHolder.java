@@ -1,4 +1,4 @@
-package it.slyce.messaging.message.messageItem.user.media;
+package it.slyce.messaging.message.messageItem.internalUser.media;
 
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +13,9 @@ import it.slyce.messaging.view.image.PicassoRoundedImageView;
 /**
  * Created by John C. Hunchar on 5/16/16.
  */
-public class MessageUserMediaViewHolder extends MessageMediaViewHolder {
+public class MessageInternalUserViewHolder extends MessageMediaViewHolder {
 
-    public MessageUserMediaViewHolder(View itemView, CustomSettings customSettings) {
+    public MessageInternalUserViewHolder(View itemView, CustomSettings customSettings) {
         super(itemView, customSettings);
 
         avatar = (ImageView) itemView.findViewById(R.id.message_user_media_image_view_avatar);

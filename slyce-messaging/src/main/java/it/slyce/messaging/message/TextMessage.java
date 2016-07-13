@@ -3,8 +3,8 @@ package it.slyce.messaging.message;
 import android.content.Context;
 
 import it.slyce.messaging.message.messageItem.MessageItem;
-import it.slyce.messaging.message.messageItem.scout.text.MessageScoutTextItem;
-import it.slyce.messaging.message.messageItem.user.text.MessageUserTextItem;
+import it.slyce.messaging.message.messageItem.externalUser.text.MessageExternalUserTextItem;
+import it.slyce.messaging.message.messageItem.internalUser.text.MessageInternalUserTextItem;
 
 /**
  * Created by matthewpage on 6/21/16.
@@ -23,8 +23,8 @@ public class TextMessage extends Message {
     @Override
     public MessageItem toMessageItem(Context context){
         if (this.origin == MessageSource.EXTERNAL_USER)
-            return new MessageScoutTextItem(this, context);
+            return new MessageExternalUserTextItem(this, context);
         else
-            return new MessageUserTextItem(this, context);
+            return new MessageInternalUserTextItem(this, context);
     }
 }

@@ -6,14 +6,13 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 
-import it.slyce.messaging.BuildConfig;
 import it.slyce.messaging.R;
-import it.slyce.messaging.message.messageItem.user.media.MessageUserMediaViewHolder;
+import it.slyce.messaging.message.messageItem.internalUser.media.MessageInternalUserViewHolder;
 import it.slyce.messaging.utils.CustomSettings;
-import it.slyce.messaging.message.messageItem.scout.media.MessageScoutMediaViewHolder;
-import it.slyce.messaging.message.messageItem.scout.text.MessageScoutTextViewHolder;
+import it.slyce.messaging.message.messageItem.externalUser.media.MessageExternalUserMediaViewHolder;
+import it.slyce.messaging.message.messageItem.externalUser.text.MessageExternalUserTextViewHolder;
 import it.slyce.messaging.message.messageItem.spinner.SpinnerViewHolder;
-import it.slyce.messaging.message.messageItem.user.text.MessageUserTextViewHolder;
+import it.slyce.messaging.message.messageItem.internalUser.text.MessageInternalUserTextViewHolder;
 import com.squareup.picasso.Picasso;
 
 import java.lang.ref.WeakReference;
@@ -48,22 +47,22 @@ public class MessageRecyclerAdapter extends RecyclerView.Adapter<MessageViewHold
 
             case SCOUT_MEDIA:
                 View scoutMediaView = inflater.inflate(R.layout.item_message_external_media, parent, false);
-                viewHolder = new MessageScoutMediaViewHolder(scoutMediaView, customSettings);
+                viewHolder = new MessageExternalUserMediaViewHolder(scoutMediaView, customSettings);
                 break;
 
             case SCOUT_TEXT:
                 View scoutTextView = inflater.inflate(R.layout.item_message_external_text, parent, false);
-                viewHolder = new MessageScoutTextViewHolder(scoutTextView, customSettings);
+                viewHolder = new MessageExternalUserTextViewHolder(scoutTextView, customSettings);
                 break;
 
             case USER_MEDIA:
                 View userMediaView = inflater.inflate(R.layout.item_message_user_media, parent, false);
-                viewHolder = new MessageUserMediaViewHolder(userMediaView, customSettings);
+                viewHolder = new MessageInternalUserViewHolder(userMediaView, customSettings);
                 break;
 
             case USER_TEXT:
                 View userTextView = inflater.inflate(R.layout.item_message_user_text, parent, false);
-                viewHolder = new MessageUserTextViewHolder(userTextView, customSettings);
+                viewHolder = new MessageInternalUserTextViewHolder(userTextView, customSettings);
                 break;
 
             case SPINNER:

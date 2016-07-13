@@ -8,5 +8,5 @@ import it.slyce.messaging.message.Message;
  * Created by matthewpage on 7/1/16.
  */
 public interface ShouldLoadMoreMessagesListener {
-    public List<Message> shouldLoadMoreMessages();
+    public List<Message> loadMoreMessages();
 }
