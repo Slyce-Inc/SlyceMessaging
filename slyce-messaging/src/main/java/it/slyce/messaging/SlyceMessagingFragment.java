@@ -23,6 +23,14 @@ import android.widget.ImageView;
 
 import com.commonsware.cwac.cam2.CameraActivity;
 import com.commonsware.cwac.cam2.ZoomStyle;
+import com.squareup.picasso.Picasso;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import it.slyce.messaging.listeners.LoadMoreMessagesListener;
 import it.slyce.messaging.listeners.UserClicksAvatarPictureListener;
@@ -32,8 +40,8 @@ import it.slyce.messaging.message.Message;
 import it.slyce.messaging.message.MessageSource;
 import it.slyce.messaging.message.SpinnerMessage;
 import it.slyce.messaging.message.TextMessage;
-import it.slyce.messaging.message.messageItem.MessageRecyclerAdapter;
 import it.slyce.messaging.message.messageItem.MessageItem;
+import it.slyce.messaging.message.messageItem.MessageRecyclerAdapter;
 import it.slyce.messaging.utils.CustomSettings;
 import it.slyce.messaging.utils.DateUtils;
 import it.slyce.messaging.utils.Refresher;
@@ -41,14 +49,6 @@ import it.slyce.messaging.utils.ScrollUtils;
 import it.slyce.messaging.utils.asyncTasks.AddNewMessageTask;
 import it.slyce.messaging.utils.asyncTasks.ReplaceMessagesTask;
 import it.slyce.messaging.view.ViewUtils;
-import com.squareup.picasso.Picasso;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by John C. Hunchar on 1/12/16.
