@@ -85,10 +85,11 @@ public class MessageTextItem extends MessageItem {
 
     @Override
     public MessageItemType getMessageItemType() {
-        if (textMessage.getSource() == MessageSource.EXTERNAL_USER)
+        if (message.getSource() == MessageSource.EXTERNAL_USER) {
             return MessageItemType.INCOMING_TEXT;
-        else
+        } else {
             return MessageItemType.OUTGOING_TEXT;
+        }
     }
 
     @Override

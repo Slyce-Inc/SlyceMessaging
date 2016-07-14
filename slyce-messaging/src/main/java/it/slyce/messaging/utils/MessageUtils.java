@@ -10,16 +10,23 @@ import it.slyce.messaging.message.messageItem.MessageItemType;
  * @Date 7/13/16
  */
 public class MessageUtils {
+
     public static void setFirstOrLast(int i, List<MessageItem> messageItems) {
-        if (i < 0 || i >= messageItems.size()) // avoid a NullPointerException
+        if (i < 0 || i >= messageItems.size()) {
             return;
+        }
+
         MessageItem messageItem = messageItems.get(i);
-        messageItem.setFirstConsecutiveMessageFromSource(false);
-        messageItem.setLastConsecutiveMessageFromSource(false);
-        if (isFirst(i, messageItems))
-            messageItem.setFirstConsecutiveMessageFromSource(true);
-        if (isLast(i, messageItems))
-            messageItem.setLastConsecutiveMessageFromSource(true);
+        messageItem.setIsFirstConsecutiveMessageFromSource(false);
+        messageItem.setIsLastConsecutiveMessageFromSource(false);
+
+        if (previousMessageIsNotFromSameSource(i, messageItems)) {
+            messageItem.setIsFirstConsecutiveMessageFromSource(true);
+        }
+
+        if (isTheLastConsecutiveMessageFromSource(i, messageItems)) {
+            messageItem.setIsLastConsecutiveMessageFromSource(true);
+        }
     }
 
     private static boolean isFirst(int i, List<MessageItem> messageItems) {
