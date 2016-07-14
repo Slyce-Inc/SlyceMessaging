@@ -97,7 +97,7 @@ public interface UserClicksAvatarPictureListener {
 	public void userClicksAvatarPhoto(MessageOrigin messageOrigin, String userId);
 }
 
-public interface ShouldLoadMoreMessagesListener {
+public interface LoadMoreMessagesListener {
     public List<Message> loadMoreMessages();
 }
 ```
