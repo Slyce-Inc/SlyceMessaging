@@ -1,0 +1,9 @@
+machine:
+  environment:
+    # ANDROID_HOME: /usr/local/android-sdk-linux # should already be default
+    GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx2048m -XX:+HeapDumpOnOutOfMemoryError"'
+dependencies:
+  override:
+    #- echo y | android update sdk -u -a -t android-23 # should already be installed
+    #- echo y | android update sdk -u -a -t platform-tools # should already be installed
+    - echo y | android update sdk -u -a -t build-tools-23.0.3
