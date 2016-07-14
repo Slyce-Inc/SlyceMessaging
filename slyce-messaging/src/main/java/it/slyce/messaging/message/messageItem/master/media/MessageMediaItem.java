@@ -20,13 +20,11 @@ import com.squareup.picasso.Picasso;
  * Created by matthewpage on 6/27/16.
  */
 public abstract class MessageMediaItem extends MessageItem {
-    private MediaMessage mediaMessage;
     private Context context;
 
     public MessageMediaItem(MediaMessage mediaMessage, Context context) {
         super(mediaMessage);
         this.context = context;
-        this.mediaMessage = mediaMessage;
     }
 
     @Override
@@ -34,14 +32,14 @@ public abstract class MessageMediaItem extends MessageItem {
             MessageViewHolder messageViewHolder,
             Picasso picasso) {
 
-        if (mediaMessage != null &&  messageViewHolder != null && messageViewHolder instanceof MessageMediaViewHolder) {
+        if (message != null &&  messageViewHolder != null && messageViewHolder instanceof MessageMediaViewHolder) {
             final MessageMediaViewHolder messageMediaViewHolder = (MessageMediaViewHolder) messageViewHolder;
 
             // Get content
-            float widthToHeightRatio = MediaUtils.getWidthToHeightRatio(mediaMessage.getUrl(), context);
-            date = DateUtils.getTimestamp(mediaMessage.getDate());
-            final String mediaUrl = mediaMessage.getUrl();
-            this.avatarUrl = mediaMessage.getAvatarUrl();
+            float widthToHeightRatio = MediaUtils.getWidthToHeightRatio(getMediaMessage().getUrl(), context);
+            date = DateUtils.getTimestamp(message.getDate());
+            final String mediaUrl = getMediaMessage().getUrl();
+            this.avatarUrl = message.getAvatarUrl();
 
             // Populate views with content
             messageMediaViewHolder.timestamp.setText(date != null ? date : "");
@@ -50,7 +48,7 @@ public abstract class MessageMediaItem extends MessageItem {
             messageMediaViewHolder.media.setWidthToHeightRatio(widthToHeightRatio);
             messageMediaViewHolder.media.setImageUrlToLoadOnLayout(picasso, mediaUrl, PicassoRoundedImageView.ScaleType.CENTER_CROP);
 
-            if (picasso != null && firstConsecutiveMessageFromSource) {
+            if (picasso != null && isFirstConsecutiveMessageFromSource) {
                 picasso.load(avatarUrl).into(messageMediaViewHolder.avatar);
             }
 
@@ -72,34 +70,30 @@ public abstract class MessageMediaItem extends MessageItem {
                 }
             });
 
-            messageMediaViewHolder.avatar.setVisibility(firstConsecutiveMessageFromSource && !TextUtils.isEmpty(avatarUrl) ? View.VISIBLE : View.INVISIBLE);
-            messageMediaViewHolder.avatarContainer.setVisibility(firstConsecutiveMessageFromSource ? View.VISIBLE : View.INVISIBLE);
-            messageMediaViewHolder.initials.setVisibility(firstConsecutiveMessageFromSource && TextUtils.isEmpty(avatarUrl) ? View.VISIBLE : View.GONE);
+            messageMediaViewHolder.avatar.setVisibility(isFirstConsecutiveMessageFromSource && !TextUtils.isEmpty(avatarUrl) ? View.VISIBLE : View.INVISIBLE);
+            messageMediaViewHolder.avatarContainer.setVisibility(isFirstConsecutiveMessageFromSource ? View.VISIBLE : View.INVISIBLE);
+            messageMediaViewHolder.initials.setVisibility(isFirstConsecutiveMessageFromSource && TextUtils.isEmpty(avatarUrl) ? View.VISIBLE : View.GONE);
             messageMediaViewHolder.media.setVisibility(!TextUtils.isEmpty(mediaUrl) && picasso != null ? View.VISIBLE : View.INVISIBLE);
-            messageMediaViewHolder.timestamp.setVisibility(lastConsecutiveMessageFromSource ? View.VISIBLE : View.GONE);
+            messageMediaViewHolder.timestamp.setVisibility(isLastConsecutiveMessageFromSource ? View.VISIBLE : View.GONE);
         }
     }
 
     @Override
     public MessageItemType getMessageItemType() {
-        if (mediaMessage.getSource() == MessageSource.EXTERNAL_USER)
+        if (message.getSource() == MessageSource.EXTERNAL_USER) {
             return MessageItemType.INCOMING_MEDIA;
-        else
+        } else {
             return MessageItemType.OUTGOING_MEDIA;
-    }
-
-    @Override
-    public String getMessageLink() {
-        return null;
+        }
     }
 
     @Override
     public MessageSource getMessageSource() {
-        return mediaMessage.getSource();
+        return message.getSource();
     }
 
     public MediaMessage getMediaMessage() {
-        return mediaMessage;
+        return (MediaMessage)message;
     }
 
     public boolean dateNeedsUpdated(long time) {

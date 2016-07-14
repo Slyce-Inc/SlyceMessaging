@@ -23,6 +23,14 @@ import android.widget.ImageView;
 
 import com.commonsware.cwac.cam2.CameraActivity;
 import com.commonsware.cwac.cam2.ZoomStyle;
+import com.squareup.picasso.Picasso;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import it.slyce.messaging.listeners.LoadMoreMessagesListener;
 import it.slyce.messaging.listeners.UserClicksAvatarPictureListener;
@@ -32,8 +40,8 @@ import it.slyce.messaging.message.Message;
 import it.slyce.messaging.message.MessageSource;
 import it.slyce.messaging.message.SpinnerMessage;
 import it.slyce.messaging.message.TextMessage;
-import it.slyce.messaging.message.messageItem.MessageRecyclerAdapter;
 import it.slyce.messaging.message.messageItem.MessageItem;
+import it.slyce.messaging.message.messageItem.MessageRecyclerAdapter;
 import it.slyce.messaging.utils.CustomSettings;
 import it.slyce.messaging.utils.DateUtils;
 import it.slyce.messaging.utils.Refresher;
@@ -41,14 +49,6 @@ import it.slyce.messaging.utils.ScrollUtils;
 import it.slyce.messaging.utils.asyncTasks.AddNewMessageTask;
 import it.slyce.messaging.utils.asyncTasks.ReplaceMessagesTask;
 import it.slyce.messaging.view.ViewUtils;
-import com.squareup.picasso.Picasso;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by John C. Hunchar on 1/12/16.
@@ -190,11 +190,7 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
                 new View.OnTouchListener() {
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
-                        if (mRefresher.isRefreshing()) {
-                            return true;
-                        } else {
-                            return false;
-                        }
+                        return mRefresher.isRefreshing();
                     }
                 }
         );
@@ -261,22 +257,27 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
             Message message = messages.get(i);
             mMessages.add(0, message);
         }
-        if (moreMessagesExist)
+
+        if (moreMessagesExist) {
             mMessages.add(0, new SpinnerMessage());
+        }
+
         replaceMessages(mMessages, upTo);
     }
 
     private void replaceMessages(List<Message> messages, int upTo) {
-        if (getActivity() != null)
+        if (getActivity() != null) {
             new ReplaceMessagesTask(messages, mMessageItems, mRecyclerAdapter, getActivity().getApplicationContext(), mRefresher, upTo).execute();
+        }
     }
 
     private boolean shouldReloadData() {
         int scrollOffset = mRecyclerView.computeVerticalScrollOffset();
-        if (loadMoreMessagesListener == null || !moreMessagesExist)
+        if (loadMoreMessagesListener == null || !moreMessagesExist) {
             return false;
-        else
+        } else {
             return scrollOffset < START_RELOADING_DATA_AT_SCROLL_VALUE;
+        }
     }
 
     private void updateTimestampAtValue(final int i) {

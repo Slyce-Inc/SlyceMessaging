@@ -30,9 +30,4 @@ public class SpinnerItem extends MessageItem {
     public MessageSource getMessageSource() {
         return MessageSource.EXTERNAL_USER;
     }
-
-    @Override
-    public String getMessageLink() {
-        return null;
-    }
 }

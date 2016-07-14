@@ -20,13 +20,11 @@ import com.squareup.picasso.Picasso;
  * Created by matthewpage on 6/27/16.
  */
 public class MessageTextItem extends MessageItem {
-    private TextMessage textMessage;
     private Context context;
     private String avatarUrl;
 
     public MessageTextItem(TextMessage textMessage, Context context) {
         super(textMessage);
-        this.textMessage = textMessage;
         this.context = context;
     }
 
@@ -35,14 +33,14 @@ public class MessageTextItem extends MessageItem {
             MessageViewHolder messageViewHolder,
             final Picasso picasso) {
 
-        if (textMessage != null &&  messageViewHolder != null && messageViewHolder instanceof MessageTextViewHolder) {
+        if (message != null &&  messageViewHolder != null && messageViewHolder instanceof MessageTextViewHolder) {
             final MessageTextViewHolder messageTextViewHolder = (MessageTextViewHolder) messageViewHolder;
 
             // Get content
-            String date = DateUtils.getTimestamp(textMessage.getDate());
-            String text = textMessage.getText();
-            this.avatarUrl = textMessage.getAvatarUrl();
-            this.initials = textMessage.getInitials();
+            String date = DateUtils.getTimestamp(message.getDate());
+            String text = ((TextMessage)message).getText();
+            this.avatarUrl = message.getAvatarUrl();
+            this.initials = message.getInitials();
 
             // Populate views with content
             messageTextViewHolder.initials.setText(initials  != null ? initials : "");
@@ -71,33 +69,29 @@ public class MessageTextItem extends MessageItem {
                 }
             });
 
-            if (picasso != null && firstConsecutiveMessageFromSource) {
+            if (picasso != null && isFirstConsecutiveMessageFromSource) {
                 picasso.load(avatarUrl).into(messageTextViewHolder.avatar);
             }
 
-            messageTextViewHolder.avatar.setVisibility(firstConsecutiveMessageFromSource && !TextUtils.isEmpty(avatarUrl) ? View.VISIBLE : View.INVISIBLE);
-            messageTextViewHolder.avatarContainer.setVisibility(firstConsecutiveMessageFromSource ? View.VISIBLE : View.INVISIBLE);
-            messageTextViewHolder.carrot.setVisibility(firstConsecutiveMessageFromSource ? View.VISIBLE : View.INVISIBLE);
-            messageTextViewHolder.initials.setVisibility(firstConsecutiveMessageFromSource && TextUtils.isEmpty(avatarUrl) ? View.VISIBLE : View.GONE);
-            messageTextViewHolder.timestamp.setVisibility(lastConsecutiveMessageFromSource ? View.VISIBLE : View.GONE);
+            messageTextViewHolder.avatar.setVisibility(isFirstConsecutiveMessageFromSource && !TextUtils.isEmpty(avatarUrl) ? View.VISIBLE : View.INVISIBLE);
+            messageTextViewHolder.avatarContainer.setVisibility(isFirstConsecutiveMessageFromSource ? View.VISIBLE : View.INVISIBLE);
+            messageTextViewHolder.carrot.setVisibility(isFirstConsecutiveMessageFromSource ? View.VISIBLE : View.INVISIBLE);
+            messageTextViewHolder.initials.setVisibility(isFirstConsecutiveMessageFromSource && TextUtils.isEmpty(avatarUrl) ? View.VISIBLE : View.GONE);
+            messageTextViewHolder.timestamp.setVisibility(isLastConsecutiveMessageFromSource ? View.VISIBLE : View.GONE);
         }
     }
 
     @Override
     public MessageItemType getMessageItemType() {
-        if (textMessage.getSource() == MessageSource.EXTERNAL_USER)
+        if (message.getSource() == MessageSource.EXTERNAL_USER) {
             return MessageItemType.INCOMING_TEXT;
-        else
+        } else {
             return MessageItemType.OUTGOING_TEXT;
-    }
-
-    @Override
-    public String getMessageLink() {
-        return null;
+        }
     }
 
     @Override
     public MessageSource getMessageSource() {
-        return textMessage.getSource();
+        return message.getSource();
     }
 }
