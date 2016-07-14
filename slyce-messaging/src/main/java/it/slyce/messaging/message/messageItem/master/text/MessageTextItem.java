@@ -92,11 +92,6 @@ public class MessageTextItem extends MessageItem {
     }
 
     @Override
-    public String getMessageLink() {
-        return null;
-    }
-
-    @Override
     public MessageSource getMessageSource() {
         return textMessage.getSource();
     }

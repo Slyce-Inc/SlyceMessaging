@@ -89,11 +89,6 @@ public abstract class MessageMediaItem extends MessageItem {
     }
 
     @Override
-    public String getMessageLink() {
-        return null;
-    }
-
-    @Override
     public MessageSource getMessageSource() {
         return mediaMessage.getSource();
     }

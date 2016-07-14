@@ -32,8 +32,6 @@ public abstract class MessageItem {
 
     public abstract MessageSource getMessageSource();
 
-    public abstract String getMessageLink();
-
     public Message getMessage() {
         return message;
     }
