@@ -257,22 +257,27 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
         for (Message message : messages) {
             mMessages.add(0, message);
         }
-        if (moreMessagesExist)
+
+        if (moreMessagesExist) {
             mMessages.add(0, new SpinnerMessage());
+        }
+
         replaceMessages(mMessages, upTo);
     }
 
     private void replaceMessages(List<Message> messages, int upTo) {
-        if (getActivity() != null)
+        if (getActivity() != null) {
             new ReplaceMessagesTask(messages, mMessageItems, mRecyclerAdapter, getActivity().getApplicationContext(), mRefresher, upTo).execute();
+        }
     }
 
     private boolean shouldReloadData() {
         int scrollOffset = mRecyclerView.computeVerticalScrollOffset();
-        if (loadMoreMessagesListener == null || !moreMessagesExist)
+        if (loadMoreMessagesListener == null || !moreMessagesExist) {
             return false;
-        else
+        } else {
             return scrollOffset < START_RELOADING_DATA_AT_SCROLL_VALUE;
+        }
     }
 
     private void updateTimestampAtValue(final int i) {
