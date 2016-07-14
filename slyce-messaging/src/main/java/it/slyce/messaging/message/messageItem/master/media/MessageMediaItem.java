@@ -50,7 +50,7 @@ public abstract class MessageMediaItem extends MessageItem {
             messageMediaViewHolder.media.setWidthToHeightRatio(widthToHeightRatio);
             messageMediaViewHolder.media.setImageUrlToLoadOnLayout(picasso, mediaUrl, PicassoRoundedImageView.ScaleType.CENTER_CROP);
 
-            if (picasso != null && firstConsecutiveMessageFromSource) {
+            if (picasso != null && isFirstConsecutiveMessageFromSource) {
                 picasso.load(avatarUrl).into(messageMediaViewHolder.avatar);
             }
 
@@ -72,11 +72,11 @@ public abstract class MessageMediaItem extends MessageItem {
                 }
             });
 
-            messageMediaViewHolder.avatar.setVisibility(firstConsecutiveMessageFromSource && !TextUtils.isEmpty(avatarUrl) ? View.VISIBLE : View.INVISIBLE);
-            messageMediaViewHolder.avatarContainer.setVisibility(firstConsecutiveMessageFromSource ? View.VISIBLE : View.INVISIBLE);
-            messageMediaViewHolder.initials.setVisibility(firstConsecutiveMessageFromSource && TextUtils.isEmpty(avatarUrl) ? View.VISIBLE : View.GONE);
+            messageMediaViewHolder.avatar.setVisibility(isFirstConsecutiveMessageFromSource && !TextUtils.isEmpty(avatarUrl) ? View.VISIBLE : View.INVISIBLE);
+            messageMediaViewHolder.avatarContainer.setVisibility(isFirstConsecutiveMessageFromSource ? View.VISIBLE : View.INVISIBLE);
+            messageMediaViewHolder.initials.setVisibility(isFirstConsecutiveMessageFromSource && TextUtils.isEmpty(avatarUrl) ? View.VISIBLE : View.GONE);
             messageMediaViewHolder.media.setVisibility(!TextUtils.isEmpty(mediaUrl) && picasso != null ? View.VISIBLE : View.INVISIBLE);
-            messageMediaViewHolder.timestamp.setVisibility(lastConsecutiveMessageFromSource ? View.VISIBLE : View.GONE);
+            messageMediaViewHolder.timestamp.setVisibility(isLastConsecutiveMessageFromSource ? View.VISIBLE : View.GONE);
         }
     }
 

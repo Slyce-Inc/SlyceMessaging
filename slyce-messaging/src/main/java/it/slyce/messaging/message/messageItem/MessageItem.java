@@ -1,7 +1,5 @@
 package it.slyce.messaging.message.messageItem;
 
-import android.view.View.OnClickListener;
-
 import it.slyce.messaging.message.Message;
 import it.slyce.messaging.message.MessageSource;
 import it.slyce.messaging.utils.DateUtils;
@@ -12,16 +10,16 @@ import com.squareup.picasso.Picasso;
  */
 public abstract class MessageItem {
 
-    protected boolean firstConsecutiveMessageFromSource;
-    protected boolean lastConsecutiveMessageFromSource;
+    protected boolean isFirstConsecutiveMessageFromSource;
+    protected boolean isLastConsecutiveMessageFromSource;
 
     protected String avatarUrl;
     protected String initials;
     protected Message message;
     protected String date;
 
-    public MessageItem(Message messageData) {
-        this.message = messageData;
+    public MessageItem(Message message) {
+        this.message = message;
     }
 
     public abstract void buildMessageItem(
@@ -40,12 +38,12 @@ public abstract class MessageItem {
         return getMessageItemType().ordinal();
     }
 
-    public void setFirstConsecutiveMessageFromSource(boolean firstConsecutiveMessageFromSource) {
-        this.firstConsecutiveMessageFromSource = firstConsecutiveMessageFromSource;
+    public void setIsFirstConsecutiveMessageFromSource(boolean isFirstConsecutiveMessageFromSource) {
+        this.isFirstConsecutiveMessageFromSource = isFirstConsecutiveMessageFromSource;
     }
 
-    public void setLastConsecutiveMessageFromSource(boolean lastConsecutiveMessageFromSource) {
-        this.lastConsecutiveMessageFromSource = lastConsecutiveMessageFromSource;
+    public void setIsLastConsecutiveMessageFromSource(boolean isLastConsecutiveMessageFromSource) {
+        this.isLastConsecutiveMessageFromSource = isLastConsecutiveMessageFromSource;
     }
 
     public String getDate() {

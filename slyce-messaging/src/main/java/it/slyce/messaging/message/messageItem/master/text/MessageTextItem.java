@@ -75,11 +75,11 @@ public class MessageTextItem extends MessageItem {
                 picasso.load(avatarUrl).into(messageTextViewHolder.avatar);
             }
 
-            messageTextViewHolder.avatar.setVisibility(firstConsecutiveMessageFromSource && !TextUtils.isEmpty(avatarUrl) ? View.VISIBLE : View.INVISIBLE);
-            messageTextViewHolder.avatarContainer.setVisibility(firstConsecutiveMessageFromSource ? View.VISIBLE : View.INVISIBLE);
-            messageTextViewHolder.carrot.setVisibility(firstConsecutiveMessageFromSource ? View.VISIBLE : View.INVISIBLE);
-            messageTextViewHolder.initials.setVisibility(firstConsecutiveMessageFromSource && TextUtils.isEmpty(avatarUrl) ? View.VISIBLE : View.GONE);
-            messageTextViewHolder.timestamp.setVisibility(lastConsecutiveMessageFromSource ? View.VISIBLE : View.GONE);
+            messageTextViewHolder.avatar.setVisibility(isFirstConsecutiveMessageFromSource && !TextUtils.isEmpty(avatarUrl) ? View.VISIBLE : View.INVISIBLE);
+            messageTextViewHolder.avatarContainer.setVisibility(isFirstConsecutiveMessageFromSource ? View.VISIBLE : View.INVISIBLE);
+            messageTextViewHolder.carrot.setVisibility(isFirstConsecutiveMessageFromSource ? View.VISIBLE : View.INVISIBLE);
+            messageTextViewHolder.initials.setVisibility(isFirstConsecutiveMessageFromSource && TextUtils.isEmpty(avatarUrl) ? View.VISIBLE : View.GONE);
+            messageTextViewHolder.timestamp.setVisibility(isLastConsecutiveMessageFromSource ? View.VISIBLE : View.GONE);
         }
     }
 
