@@ -20,13 +20,11 @@ import com.squareup.picasso.Picasso;
  * Created by matthewpage on 6/27/16.
  */
 public abstract class MessageMediaItem extends MessageItem {
-    private MediaMessage mediaMessage;
     private Context context;
 
     public MessageMediaItem(MediaMessage mediaMessage, Context context) {
         super(mediaMessage);
         this.context = context;
-        this.mediaMessage = mediaMessage;
     }
 
     @Override
@@ -34,14 +32,14 @@ public abstract class MessageMediaItem extends MessageItem {
             MessageViewHolder messageViewHolder,
             Picasso picasso) {
 
-        if (mediaMessage != null &&  messageViewHolder != null && messageViewHolder instanceof MessageMediaViewHolder) {
+        if (message != null &&  messageViewHolder != null && messageViewHolder instanceof MessageMediaViewHolder) {
             final MessageMediaViewHolder messageMediaViewHolder = (MessageMediaViewHolder) messageViewHolder;
 
             // Get content
-            float widthToHeightRatio = MediaUtils.getWidthToHeightRatio(mediaMessage.getUrl(), context);
-            date = DateUtils.getTimestamp(mediaMessage.getDate());
-            final String mediaUrl = mediaMessage.getUrl();
-            this.avatarUrl = mediaMessage.getAvatarUrl();
+            float widthToHeightRatio = MediaUtils.getWidthToHeightRatio(getMediaMessage().getUrl(), context);
+            date = DateUtils.getTimestamp(message.getDate());
+            final String mediaUrl = getMediaMessage().getUrl();
+            this.avatarUrl = message.getAvatarUrl();
 
             // Populate views with content
             messageMediaViewHolder.timestamp.setText(date != null ? date : "");
@@ -91,11 +89,11 @@ public abstract class MessageMediaItem extends MessageItem {
 
     @Override
     public MessageSource getMessageSource() {
-        return mediaMessage.getSource();
+        return message.getSource();
     }
 
     public MediaMessage getMediaMessage() {
-        return mediaMessage;
+        return (MediaMessage)message;
     }
 
     public boolean dateNeedsUpdated(long time) {

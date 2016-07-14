@@ -20,13 +20,11 @@ import com.squareup.picasso.Picasso;
  * Created by matthewpage on 6/27/16.
  */
 public class MessageTextItem extends MessageItem {
-    private TextMessage textMessage;
     private Context context;
     private String avatarUrl;
 
     public MessageTextItem(TextMessage textMessage, Context context) {
         super(textMessage);
-        this.textMessage = textMessage;
         this.context = context;
     }
 
@@ -35,14 +33,14 @@ public class MessageTextItem extends MessageItem {
             MessageViewHolder messageViewHolder,
             final Picasso picasso) {
 
-        if (textMessage != null &&  messageViewHolder != null && messageViewHolder instanceof MessageTextViewHolder) {
+        if (message != null &&  messageViewHolder != null && messageViewHolder instanceof MessageTextViewHolder) {
             final MessageTextViewHolder messageTextViewHolder = (MessageTextViewHolder) messageViewHolder;
 
             // Get content
-            String date = DateUtils.getTimestamp(textMessage.getDate());
-            String text = textMessage.getText();
-            this.avatarUrl = textMessage.getAvatarUrl();
-            this.initials = textMessage.getInitials();
+            String date = DateUtils.getTimestamp(message.getDate());
+            String text = ((TextMessage)message).getText();
+            this.avatarUrl = message.getAvatarUrl();
+            this.initials = message.getInitials();
 
             // Populate views with content
             messageTextViewHolder.initials.setText(initials  != null ? initials : "");
@@ -71,7 +69,7 @@ public class MessageTextItem extends MessageItem {
                 }
             });
 
-            if (picasso != null && firstConsecutiveMessageFromSource) {
+            if (picasso != null && isFirstConsecutiveMessageFromSource) {
                 picasso.load(avatarUrl).into(messageTextViewHolder.avatar);
             }
 
@@ -94,6 +92,6 @@ public class MessageTextItem extends MessageItem {
 
     @Override
     public MessageSource getMessageSource() {
-        return textMessage.getSource();
+        return message.getSource();
     }
 }
