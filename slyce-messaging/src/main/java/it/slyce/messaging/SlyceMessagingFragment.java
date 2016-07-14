@@ -190,11 +190,7 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
                 new View.OnTouchListener() {
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
-                        if (mRefresher.isRefreshing()) {
-                            return true;
-                        } else {
-                            return false;
-                        }
+                        return mRefresher.isRefreshing();
                     }
                 }
         );
