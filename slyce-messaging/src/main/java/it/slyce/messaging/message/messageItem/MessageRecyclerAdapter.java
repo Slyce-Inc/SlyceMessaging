@@ -3,7 +3,6 @@ package it.slyce.messaging.message.messageItem;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 
 import it.slyce.messaging.R;
@@ -21,7 +20,7 @@ import java.util.List;
 /**
  * Created by John C. Hunchar on 5/12/16.
  */
-public class MessageRecyclerAdapter extends RecyclerView.Adapter<MessageViewHolder> implements OnClickListener {
+public class MessageRecyclerAdapter extends RecyclerView.Adapter<MessageViewHolder> {
 
     private static final String TAG = MessageRecyclerAdapter.class.getName();
 
@@ -45,22 +44,22 @@ public class MessageRecyclerAdapter extends RecyclerView.Adapter<MessageViewHold
         switch (messageItemType) {
 
 
-            case SCOUT_MEDIA:
+            case INCOMING_MEDIA:
                 View scoutMediaView = inflater.inflate(R.layout.item_message_external_media, parent, false);
                 viewHolder = new MessageExternalUserMediaViewHolder(scoutMediaView, customSettings);
                 break;
 
-            case SCOUT_TEXT:
+            case INCOMING_TEXT:
                 View scoutTextView = inflater.inflate(R.layout.item_message_external_text, parent, false);
                 viewHolder = new MessageExternalUserTextViewHolder(scoutTextView, customSettings);
                 break;
 
-            case USER_MEDIA:
+            case OUTGOING_MEDIA:
                 View userMediaView = inflater.inflate(R.layout.item_message_user_media, parent, false);
                 viewHolder = new MessageInternalUserViewHolder(userMediaView, customSettings);
                 break;
 
-            case USER_TEXT:
+            case OUTGOING_TEXT:
                 View userTextView = inflater.inflate(R.layout.item_message_user_text, parent, false);
                 viewHolder = new MessageInternalUserTextViewHolder(userTextView, customSettings);
                 break;
@@ -84,11 +83,7 @@ public class MessageRecyclerAdapter extends RecyclerView.Adapter<MessageViewHold
         Picasso picasso = mPicassoRef.get();
         MessageItem messageItem = getMessageItemByPosition(position);
         if (messageItem != null) {
-            messageItem.buildMessageItem(
-                    messageViewHolder,
-                    picasso,
-                    this
-            );
+            messageItem.buildMessageItem(messageViewHolder, picasso);
         }
     }
 
@@ -107,30 +102,6 @@ public class MessageRecyclerAdapter extends RecyclerView.Adapter<MessageViewHold
         }
 
         return super.getItemViewType(position);
-    }
-
-    @Override
-    public void onClick(View v) {
-
-        MessageItem messageItem = null;
-        MessageItemClickType messageItemClickType = null;
-
-        // Get the item
-        Object item = v.getTag(R.id.key_message_item);
-        if (item != null && item instanceof MessageItem) {
-            messageItem = (MessageItem) item;
-        }
-
-        // Get the click type
-        Object clickType = v.getTag(R.id.key_message_item_click_type);
-        if (clickType != null && clickType instanceof MessageItemClickType) {
-            messageItemClickType = (MessageItemClickType) clickType;
-        }
-
-        // Forward the item and click type to the activity
-        if (messageItem != null && messageItemClickType != null) {
-        } else {
-        }
     }
 
     private MessageItem getMessageItemByPosition(int position) {

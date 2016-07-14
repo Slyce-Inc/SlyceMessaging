@@ -7,5 +7,4 @@
     <item name="key_list_item" type="id" />
     <item name="key_list_item_click_type" type="id" />
     <item name="key_message_item" type="id" />
-    <item name="key_message_item_click_type" type="id" />
 </resources>
