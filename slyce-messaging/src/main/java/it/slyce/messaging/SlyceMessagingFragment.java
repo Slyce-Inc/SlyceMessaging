@@ -251,10 +251,10 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
         if (moreMessagesExist && mMessages.get(0) instanceof SpinnerMessage) {
             mMessages.remove(0);
         }
-
         List<Message> messages = loadMoreMessagesListener.loadMoreMessages();
         int upTo = messages.size();
-        for (Message message : messages) {
+        for (int i = messages.size() - 1; i >= 0; i--) {
+            Message message = messages.get(i);
             mMessages.add(0, message);
         }
 
