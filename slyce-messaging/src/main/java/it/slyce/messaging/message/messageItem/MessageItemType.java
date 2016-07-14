@@ -4,10 +4,10 @@ package it.slyce.messaging.message.messageItem;
  * Created by John C. Hunchar on 5/12/16.
  */
 public enum MessageItemType {
-    SCOUT_MEDIA,
-    SCOUT_TEXT,
-    USER_MEDIA,
-    USER_TEXT,
+    INCOMING_MEDIA,
+    INCOMING_TEXT,
+    OUTGOING_MEDIA,
+    OUTGOING_TEXT,
     SPINNER;
 
     public static final MessageItemType values[] = values();

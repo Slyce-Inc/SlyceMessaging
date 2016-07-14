@@ -83,9 +83,9 @@ public abstract class MessageMediaItem extends MessageItem {
     @Override
     public MessageItemType getMessageItemType() {
         if (mediaMessage.getSource() == MessageSource.EXTERNAL_USER)
-            return MessageItemType.SCOUT_MEDIA;
+            return MessageItemType.INCOMING_MEDIA;
         else
-            return MessageItemType.USER_MEDIA;
+            return MessageItemType.OUTGOING_MEDIA;
     }
 
     @Override

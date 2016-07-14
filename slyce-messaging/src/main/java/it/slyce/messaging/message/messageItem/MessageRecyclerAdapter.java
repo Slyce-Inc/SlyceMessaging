@@ -44,22 +44,22 @@ public class MessageRecyclerAdapter extends RecyclerView.Adapter<MessageViewHold
         switch (messageItemType) {
 
 
-            case SCOUT_MEDIA:
+            case INCOMING_MEDIA:
                 View scoutMediaView = inflater.inflate(R.layout.item_message_external_media, parent, false);
                 viewHolder = new MessageExternalUserMediaViewHolder(scoutMediaView, customSettings);
                 break;
 
-            case SCOUT_TEXT:
+            case INCOMING_TEXT:
                 View scoutTextView = inflater.inflate(R.layout.item_message_external_text, parent, false);
                 viewHolder = new MessageExternalUserTextViewHolder(scoutTextView, customSettings);
                 break;
 
-            case USER_MEDIA:
+            case OUTGOING_MEDIA:
                 View userMediaView = inflater.inflate(R.layout.item_message_user_media, parent, false);
                 viewHolder = new MessageInternalUserViewHolder(userMediaView, customSettings);
                 break;
 
-            case USER_TEXT:
+            case OUTGOING_TEXT:
                 View userTextView = inflater.inflate(R.layout.item_message_user_text, parent, false);
                 viewHolder = new MessageInternalUserTextViewHolder(userTextView, customSettings);
                 break;
