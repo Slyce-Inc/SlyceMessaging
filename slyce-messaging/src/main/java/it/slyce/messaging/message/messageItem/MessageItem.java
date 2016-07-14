@@ -26,8 +26,7 @@ public abstract class MessageItem {
 
     public abstract void buildMessageItem(
             MessageViewHolder messageViewHolder,
-            Picasso picasso,
-            OnClickListener onClickListener);
+            Picasso picasso);
 
     public abstract MessageItemType getMessageItemType();
 

@@ -32,8 +32,7 @@ public abstract class MessageMediaItem extends MessageItem {
     @Override
     public void buildMessageItem(
             MessageViewHolder messageViewHolder,
-            Picasso picasso,
-            View.OnClickListener onClickListener) {
+            Picasso picasso) {
 
         if (mediaMessage != null &&  messageViewHolder != null && messageViewHolder instanceof MessageMediaViewHolder) {
             final MessageMediaViewHolder messageMediaViewHolder = (MessageMediaViewHolder) messageViewHolder;

@@ -33,8 +33,7 @@ public class MessageTextItem extends MessageItem {
     @Override
     public void buildMessageItem(
             MessageViewHolder messageViewHolder,
-            final Picasso picasso,
-            View.OnClickListener onClickListener) {
+            final Picasso picasso) {
 
         if (textMessage != null &&  messageViewHolder != null && messageViewHolder instanceof MessageTextViewHolder) {
             final MessageTextViewHolder messageTextViewHolder = (MessageTextViewHolder) messageViewHolder;

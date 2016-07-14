@@ -17,7 +17,7 @@ public class SpinnerItem extends MessageItem {
     }
 
     @Override
-    public void buildMessageItem(MessageViewHolder messageViewHolder, Picasso picasso, View.OnClickListener onClickListener) {
+    public void buildMessageItem(MessageViewHolder messageViewHolder, Picasso picasso) {
 
     }
 
