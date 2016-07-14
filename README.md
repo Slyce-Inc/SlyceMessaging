@@ -98,7 +98,7 @@ public interface UserClicksAvatarPictureListener {
 }
 
 public interface ShouldLoadMoreMessagesListener {
-    public List<Message> shouldLoadMoreMessages();
+    public List<Message> loadMoreMessages();
 }
 ```
 
