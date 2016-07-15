@@ -308,7 +308,7 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
             sendUserTextMessage();
         } else if (v.getId() == R.id.scout_image_view_snap) {
             mEntryField.setText("");
-            final File root = new File(Environment.getExternalStorageDirectory() + File.separator + "MyDir" + File.separator);
+            final File root = new File(Environment.getExternalStorageDirectory() + File.separator + "SlyceMessaging" + File.separator);
             root.mkdirs();
             final String fname = "img_" + System.currentTimeMillis() + ".jpg";
             this.file = new File(root, fname);
