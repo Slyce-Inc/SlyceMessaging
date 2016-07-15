@@ -11,7 +11,7 @@ import it.slyce.messaging.message.messageItem.MessageItemType;
  */
 public class MessageUtils {
 
-    public static void setFirstOrLast(int i, List<MessageItem> messageItems) {
+    public static void markMessageItemAtIndexIfFirstOrLastFromSource(int i, List<MessageItem> messageItems) {
         if (i < 0 || i >= messageItems.size()) {
             return;
         }

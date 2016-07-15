@@ -38,6 +38,14 @@ public abstract class MessageItem {
         return getMessageItemType().ordinal();
     }
 
+    public boolean isFirstConsecutiveMessageFromSource() {
+        return isFirstConsecutiveMessageFromSource;
+    }
+
+    public boolean isLastConsecutiveMessageFromSource() {
+        return isLastConsecutiveMessageFromSource;
+    }
+
     public void setIsFirstConsecutiveMessageFromSource(boolean isFirstConsecutiveMessageFromSource) {
         this.isFirstConsecutiveMessageFromSource = isFirstConsecutiveMessageFromSource;
     }
