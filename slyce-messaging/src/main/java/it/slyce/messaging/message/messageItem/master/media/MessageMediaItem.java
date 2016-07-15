@@ -35,6 +35,17 @@ public abstract class MessageMediaItem extends MessageItem {
             Picasso picasso) {
 
         if (mediaMessage != null &&  messageViewHolder != null && messageViewHolder instanceof MessageMediaViewHolder) {
+            System.out.println("**************************************");
+            System.out.println("**************************************");
+            System.out.println("**************************************");
+            System.out.println("**************************************");
+            System.out.println("**************************************");
+            System.out.println("**************************************");
+            System.out.println("**************************************");
+            System.out.println("**************************************");
+            System.out.println("**************************************");
+            System.out.println("**************************************");
+            System.out.println("**************************************");
             final MessageMediaViewHolder messageMediaViewHolder = (MessageMediaViewHolder) messageViewHolder;
 
             // Get content
@@ -77,6 +88,17 @@ public abstract class MessageMediaItem extends MessageItem {
             messageMediaViewHolder.initials.setVisibility(firstConsecutiveMessageFromSource && TextUtils.isEmpty(avatarUrl) ? View.VISIBLE : View.GONE);
             messageMediaViewHolder.media.setVisibility(!TextUtils.isEmpty(mediaUrl) && picasso != null ? View.VISIBLE : View.INVISIBLE);
             messageMediaViewHolder.timestamp.setVisibility(lastConsecutiveMessageFromSource ? View.VISIBLE : View.GONE);
+
+
+            System.out.println("++++++++++++++++++++++++++++++++++++++");
+            System.out.println("++++++++++++++++++++++++++++++++++++++");
+            System.out.println("++++++++++++++++++++++++++++++++++++++");
+            System.out.println("++++++++++++++++++++++++++++++++++++++");
+            System.out.println("++++++++++++++++++++++++++++++++++++++");
+            System.out.println("++++++++++++++++++++++++++++++++++++++");
+            System.out.println("++++++++++++++++++++++++++++++++++++++");
+            System.out.println("++++++++++++++++++++++++++++++++++++++");
+            System.out.println("++++++++++++++++++++++++++++++++++++++");
         }
     }
 

@@ -2,6 +2,7 @@ package it.slyce.messaging.message.messageItem.internalUser.text;
 
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -28,7 +29,8 @@ public class MessageInternalUserTextViewHolder extends MessageTextViewHolder {
         avatarContainer = (ViewGroup) itemView.findViewById(R.id.message_user_text_view_group_avatar);
         bubble = (FrameLayout) itemView.findViewById(R.id.message_user_text_view_group_bubble);
 
-        Drawable drawable = itemView.getContext().getDrawable(R.drawable.shape_rounded_rectangle_white);
+        Drawable drawable = ContextCompat.getDrawable(itemView.getContext(), R.drawable.shape_rounded_rectangle_white);
+        // Drawable drawable = itemView.getContext().getDrawable();
         drawable.setColorFilter(customSettings.localBubbleBackgroundColor, PorterDuff.Mode.SRC_ATOP);
         bubble.setBackground(drawable);
         carrot.setColorFilter(customSettings.localBubbleBackgroundColor);

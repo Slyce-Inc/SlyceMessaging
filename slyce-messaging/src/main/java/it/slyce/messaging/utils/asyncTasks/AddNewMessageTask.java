@@ -78,9 +78,9 @@ public class AddNewMessageTask extends AsyncTask {
                             mRecyclerView.smoothScrollToPosition(mRecyclerAdapter.getItemCount() - 1);
                         }
                     }).setActionTextColor(customSettings.snackbarButtonColor);
-            TextView textView = (TextView) snackbar.getView().findViewById(android.support.design.R.id.snackbar_text);
-            textView.setTextColor(customSettings.snackbarTitleColor);
-            snackbar.getView().setBackgroundColor(customSettings.snackbarBackground);
+            //TextView textView = (TextView) snackbar.getView().findViewById(android.support.design.R.id.snackbar_text);
+            //textView.setTextColor(customSettings.snackbarTitleColor);
+            //snackbar.getView().setBackgroundColor(customSettings.snackbarBackground);
             snackbar.show();
         }
     }

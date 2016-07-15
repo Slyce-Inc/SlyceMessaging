@@ -91,8 +91,9 @@ public class FixedAspectRatioImageView extends ImageView {
             super.onMeasure(
                     MeasureSpec.makeMeasureSpec(newWidth, MeasureSpec.EXACTLY),
                     MeasureSpec.makeMeasureSpec(newHeight, MeasureSpec.EXACTLY));
-        }
-        catch (Exception ignored) {
+        } catch (RuntimeException exception) {
+            System.out.println(exception);
+            exception.printStackTrace();
         }
     }
 

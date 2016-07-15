@@ -3,6 +3,7 @@ package it.slyce.messaging;
 import android.Manifest;
 import android.app.Fragment;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.net.Uri;
@@ -10,6 +11,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -206,6 +208,12 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
 
         startLoadMoreMessagesThread();
 
+        if (ContextCompat.checkSelfPermission(getActivity().getApplicationContext(),
+                Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ||
+                        ContextCompat.checkSelfPermission(getActivity().getApplicationContext(),
+                                Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 232);
+
         return rootView;
     }
 
@@ -224,7 +232,10 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
                         } else if (i == startHereWhenUpdate) {
                             i++;
                         }
-                    } catch(Exception ignored) {}
+                    } catch (RuntimeException exception) {
+                        System.out.println(exception);
+                        exception.printStackTrace();
+                    }
                 }
             }
         }, 0, 62, TimeUnit.SECONDS);
@@ -239,12 +250,15 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
                         loadMoreMessages();
                         try {
                             Thread.sleep(5000);
-                        } catch (InterruptedException ignored) {
+                        } catch (InterruptedException exception) {
+                            System.out.println(exception.getMessage());
+                            exception.printStackTrace();
                         }
                     }
                     try {
                         Thread.sleep(200);
-                    } catch (InterruptedException ignored) {
+                    } catch (InterruptedException exception) {
+                        System.out.println(exception.getMessage());
                     }
                 }
             }
@@ -261,8 +275,9 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
             Message message = messages.get(i);
             mMessages.add(0, message);
         }
-        if (moreMessagesExist)
-            mMessages.add(0, new SpinnerMessage());
+        // FIXME
+        // if (moreMessagesExist)
+        //     mMessages.add(0, new SpinnerMessage());
         replaceMessages(mMessages, upTo);
     }
 
@@ -312,10 +327,12 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
             pickPhotoIntent.setType("image/*");
             Intent chooserIntent = Intent.createChooser(pickPhotoIntent, "Take a photo or select one from your device");
             chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[] {takePhotoIntent});
-            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 232);
             try {
                 startActivityForResult(chooserIntent, 1);
-            } catch (SecurityException ignored) { }
+            } catch (RuntimeException exception) {
+                System.out.println(exception);
+                exception.printStackTrace();
+            }
         }
     }
 
@@ -360,7 +377,10 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
                 if (listener != null)
                     listener.onUserSendsMediaMessage(selectedImageUri);
             }
-        } catch (RuntimeException ignored) { }
+        } catch (RuntimeException exception) {
+            System.out.println(exception);
+            exception.printStackTrace();
+        }
     }
 
     private void sendUserTextMessage() {

@@ -6,8 +6,12 @@ import android.util.AttributeSet;
 
 import it.slyce.messaging.BuildConfig;
 import it.slyce.messaging.R;
+
+import com.bumptech.glide.Glide;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
 import java.lang.ref.WeakReference;
 
 /**
@@ -76,7 +80,7 @@ public class PicassoRoundedImageView extends FixedAspectRatioRoundedImageView {
 
         // If the image URL is new, attempt to load it
         if (mSourceImageUrl == null || !mSourceImageUrl.equals(sourceImageUrl)) {
-            mPicassoRef = new WeakReference<Picasso>(picasso);
+            mPicassoRef = new WeakReference<>(picasso);
             mSourceImageUrl = sourceImageUrl;
             mScaleType = scaleType != null ? scaleType : ScaleType.CENTER_CROP;
 
@@ -87,18 +91,40 @@ public class PicassoRoundedImageView extends FixedAspectRatioRoundedImageView {
 
     private void loadImageUrl() {
         // If the view has been laid out (has width/height), and hasn't been loaded yet, attempt to load it
+        System.out.println("------------------------------");
+        System.out.println(mSourceImageUrl);
         if (mViewHasLaidOut && !mHasStartedImageLoad && mPicassoRef != null && !TextUtils.isEmpty(mSourceImageUrl)) {
             Picasso picasso = mPicassoRef.get();
             if (picasso != null && mSourceImageUrl != null) {
 
                 switch (mScaleType) {
                     case CENTER_CROP:
+                        Glide
+                                .with(getContext())
+                                .load(mSourceImageUrl)
+                                .centerCrop()
+                                .error(R.drawable.shape_rounded_rectangle_gray)
+                                .placeholder(R.drawable.shape_rounded_rectangle_gray)
+                                .into(this);
+                        /*
+                        picasso.setLoggingEnabled(true);
                         picasso.load(mSourceImageUrl)
                                 .resize(mWidthPx, mHeightPx)
                                 .centerCrop()
                                 .error(R.drawable.shape_rounded_rectangle_gray)
                                 .placeholder(R.drawable.shape_rounded_rectangle_gray)
-                                .into(this);
+                                .into(this, new Callback() {
+                                    @Override
+                                    public void onSuccess() {
+                                        System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& onSuccess");
+                                    }
+
+                                    @Override
+                                    public void onError() {
+                                        System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& onError");
+                                    }
+                                });
+                                */
                         break;
 
                     case FIT:
