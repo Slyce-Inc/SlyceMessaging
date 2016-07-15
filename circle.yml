@@ -12,4 +12,4 @@ dependencies:
 test:
   post:
     - cp -r slyce-messaging/build/outputs $CIRCLE_ARTIFACTS
-    - cp -r slyce-messaging/build/outputs/androidTest-results/* $CIRCLE_TEST_REPORTS
+    - cp -r slyce-messaging/build/test-results/release/* $CIRCLE_TEST_REPORTS
