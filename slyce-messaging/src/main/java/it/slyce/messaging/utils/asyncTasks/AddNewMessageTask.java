@@ -5,11 +5,11 @@ import android.os.AsyncTask;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.TextView;
 
 import java.util.List;
 
 import it.slyce.messaging.message.Message;
+import it.slyce.messaging.message.MessageSource;
 import it.slyce.messaging.message.messageItem.MessageItem;
 import it.slyce.messaging.message.messageItem.MessageRecyclerAdapter;
 import it.slyce.messaging.utils.CustomSettings;
@@ -68,11 +68,11 @@ public class AddNewMessageTask extends AsyncTask {
         boolean isAtBottom = !mRecyclerView.canScrollVertically(1);
         boolean isAtTop = !mRecyclerView.canScrollVertically(-1);
         mRecyclerAdapter.updateMessageItemDataList(mMessageItems);
-        if (isAtBottom)
+        if (isAtBottom || messages.get(messages.size() - 1).getSource() == MessageSource.LOCAL_USER)
             mRecyclerView.scrollToPosition(mRecyclerAdapter.getItemCount() - 1);
         else {
             if (isAtTop) {
-                ScrollUtils.scrollToTopWithDelay(mRecyclerView, mRecyclerAdapter);
+                ScrollUtils.scrollToTopAfterDelay(mRecyclerView, mRecyclerAdapter);
             }
             Snackbar snackbar = Snackbar.make(mRecyclerView, "New message!", Snackbar.LENGTH_SHORT)
                     .setAction("VIEW", new View.OnClickListener() {

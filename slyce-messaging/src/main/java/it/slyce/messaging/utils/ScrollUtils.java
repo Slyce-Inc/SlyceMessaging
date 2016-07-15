@@ -13,11 +13,11 @@ import java.util.concurrent.TimeUnit;
 public class ScrollUtils {
     private static final int SMOOTH_SCROLL_IF_THIS_MUCH = 100000;
 
-    public static void scrollToTopWithDelay(RecyclerView mRecyclerView, RecyclerView.Adapter mRecyclerAdapter) {
+    public static void scrollToTopAfterDelay(RecyclerView mRecyclerView, RecyclerView.Adapter mRecyclerAdapter) {
         scrollToPositionAfterDelay(0, mRecyclerView, mRecyclerAdapter);
     }
 
-    public static void scrollToBottomWithDelay(RecyclerView mRecyclerView, RecyclerView.Adapter mRecyclerAdapter) {
+    public static void scrollToBottomAfterDelay(RecyclerView mRecyclerView, RecyclerView.Adapter mRecyclerAdapter) {
         scrollToPositionAfterDelay(mRecyclerAdapter.getItemCount() - 1, mRecyclerView, mRecyclerAdapter);
     }
 
