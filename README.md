@@ -1,6 +1,6 @@
 # Slyce Messaging API
 
-![](https://circleci.com/gh/snipsnap/SlyceMessaging.svg?style=shield)
+![](https://circleci.com/gh/snipsnap/SlyceMessaging.svg?style=shield&circle-token=46075f470208f71a4836c234126bb773c51219d8)
 
 ![](https://github.com/snipsnap/SlyceMessaging/blob/master/ExamplePhoto.png?raw=true | width=100)
 
