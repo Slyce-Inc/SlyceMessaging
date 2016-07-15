@@ -1,5 +1,7 @@
 # Slyce Messaging API
 
+![](https://circleci.com/gh/snipsnap/SlyceMessaging.svg?style=shield)
+
 ![](https://github.com/snipsnap/SlyceMessaging/blob/master/ExamplePhoto.png?raw=true | width=100)
 
 Basic features of the API:
