@@ -10,7 +10,6 @@ dependencies:
     - echo y | android update sdk -u -a -t platform-tools
     - echo y | android update sdk --no-ui --all --filter tool,extra-android-m2repository,extra-android-support,extra-google-google_play_services,extra-google-m2repository,android-23
 test:
-  override:
-    - ./gradlew test
+  post:
     - cp -r slyce-messaging/build/outputs $CIRCLE_ARTIFACTS
-    - cp -r slyce-messaging/build/test-results/release/* $CIRCLE_TEST_REPORTS
+    - cp -r slyce-messaging/build/outputs/androidTest-results/* $CIRCLE_TEST_REPORTS
