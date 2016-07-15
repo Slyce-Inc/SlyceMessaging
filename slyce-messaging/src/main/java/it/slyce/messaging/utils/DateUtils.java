@@ -1,10 +1,5 @@
 package it.slyce.messaging.utils;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-
-import com.squareup.picasso.Picasso;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 

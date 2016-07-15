@@ -12,9 +12,7 @@ import it.slyce.messaging.message.messageItem.externalUser.media.MessageExternal
 import it.slyce.messaging.message.messageItem.externalUser.text.MessageExternalUserTextViewHolder;
 import it.slyce.messaging.message.messageItem.spinner.SpinnerViewHolder;
 import it.slyce.messaging.message.messageItem.internalUser.text.MessageInternalUserTextViewHolder;
-import com.squareup.picasso.Picasso;
 
-import java.lang.ref.WeakReference;
 import java.util.List;
 
 /**
@@ -25,13 +23,11 @@ public class MessageRecyclerAdapter extends RecyclerView.Adapter<MessageViewHold
     private static final String TAG = MessageRecyclerAdapter.class.getName();
 
     private List<MessageItem> mMessageItems;
-    private WeakReference<Picasso> mPicassoRef;
 
     private CustomSettings customSettings;
 
-    public MessageRecyclerAdapter(List<MessageItem> messageItems, Picasso picasso, CustomSettings customSettings) {
+    public MessageRecyclerAdapter(List<MessageItem> messageItems, CustomSettings customSettings) {
         mMessageItems = messageItems;
-        mPicassoRef = new WeakReference<Picasso>(picasso);
         this.customSettings = customSettings;
     }
 
@@ -80,10 +76,9 @@ public class MessageRecyclerAdapter extends RecyclerView.Adapter<MessageViewHold
         }
 
         // Build the item
-        Picasso picasso = mPicassoRef.get();
         MessageItem messageItem = getMessageItemByPosition(position);
         if (messageItem != null) {
-            messageItem.buildMessageItem(messageViewHolder, picasso);
+            messageItem.buildMessageItem(messageViewHolder);
         }
     }
 

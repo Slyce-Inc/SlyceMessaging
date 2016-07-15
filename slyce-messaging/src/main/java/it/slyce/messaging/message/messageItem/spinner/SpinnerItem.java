@@ -6,7 +6,6 @@ import it.slyce.messaging.message.MessageSource;
 import it.slyce.messaging.message.messageItem.MessageItem;
 import it.slyce.messaging.message.messageItem.MessageItemType;
 import it.slyce.messaging.message.messageItem.MessageViewHolder;
-import com.squareup.picasso.Picasso;
 
 /**
  * Created by matthewpage on 7/5/16.
@@ -17,7 +16,7 @@ public class SpinnerItem extends MessageItem {
     }
 
     @Override
-    public void buildMessageItem(MessageViewHolder messageViewHolder, Picasso picasso) {
+    public void buildMessageItem(MessageViewHolder messageViewHolder) {
 
     }
 

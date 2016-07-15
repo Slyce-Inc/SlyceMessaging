@@ -86,13 +86,11 @@ dependencies {
     compile 'com.android.support:percent:23.2.1'
     compile 'com.android.support:recyclerview-v7:23.2.1'
     compile 'com.android.support:support-v13:23.2.1'
+
     // Image
-    compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.makeramen:roundedimageview:2.2.1'
     compile 'de.hdodenhof:circleimageview:2.0.0'
-
     compile 'com.commonsware.cwac:cam2:0.6.2'
-
     compile 'com.github.bumptech.glide:glide:3.7.0'
 }
 

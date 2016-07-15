@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
 
 public class ViewImageActivity extends AppCompatActivity {
 
@@ -19,10 +19,10 @@ public class ViewImageActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         final String url = extras.getString("URL", null);
         final ImageView imageView = (ImageView) findViewById(R.id.image_view_large);
-        Picasso picasso = Picasso.with(getApplicationContext());
-        if (picasso != null && url != null) {
-            picasso.load(url).into(imageView);
+        if (url != null) {
+            Glide.with(getApplicationContext()).load(url).into(imageView);
         }
+        assert imageView != null;
         imageView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {

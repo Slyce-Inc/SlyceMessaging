@@ -43,7 +43,6 @@ import it.slyce.messaging.utils.ScrollUtils;
 import it.slyce.messaging.utils.asyncTasks.AddNewMessageTask;
 import it.slyce.messaging.utils.asyncTasks.ReplaceMessagesTask;
 import it.slyce.messaging.view.ViewUtils;
-import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -179,9 +178,8 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
 
         // Init variables for recycler view
         mMessages = new ArrayList<>();
-        mMessageItems = new ArrayList<MessageItem>();
-        Picasso picasso = Picasso.with(this.getActivity().getApplicationContext());
-        mRecyclerAdapter = new MessageRecyclerAdapter(mMessageItems, picasso, customSettings);
+        mMessageItems = new ArrayList<>();
+        mRecyclerAdapter = new MessageRecyclerAdapter(mMessageItems, customSettings);
         mLinearLayoutManager = new LinearLayoutManager(this.getActivity().getApplicationContext());
         mLinearLayoutManager.setStackFromEnd(true);
 

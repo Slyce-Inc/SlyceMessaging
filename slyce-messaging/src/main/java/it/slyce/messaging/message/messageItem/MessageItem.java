@@ -5,7 +5,6 @@ import android.view.View.OnClickListener;
 import it.slyce.messaging.message.Message;
 import it.slyce.messaging.message.MessageSource;
 import it.slyce.messaging.utils.DateUtils;
-import com.squareup.picasso.Picasso;
 
 /**
  * Created by John C. Hunchar on 5/12/16.
@@ -25,8 +24,7 @@ public abstract class MessageItem {
     }
 
     public abstract void buildMessageItem(
-            MessageViewHolder messageViewHolder,
-            Picasso picasso);
+            MessageViewHolder messageViewHolder);
 
     public abstract MessageItemType getMessageItemType();
 

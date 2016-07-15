@@ -8,13 +8,14 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
 import it.slyce.messaging.message.MessageSource;
 import it.slyce.messaging.message.TextMessage;
 import it.slyce.messaging.utils.DateUtils;
 import it.slyce.messaging.message.messageItem.MessageItem;
 import it.slyce.messaging.message.messageItem.MessageItemType;
 import it.slyce.messaging.message.messageItem.MessageViewHolder;
-import com.squareup.picasso.Picasso;
 
 /**
  * Created by matthewpage on 6/27/16.
@@ -32,8 +33,7 @@ public class MessageTextItem extends MessageItem {
 
     @Override
     public void buildMessageItem(
-            MessageViewHolder messageViewHolder,
-            final Picasso picasso) {
+            MessageViewHolder messageViewHolder) {
 
         if (textMessage != null &&  messageViewHolder != null && messageViewHolder instanceof MessageTextViewHolder) {
             final MessageTextViewHolder messageTextViewHolder = (MessageTextViewHolder) messageViewHolder;
@@ -71,8 +71,8 @@ public class MessageTextItem extends MessageItem {
                 }
             });
 
-            if (picasso != null && firstConsecutiveMessageFromSource) {
-                picasso.load(avatarUrl).into(messageTextViewHolder.avatar);
+            if (firstConsecutiveMessageFromSource) {
+                Glide.with(context).load(avatarUrl).into(messageTextViewHolder.avatar);
             }
 
             messageTextViewHolder.avatar.setVisibility(firstConsecutiveMessageFromSource && !TextUtils.isEmpty(avatarUrl) ? View.VISIBLE : View.INVISIBLE);

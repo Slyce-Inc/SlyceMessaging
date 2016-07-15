@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
 
+import com.bumptech.glide.Glide;
+
 import it.slyce.messaging.message.MediaMessage;
 import it.slyce.messaging.message.MessageSource;
 import it.slyce.messaging.utils.MediaUtils;
@@ -13,8 +15,6 @@ import it.slyce.messaging.ViewImageActivity;
 import it.slyce.messaging.message.messageItem.MessageItem;
 import it.slyce.messaging.message.messageItem.MessageItemType;
 import it.slyce.messaging.message.messageItem.MessageViewHolder;
-import it.slyce.messaging.view.image.PicassoRoundedImageView;
-import com.squareup.picasso.Picasso;
 
 /**
  * Created by matthewpage on 6/27/16.
@@ -31,8 +31,7 @@ public abstract class MessageMediaItem extends MessageItem {
 
     @Override
     public void buildMessageItem(
-            MessageViewHolder messageViewHolder,
-            Picasso picasso) {
+            MessageViewHolder messageViewHolder) {
 
         if (mediaMessage != null &&  messageViewHolder != null && messageViewHolder instanceof MessageMediaViewHolder) {
             System.out.println("**************************************");
@@ -59,10 +58,10 @@ public abstract class MessageMediaItem extends MessageItem {
             messageMediaViewHolder.initials.setText(initials != null ? initials : "");
 
             messageMediaViewHolder.media.setWidthToHeightRatio(widthToHeightRatio);
-            messageMediaViewHolder.media.setImageUrlToLoadOnLayout(picasso, mediaUrl, PicassoRoundedImageView.ScaleType.CENTER_CROP);
+            messageMediaViewHolder.media.setImageUrlToLoadOnLayout(mediaUrl);
 
-            if (picasso != null && firstConsecutiveMessageFromSource) {
-                picasso.load(avatarUrl).into(messageMediaViewHolder.avatar);
+            if (firstConsecutiveMessageFromSource) {
+                Glide.with(context).load(avatarUrl).into(messageMediaViewHolder.avatar);
             }
 
             messageViewHolder.avatar.setOnClickListener(new View.OnClickListener() {
@@ -86,7 +85,7 @@ public abstract class MessageMediaItem extends MessageItem {
             messageMediaViewHolder.avatar.setVisibility(firstConsecutiveMessageFromSource && !TextUtils.isEmpty(avatarUrl) ? View.VISIBLE : View.INVISIBLE);
             messageMediaViewHolder.avatarContainer.setVisibility(firstConsecutiveMessageFromSource ? View.VISIBLE : View.INVISIBLE);
             messageMediaViewHolder.initials.setVisibility(firstConsecutiveMessageFromSource && TextUtils.isEmpty(avatarUrl) ? View.VISIBLE : View.GONE);
-            messageMediaViewHolder.media.setVisibility(!TextUtils.isEmpty(mediaUrl) && picasso != null ? View.VISIBLE : View.INVISIBLE);
+            messageMediaViewHolder.media.setVisibility(!TextUtils.isEmpty(mediaUrl) ? View.VISIBLE : View.INVISIBLE);
             messageMediaViewHolder.timestamp.setVisibility(lastConsecutiveMessageFromSource ? View.VISIBLE : View.GONE);
 
 
