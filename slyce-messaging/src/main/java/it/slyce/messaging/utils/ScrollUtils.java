@@ -33,21 +33,23 @@ public class ScrollUtils {
 
     public static void scrollToPosition(int position, RecyclerView mRecyclerView, RecyclerView.Adapter mRecyclerAdapter) {
         int offsetOfScroll = getOffsetOfGoal(position, mRecyclerView, mRecyclerAdapter);
-        if (offsetOfScroll < SMOOTH_SCROLL_IF_THIS_MUCH)
+        if (offsetOfScroll < SMOOTH_SCROLL_IF_THIS_MUCH) {
             mRecyclerView.smoothScrollToPosition(position);
-        else
+        } else {
             mRecyclerView.scrollToPosition(position);
+        }
     }
 
     private static int getOffsetOfGoal(int position, RecyclerView mRecyclerView, RecyclerView.Adapter mRecyclerAdapter) {
         int scrollPosition = mRecyclerView.computeVerticalScrollOffset();
         int goalPosition;
-        if (position == 0) // we are at the top
+        if (position == 0) { // we are at the top
             goalPosition = 0;
-        else if (position == mRecyclerAdapter.getItemCount() - 1)
+        } else if (position == mRecyclerAdapter.getItemCount() - 1) {
             goalPosition = mRecyclerView.computeVerticalScrollRange();
-        else
+        } else {
             goalPosition = 100000000; // this will cause scrollToPosition() to be called, which we want
+        }
         return Math.abs(scrollPosition - goalPosition);
     }
 }

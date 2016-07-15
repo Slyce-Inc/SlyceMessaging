@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import it.slyce.messaging.SlyceMessagingFragment;
 import it.slyce.messaging.message.Message;
 import it.slyce.messaging.message.messageItem.MessageItem;
 import it.slyce.messaging.message.messageItem.MessageRecyclerAdapter;
@@ -48,12 +47,16 @@ public class AddNewMessageTask extends AsyncTask {
     protected Object doInBackground(Object[] objects) {
         int i = mMessageItems.size() - 1;
         for (Message message : messages) {
-            if (context == null)
-                return new Object();
+            if (context == null) {
+                return null;
+            }
             mMessageItems.add(message.toMessageItem(context)); // this call is why we need the AsyncTask
         }
-        for (; i < mMessageItems.size(); i++)
-            MessageUtils.setFirstOrLast(i, mMessageItems);
+
+        for (; i < mMessageItems.size(); i++) {
+            MessageUtils.markMessageItemAtIndexIfFirstOrLastFromSource(i, mMessageItems);
+        }
+
         return null;
     }
 

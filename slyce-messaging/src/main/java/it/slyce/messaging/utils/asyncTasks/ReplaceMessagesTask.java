@@ -40,27 +40,37 @@ public class ReplaceMessagesTask extends AsyncTask {
 
     @Override
     protected Object doInBackground(Object[] objects) {
-        for (int i = mMessageItems.size() - 1; i >= 0; i--)
+        for (int i = mMessageItems.size() - 1; i >= 0; i--) {
             mMessageItems.remove(i);
+        }
+
         for (Message message : mMessages) {
             if (context == null)
                 return null;
             mMessageItems.add(message.toMessageItem(context)); // this call is why we need the AsyncTask
         }
-        for (int i = 0; i < mMessageItems.size(); i++)
-            MessageUtils.setFirstOrLast(i, mMessageItems);
+
+        for (int i = 0; i < mMessageItems.size(); i++) {
+            MessageUtils.markMessageItemAtIndexIfFirstOrLastFromSource(i, mMessageItems);
+        }
+
         return null;
     }
 
     @Override
     protected void onPostExecute(Object o) {
         super.onPostExecute(o);
-        if (o != null)
+
+        if (o != null) {
             return;
+        }
+
         if (upTo >= 0 && upTo < mMessageItems.size()) {
             mRecyclerAdapter.notifyItemRangeInserted(0, upTo);
-        } else
+        } else {
             mRecyclerAdapter.notifyDataSetChanged();
+        }
+
         mRefresher.setIsRefreshing(false);
     }
 }

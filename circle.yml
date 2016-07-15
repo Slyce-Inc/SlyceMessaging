@@ -1,0 +1,15 @@
+machine:
+  environment:
+    # ANDROID_HOME: /usr/local/android-sdk-linux # should already be default
+    GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx2048m -XX:+HeapDumpOnOutOfMemoryError"'
+dependencies:
+  override:
+    - echo y | android update sdk -u -a -t android-23
+    - echo y | android update sdk -u -a -t build-tools-23.0.3
+    - echo y | android update sdk -u -a -t addon-google_apis-google-23
+    - echo y | android update sdk -u -a -t platform-tools
+    - echo y | android update sdk --no-ui --all --filter tool,extra-android-m2repository,extra-android-support,extra-google-google_play_services,extra-google-m2repository,android-23
+test:
+  post:
+    - cp -r slyce-messaging/build/outputs $CIRCLE_ARTIFACTS
+    - cp -r slyce-messaging/build/test-results/release/* $CIRCLE_TEST_REPORTS
