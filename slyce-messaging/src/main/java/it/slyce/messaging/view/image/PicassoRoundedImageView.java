@@ -64,8 +64,6 @@ public class PicassoRoundedImageView extends FixedAspectRatioRoundedImageView {
 
     private void loadImageUrl() {
         // If the view has been laid out (has width/height), and hasn't been loaded yet, attempt to load it
-        System.out.println("------------------------------");
-        System.out.println(mSourceImageUrl);
         if (mViewHasLaidOut && !mHasStartedImageLoad && !TextUtils.isEmpty(mSourceImageUrl)) {
             if (mSourceImageUrl != null) {
                 Glide

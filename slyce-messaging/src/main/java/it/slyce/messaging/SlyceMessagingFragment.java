@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -15,6 +16,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -28,6 +30,7 @@ import com.commonsware.cwac.cam2.ZoomStyle;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -75,6 +78,7 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
     private String defaultDisplayName;
     private String defaultUserId;
     private int startHereWhenUpdate;
+    private long recentUpdatedTime;
     private boolean moreMessagesExist;
 
     public void setPictureButtonVisible(final boolean bool) {
@@ -106,10 +110,12 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
             addSpinner();
         else
             removeSpinner();
+        loadMoreMessagesIfNecessary();
     }
 
     public void setLoadMoreMessagesListener(LoadMoreMessagesListener loadMoreMessagesListener) {
         this.loadMoreMessagesListener = loadMoreMessagesListener;
+        loadMoreMessagesIfNecessary();
     }
 
     public void setUserClicksAvatarPictureListener(UserClicksAvatarPictureListener userClicksAvatarPictureListener) {
@@ -197,10 +203,12 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
 
         startUpdateTimestampsThread();
         startHereWhenUpdate = 0;
+        recentUpdatedTime = 0;
         mRefresher = new Refresher(false);
         setStyle(R.style.MyTheme);
 
-        startLoadMoreMessagesThread();
+        loadMoreMessagesIfNecessary();
+        startLoadMoreMessagesListener();
 
         if (ContextCompat.checkSelfPermission(getActivity().getApplicationContext(),
                 Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ||
@@ -235,28 +243,29 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
         }, 0, 62, TimeUnit.SECONDS);
     }
 
-    private void startLoadMoreMessagesThread() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                for (;;) {
-                    if (shouldReloadData()) {
-                        loadMoreMessages();
-                        try {
-                            Thread.sleep(5000);
-                        } catch (InterruptedException exception) {
-                            System.out.println(exception.getMessage());
-                            exception.printStackTrace();
-                        }
-                    }
-                    try {
-                        Thread.sleep(200);
-                    } catch (InterruptedException exception) {
-                        System.out.println(exception.getMessage());
-                    }
+    private void startLoadMoreMessagesListener() {
+        if (Build.VERSION.SDK_INT >= 23)
+            mRecyclerView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+                @Override
+                public void onScrollChange(View view, int i, int i1, int i2, int i3) {
+                    loadMoreMessagesIfNecessary();
                 }
-            }
-        }).start();
+            });
+        else
+            mRecyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                    super.onScrolled(recyclerView, dx, dy);
+                    loadMoreMessagesIfNecessary();
+                }
+            });
+    }
+
+    private void loadMoreMessagesIfNecessary() {
+        if (shouldReloadData()) {
+            recentUpdatedTime = new Date().getTime();
+            loadMoreMessages();
+        }
     }
 
     private void loadMoreMessages() {
@@ -286,7 +295,8 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
         if (loadMoreMessagesListener == null || !moreMessagesExist) {
             return false;
         } else {
-            return scrollOffset < START_RELOADING_DATA_AT_SCROLL_VALUE;
+            return scrollOffset < START_RELOADING_DATA_AT_SCROLL_VALUE &&
+                    recentUpdatedTime + 1000 < new Date().getTime();
         }
     }
 
@@ -374,7 +384,7 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
                     listener.onUserSendsMediaMessage(selectedImageUri);
             }
         } catch (RuntimeException exception) {
-            System.out.println(exception);
+            Log.d("debug", exception.getMessage());
             exception.printStackTrace();
         }
     }
