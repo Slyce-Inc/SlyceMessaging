@@ -175,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("inf", "******************************** " + imageUri);
             }
         });
-        
+
         slyceMessagingFragment.setLoadMoreMessagesListener(new LoadMoreMessagesListener() {
             @Override
             public List<Message> loadMoreMessages() {
@@ -187,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
                 return messages;
             }
         });
-        
+
         slyceMessagingFragment.setMoreMessagesExist(true);
     }
 }
@@ -206,3 +206,9 @@ public class MainActivity extends AppCompatActivity {
     <item name="snackbarButtonColor">@color/text_blue</item>
 </style>
 ```
+
+## Developers
+
+We have a local.properties file checked in for CI builds. Please do not check in changes to local.properties. Run this command to prevent that file from showing up as changed:
+
+```git update-index --assume-unchanged local.properties```
