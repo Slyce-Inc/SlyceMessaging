@@ -24,7 +24,7 @@ public class MessageUtilsTest {
 
     @Before
     public void before() {
-        messageItems = new ArrayList<MessageItem>();
+        messageItems = new ArrayList<>();
 
         // incoming text
         TextMessage firstIncoming = new TextMessage();
