@@ -86,7 +86,7 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    ImageView imageView = (ImageView) rootView.findViewById(R.id.scout_image_view_snap);
+                    ImageView imageView = (ImageView) rootView.findViewById(R.id.slyce_messaging_image_view_snap);
                     imageView.setVisibility(bool ? View.VISIBLE : View.GONE);
                 }
             });
@@ -173,10 +173,10 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
         this.customSettings = new CustomSettings();
 
         // Setup views
-        mEntryField = (EditText) rootView.findViewById(R.id.scout_edit_text_entry_field);
-        ImageView mSendButton = (ImageView) rootView.findViewById(R.id.scout_image_view_send);
-        ImageView mSnapButton = (ImageView) rootView.findViewById(R.id.scout_image_view_snap);
-        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
+        mEntryField = (EditText) rootView.findViewById(R.id.slyce_messaging_edit_text_entry_field);
+        ImageView mSendButton = (ImageView) rootView.findViewById(R.id.slyce_messaging_image_view_send);
+        ImageView mSnapButton = (ImageView) rootView.findViewById(R.id.slyce_messaging_image_view_snap);
+        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.slyce_messaging_recycler_view);
 
         // Add interfaces
         mSendButton.setOnClickListener(this);
@@ -314,9 +314,9 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.scout_image_view_send) {
+        if (v.getId() == R.id.slyce_messaging_image_view_send) {
             sendUserTextMessage();
-        } else if (v.getId() == R.id.scout_image_view_snap) {
+        } else if (v.getId() == R.id.slyce_messaging_image_view_snap) {
             mEntryField.setText("");
             final File root = new File(Environment.getExternalStorageDirectory() + File.separator + "SlyceMessaging" + File.separator);
             root.mkdirs();
@@ -349,7 +349,7 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
             return;
         }
         try {
-            if (requestCode == 1) {
+            if (requestCode == 1 && resultCode == getActivity().RESULT_OK) {
                 final boolean isCamera;
                 if (data == null) {
                     isCamera = true;
