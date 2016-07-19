@@ -74,11 +74,12 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
+
     // Test
     testCompile 'junit:junit:4.12'
-    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.1'
     androidTestCompile 'com.android.support.test:runner:0.4.1'
     androidTestCompile 'com.android.support:support-annotations:23.2.1'
+
     // Design
     compile 'com.android.support:appcompat-v7:23.2.1'
     compile 'com.android.support:cardview-v7:23.2.1'

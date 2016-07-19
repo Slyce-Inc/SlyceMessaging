@@ -17,7 +17,7 @@
             android:name="it.slyce.messaging.SlyceMessagingFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/fragment_for_scout"/>
+            android:id="@+id/fragment_for_slyce_messaging"/>
 
         <include layout="@layout/content_example"/>
 

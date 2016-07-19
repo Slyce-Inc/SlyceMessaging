@@ -11,23 +11,23 @@ import com.bumptech.glide.Glide;
 /**
  * Created by John C. Hunchar on 2/2/16.
  */
-public class PicassoRoundedImageView extends FixedAspectRatioRoundedImageView {
+public class GlideRoundedImageView extends FixedAspectRatioRoundedImageView {
 
     private boolean mHasStartedImageLoad;
     private boolean mViewHasLaidOut;
     private String mSourceImageUrl;
 
-    public PicassoRoundedImageView(Context context) {
+    public GlideRoundedImageView(Context context) {
         super(context);
         init();
     }
 
-    public PicassoRoundedImageView(Context context, AttributeSet attrs) {
+    public GlideRoundedImageView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public PicassoRoundedImageView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public GlideRoundedImageView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }

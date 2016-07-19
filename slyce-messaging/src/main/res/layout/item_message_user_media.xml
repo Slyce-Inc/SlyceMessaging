@@ -44,7 +44,7 @@
         android:layout_toLeftOf="@+id/message_user_media_view_group_avatar"
         android:background="@drawable/shape_rounded_rectangle_white">
 
-        <it.slyce.messaging.view.image.PicassoRoundedImageView
+        <it.slyce.messaging.view.image.GlideRoundedImageView
             android:id="@+id/message_user_media_picasso_rounded_image_view_media"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

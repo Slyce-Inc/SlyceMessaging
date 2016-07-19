@@ -176,7 +176,7 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
         mEntryField = (EditText) rootView.findViewById(R.id.scout_edit_text_entry_field);
         ImageView mSendButton = (ImageView) rootView.findViewById(R.id.scout_image_view_send);
         ImageView mSnapButton = (ImageView) rootView.findViewById(R.id.scout_image_view_snap);
-        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.scout_recycler_view);
+        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
 
         // Add interfaces
         mSendButton.setOnClickListener(this);
