@@ -349,7 +349,7 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
             return;
         }
         try {
-            if (requestCode == 1) {
+            if (requestCode == 1 && resultCode == getActivity().RESULT_OK) {
                 final boolean isCamera;
                 if (data == null) {
                     isCamera = true;
