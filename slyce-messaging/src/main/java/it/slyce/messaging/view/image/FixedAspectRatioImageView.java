@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Build.VERSION_CODES;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -92,7 +93,7 @@ public class FixedAspectRatioImageView extends ImageView {
                     MeasureSpec.makeMeasureSpec(newWidth, MeasureSpec.EXACTLY),
                     MeasureSpec.makeMeasureSpec(newHeight, MeasureSpec.EXACTLY));
         } catch (RuntimeException exception) {
-            System.out.println(exception);
+            Log.d("debug", exception.getMessage());
             exception.printStackTrace();
         }
     }

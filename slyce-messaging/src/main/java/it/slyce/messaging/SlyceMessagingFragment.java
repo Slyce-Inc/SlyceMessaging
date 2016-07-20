@@ -235,7 +235,7 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
                             i++;
                         }
                     } catch (RuntimeException exception) {
-                        System.out.println(exception);
+                        Log.d("debug", exception.getMessage());
                         exception.printStackTrace();
                     }
                 }
@@ -336,7 +336,7 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
             try {
                 startActivityForResult(chooserIntent, 1);
             } catch (RuntimeException exception) {
-                System.out.println(exception);
+                Log.d("debug", exception.getMessage());
                 exception.printStackTrace();
             }
         }
@@ -405,7 +405,6 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
         message.setUserId(defaultUserId);
         addNewMessage(message);
 
-        System.out.println("Scroll to bottom after delay!");
         ScrollUtils.scrollToBottomAfterDelay(mRecyclerView, mRecyclerAdapter);
         if (listener != null)
             listener.onUserSendsTextMessage(message.getText());

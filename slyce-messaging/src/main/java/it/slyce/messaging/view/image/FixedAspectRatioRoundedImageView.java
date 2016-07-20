@@ -3,6 +3,7 @@ package it.slyce.messaging.view.image;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
@@ -84,7 +85,7 @@ public class FixedAspectRatioRoundedImageView extends RoundedImageView {
                     MeasureSpec.makeMeasureSpec(newWidth, MeasureSpec.EXACTLY),
                     MeasureSpec.makeMeasureSpec(newHeight, MeasureSpec.EXACTLY));
         } catch (RuntimeException exception) {
-            System.out.println(exception);
+            Log.d("debug", exception.getMessage());
             exception.printStackTrace();
         }
     }
