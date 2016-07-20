@@ -1,3 +1,4 @@
+
 lt application files
 *.apk
 *.ap_
@@ -12,6 +13,7 @@ lt application files
 bin/
 gen/
 out/
+.DS_Store
 
 # Gradle files
 .gradle/
@@ -34,8 +36,7 @@ captures/
 
 # Intellij
 *.iml
-.idea/workspace.xml
-.idea/libraries
+.idea/*
 
 # Keystore files
 *.jks/captures
