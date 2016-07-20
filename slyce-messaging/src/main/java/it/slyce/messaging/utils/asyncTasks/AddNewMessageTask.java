@@ -27,6 +27,7 @@ public class AddNewMessageTask extends AsyncTask {
     private RecyclerView mRecyclerView;
     private Context context;
     private CustomSettings customSettings;
+    private int rangeStartingPoint;
 
     public AddNewMessageTask(
             List<Message> messages,
@@ -45,7 +46,7 @@ public class AddNewMessageTask extends AsyncTask {
 
     @Override
     protected Object doInBackground(Object[] objects) {
-        int i = mMessageItems.size() - 1;
+        this.rangeStartingPoint = mMessageItems.size() - 1;
         for (Message message : messages) {
             if (context == null) {
                 return null;
@@ -53,7 +54,7 @@ public class AddNewMessageTask extends AsyncTask {
             mMessageItems.add(message.toMessageItem(context)); // this call is why we need the AsyncTask
         }
 
-        for (; i < mMessageItems.size(); i++) {
+        for (int i = rangeStartingPoint; i < mMessageItems.size(); i++) {
             MessageUtils.markMessageItemAtIndexIfFirstOrLastFromSource(i, mMessageItems);
         }
 
@@ -67,7 +68,8 @@ public class AddNewMessageTask extends AsyncTask {
             return;
         boolean isAtBottom = !mRecyclerView.canScrollVertically(1);
         boolean isAtTop = !mRecyclerView.canScrollVertically(-1);
-        mRecyclerAdapter.updateMessageItemDataList(mMessageItems);
+        mRecyclerAdapter.notifyItemRangeInserted(rangeStartingPoint + 1, messages.size() - rangeStartingPoint - 1);
+        mRecyclerAdapter.notifyItemChanged(rangeStartingPoint);
         if (isAtBottom || messages.get(messages.size() - 1).getSource() == MessageSource.LOCAL_USER)
             mRecyclerView.scrollToPosition(mRecyclerAdapter.getItemCount() - 1);
         else {

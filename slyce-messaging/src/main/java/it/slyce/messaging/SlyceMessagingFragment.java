@@ -405,6 +405,7 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
         message.setUserId(defaultUserId);
         addNewMessage(message);
 
+        System.out.println("Scroll to bottom after delay!");
         ScrollUtils.scrollToBottomAfterDelay(mRecyclerView, mRecyclerAdapter);
         if (listener != null)
             listener.onUserSendsTextMessage(message.getText());

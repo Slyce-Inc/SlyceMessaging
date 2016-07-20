@@ -26,9 +26,10 @@ public class ScrollUtils {
         scheduleTaskExecutor.schedule(new Runnable() {
             @Override
             public void run() {
-                scrollToPosition(position, mRecyclerView, mRecyclerAdapter);
+                System.out.println(position + ", " + mRecyclerAdapter.getItemCount());
+                scrollToPosition(position+1, mRecyclerView, mRecyclerAdapter);
             }
-        }, 100, TimeUnit.MILLISECONDS);
+        }, 150, TimeUnit.MILLISECONDS);
     }
 
     public static void scrollToPosition(int position, RecyclerView mRecyclerView, RecyclerView.Adapter mRecyclerAdapter) {
