@@ -2,7 +2,7 @@
 
 ![](https://circleci.com/gh/snipsnap/SlyceMessaging.svg?style=shield&circle-token=46075f470208f71a4836c234126bb773c51219d8)
 
-![](https://github.com/snipsnap/SlyceMessaging/blob/master/sample-photos/example.png?raw=true | width=100) ![](https://github.com/snipsnap/SlyceMessaging/blob/master/sample-photos/chat-with-image.png?raw=true | width=100)
+![](sample-photos/example.png?raw=true | width=100) ![](sample-photos/chat-with-image.png?raw=true | width=100)
 
 Basic features of the API:
 
@@ -16,7 +16,7 @@ Basic features of the API:
 
 ## Installation
 
-Download the [arr file](https://github.com/snipsnap/SlyceMessaging/releases/download/1.0.2/slyce-messaging.aar). In your project do File -> New -> New Module. Select "Import .JAR/.AAR Package". Select the file you downloaded and give the subproject any name you want, and click "finish".
+Download the [arr file](releases/download/1.0.2/slyce-messaging.aar). In your project do File -> New -> New Module. Select "Import .JAR/.AAR Package". Select the file you downloaded and give the subproject any name you want, and click "finish".
 
 Now do File -> Project Structure. On the left hand side, at the bottom, select your app's module. Under the "dependencies" tab, add a module dependency to the module you created above.
 
