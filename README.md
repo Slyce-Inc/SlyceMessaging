@@ -16,7 +16,7 @@ Basic features of the API:
 
 ## Installation
 
-Download the [arr file](https://github.com/snipsnap/SlyceMessaging/releases/download/1.0.1/slyce-messaging.aar). In your project do File -> New -> New Module. Select "Import .JAR/.AAR Package". Select the file you downloaded and give the subproject any name you want, and click "finish".
+Download the [arr file](https://github.com/snipsnap/SlyceMessaging/releases/download/1.0.2/slyce-messaging.aar). In your project do File -> New -> New Module. Select "Import .JAR/.AAR Package". Select the file you downloaded and give the subproject any name you want, and click "finish".
 
 Now do File -> Project Structure. On the left hand side, at the bottom, select your app's module. Under the "dependencies" tab, add a module dependency to the module you created above.
 
@@ -30,22 +30,25 @@ repositories {
 }
 
 dependencies {
-    compile 'com.android.support:cardview-v7:23.2.1'
     compile 'com.android.support:design:23.2.1'
     compile 'com.makeramen:roundedimageview:2.2.1'
-    compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'de.hdodenhof:circleimageview:2.0.0'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.commonsware.cwac:cam2:0.6.2'
 }
 ```
 
-You should also add the following to your proguard-rules.pro file:
-```ruby
--keep com.squareup.picasso.*
--keep com.commonsware.cwac.*
-```
-
 ## The API
+
+You must initialize the fragment by declaring an XML tag like the following:
+
+```xml
+<fragment
+            android:name="it.slyce.messaging.SlyceMessagingFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/messaging_fragment"/>
+```
 
 ### SlyceMessagingFragment
 
@@ -57,7 +60,7 @@ public void setDefaultUserId(String id); // A unique identifier for the current 
 public void setPictureButtonVisible(boolean bool); // Used to toggle whether the user can send picture messages. Default is true.
 public void setStyle(int style); // See section "Custimize colors"
 public void setMoreMessagesExist(boolean bool); // Sets whether more messages can be loaded from the top
-public void setShouldLoadMoreMessagesListener(ShouldLoadMoreMessagesListener listener); // Gets called when the user scrolls close to the top, if relevent
+public void setLoadMoreMessagesListener(ShouldLoadMoreMessagesListener listener); // Gets called when the user scrolls close to the top, if relevent
 
 public void addMessage(Message message);
 public void addMessages(List<Message> messages);
@@ -122,7 +125,7 @@ You can custimize the colors of the fragment by providing a style with the follo
 
 ```java
 public class MainActivity extends AppCompatActivity {
-
+    private static int n = 0;
     private static String[] latin = {
             "Vestibulum dignissim enim a mauris malesuada fermentum. Vivamus tristique consequat turpis, pellentesque.",
             "Quisque nulla leo, venenatis ut augue nec, dictum gravida nibh. Donec augue nisi, volutpat nec libero.",
@@ -157,9 +160,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(it.snipsnap.slyce_messaging_example.R.layout.activity_main);
+        setContentView(R.layout.activity_main);
 
-        slyceMessagingFragment = (SlyceMessagingFragment) getFragmentManager().findFragmentById(R.id.fragment_for_scout);
+        slyceMessagingFragment = (SlyceMessagingFragment) getFragmentManager().findFragmentById(R.id.fragment_for_slyce);
         slyceMessagingFragment.setDefaultAvatarUrl("https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/10989174_799389040149643_722795835011402620_n.jpg?oh=bff552835c414974cc446043ac3c70ca&oe=580717A5");
         slyceMessagingFragment.setDefaultDisplayName("Matthew Page");
         slyceMessagingFragment.setDefaultUserId("uhtnaeohnuoenhaeuonthhntouaetnheuontheuo");
@@ -179,11 +182,9 @@ public class MainActivity extends AppCompatActivity {
         slyceMessagingFragment.setLoadMoreMessagesListener(new LoadMoreMessagesListener() {
             @Override
             public List<Message> loadMoreMessages() {
-                Log.d("info", "loadMoreMessages()");
                 ArrayList<Message> messages = new ArrayList<>();
                 for (int i = 0; i < 50; i++)
                     messages.add(getRandomMessage());
-                Log.d("info", "loadMoreMessages() returns");
                 return messages;
             }
         });
