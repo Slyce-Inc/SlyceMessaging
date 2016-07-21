@@ -5,15 +5,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.List;
+
 import it.slyce.messaging.R;
-import it.slyce.messaging.message.messageItem.internalUser.media.MessageInternalUserViewHolder;
-import it.slyce.messaging.utils.CustomSettings;
 import it.slyce.messaging.message.messageItem.externalUser.media.MessageExternalUserMediaViewHolder;
 import it.slyce.messaging.message.messageItem.externalUser.text.MessageExternalUserTextViewHolder;
-import it.slyce.messaging.message.messageItem.spinner.SpinnerViewHolder;
+import it.slyce.messaging.message.messageItem.internalUser.media.MessageInternalUserViewHolder;
 import it.slyce.messaging.message.messageItem.internalUser.text.MessageInternalUserTextViewHolder;
-
-import java.util.List;
+import it.slyce.messaging.message.messageItem.spinner.SpinnerViewHolder;
+import it.slyce.messaging.utils.CustomSettings;
 
 /**
  * Created by John C. Hunchar on 5/12/16.
@@ -97,6 +97,10 @@ public class MessageRecyclerAdapter extends RecyclerView.Adapter<MessageViewHold
         }
 
         return super.getItemViewType(position);
+    }
+
+    public List<MessageItem> getMessageItems() {
+        return mMessageItems;
     }
 
     private MessageItem getMessageItemByPosition(int position) {

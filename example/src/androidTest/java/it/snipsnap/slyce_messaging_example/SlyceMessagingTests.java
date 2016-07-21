@@ -1,0 +1,67 @@
+package it.snipsnap.slyce_messaging_example;
+
+import android.support.test.InstrumentationRegistry;
+import android.support.test.runner.AndroidJUnit4;
+import android.support.v7.widget.RecyclerView;
+import android.test.ActivityInstrumentationTestCase2;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import java.util.Date;
+
+import it.slyce.messaging.SlyceMessagingFragment;
+import it.slyce.messaging.message.MessageSource;
+import it.slyce.messaging.message.TextMessage;
+import it.slyce.messaging.message.messageItem.MessageRecyclerAdapter;
+
+/**
+ * @Author Matthew Page
+ * @Date 7/18/16
+ */
+
+@RunWith(AndroidJUnit4.class)
+public class SlyceMessagingTests extends ActivityInstrumentationTestCase2<MainActivity> {
+
+    MainActivity mActivity;
+    SlyceMessagingFragment mFragment;
+    RecyclerView mRecyclerView;
+    MessageRecyclerAdapter mAdapter;
+
+    public SlyceMessagingTests() {
+        super(MainActivity.class);
+    }
+
+    @Before
+    public void setUp() throws Exception {
+        super.setUp();
+        injectInstrumentation(InstrumentationRegistry.getInstrumentation());
+        mActivity = getActivity();
+        mFragment = (SlyceMessagingFragment) mActivity.getFragmentManager().findFragmentById(R.id.fragment_for_slyce_messaging);
+        mRecyclerView = (RecyclerView) mFragment.getView().findViewById(R.id.slyce_messaging_recycler_view);
+        mAdapter = (MessageRecyclerAdapter) mRecyclerView.getAdapter();
+    }
+
+    @Test
+    public void checkNumberOfMessages() {
+        assertTrue(mAdapter.getItemCount() == 51);
+    }
+
+    @Test
+    public void checkIsAtBottom() {
+        assertFalse(mRecyclerView.canScrollVertically(1));
+    }
+
+    @Test
+    public void addMessageButStillAtBottom() {
+        TextMessage textMessage = new TextMessage();
+        textMessage.setText("hi");
+        textMessage.setSource(MessageSource.LOCAL_USER);
+        textMessage.setDate(new Date().getTime());
+        textMessage.setUserId("ueoanhotneutnhaeuo");
+        textMessage.setAvatarUrl("");
+        mFragment.addNewMessage(textMessage);
+        checkIsAtBottom();
+    }
+}

@@ -3,6 +3,7 @@ package it.snipsnap.slyce_messaging_example;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -129,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
         scheduleTaskExecutor.scheduleAtFixedRate(new Runnable() {
             @Override
             public void run() {
+                System.out.println(((RecyclerView) slyceMessagingFragment.getView().findViewById(R.id.slyce_messaging_recycler_view)).getChildCount());
                 TextMessage textMessage = new TextMessage();
                 textMessage.setText("Another message...");
                 textMessage.setAvatarUrl("https://lh3.googleusercontent.com/-Y86IN-vEObo/AAAAAAAAAAI/AAAAAAAKyAM/6bec6LqLXXA/s0-c-k-no-ns/photo.jpg");
