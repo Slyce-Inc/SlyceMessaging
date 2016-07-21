@@ -6,16 +6,22 @@
     android:layout_height="match_parent"
     android:background="@color/background_gray_lightest">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/slyce_messaging_recycler_view"
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/slyce_messaging_view_horiz_divider"
-        android:clipToPadding="false"
-        android:overScrollMode="ifContentScrolls"
-        android:paddingBottom="8dp"
-        android:paddingTop="8dp"
-        android:scrollbars="vertical" />
+        android:layout_above="@+id/slyce_messaging_view_horiz_divider">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/slyce_messaging_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:overScrollMode="ifContentScrolls"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:scrollbars="vertical" />
+
+    </android.support.design.widget.CoordinatorLayout>
 
 
     <View

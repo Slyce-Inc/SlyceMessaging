@@ -1,13 +1,16 @@
 package it.snipsnap.slyce_messaging_example;
 
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import it.slyce.messaging.SlyceMessagingFragment;
 import it.slyce.messaging.listeners.LoadMoreMessagesListener;
@@ -117,6 +120,25 @@ public class MainActivity extends AppCompatActivity {
         slyceMessagingFragment.setMoreMessagesExist(true);
 
 
+        try {
+            Thread.sleep(1000 * 3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        ScheduledExecutorService scheduleTaskExecutor = Executors.newScheduledThreadPool(1);
+        scheduleTaskExecutor.scheduleAtFixedRate(new Runnable() {
+            @Override
+            public void run() {
+                TextMessage textMessage = new TextMessage();
+                textMessage.setText("Another message...");
+                textMessage.setAvatarUrl("https://lh3.googleusercontent.com/-Y86IN-vEObo/AAAAAAAAAAI/AAAAAAAKyAM/6bec6LqLXXA/s0-c-k-no-ns/photo.jpg");
+                textMessage.setDisplayName("Gary Johnson");
+                textMessage.setUserId("LP");
+                textMessage.setDate(new Date().getTime());
+                textMessage.setSource(MessageSource.EXTERNAL_USER);
+                slyceMessagingFragment.addNewMessage(textMessage);
+            }
+        }, 3, 3, TimeUnit.SECONDS);
     }
 
 

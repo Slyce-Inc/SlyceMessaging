@@ -5,6 +5,8 @@ import android.os.AsyncTask;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -83,9 +85,15 @@ public class AddNewMessageTask extends AsyncTask {
                             mRecyclerView.smoothScrollToPosition(mRecyclerAdapter.getItemCount() - 1);
                         }
                     }).setActionTextColor(customSettings.snackbarButtonColor);
-            //TextView textView = (TextView) snackbar.getView().findViewById(android.support.design.R.id.snackbar_text);
-            //textView.setTextColor(customSettings.snackbarTitleColor);
-            //snackbar.getView().setBackgroundColor(customSettings.snackbarBackground);
+            ViewGroup group = (ViewGroup) snackbar.getView();
+            for (int i = 0; i < group.getChildCount(); i++) {
+                View v = group.getChildAt(i);
+                if (v instanceof TextView) {
+                    TextView textView = (TextView) v;
+                    textView.setTextColor(customSettings.snackbarTitleColor);
+                }
+            }
+            snackbar.getView().setBackgroundColor(customSettings.snackbarBackground);
             snackbar.show();
         }
     }

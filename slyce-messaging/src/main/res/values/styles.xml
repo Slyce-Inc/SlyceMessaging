@@ -21,7 +21,7 @@
         <item name="externalBubbleTextColor">@color/text_black</item>
         <item name="snackbarBackground">@color/background_gray_darkest</item>
         <item name="snackbarTitleColor">@color/text_black</item>
-        <item name="snackbarButtonColor">@color/text_blue</item>
+        <item name="snackbarButtonColor">@color/text_blue_lightest</item>
     </style>
 
 </resources>
