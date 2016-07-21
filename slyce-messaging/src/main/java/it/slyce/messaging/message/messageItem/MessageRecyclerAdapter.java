@@ -99,10 +99,6 @@ public class MessageRecyclerAdapter extends RecyclerView.Adapter<MessageViewHold
         return super.getItemViewType(position);
     }
 
-    public List<MessageItem> getMessageItems() {
-        return mMessageItems;
-    }
-
     private MessageItem getMessageItemByPosition(int position) {
         if (mMessageItems != null && !mMessageItems.isEmpty()) {
             if (position >= 0 && position < mMessageItems.size()) {
