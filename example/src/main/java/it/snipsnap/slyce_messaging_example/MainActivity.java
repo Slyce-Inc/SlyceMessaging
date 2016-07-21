@@ -68,10 +68,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     SlyceMessagingFragment slyceMessagingFragment;
+
+    private boolean hasLoadedMore;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(it.snipsnap.slyce_messaging_example.R.layout.activity_main);
+
+        hasLoadedMore = false;
 
         slyceMessagingFragment = (SlyceMessagingFragment) getFragmentManager().findFragmentById(R.id.fragment_for_slyce_messaging);
         slyceMessagingFragment.setDefaultAvatarUrl("https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/10989174_799389040149643_722795835011402620_n.jpg?oh=bff552835c414974cc446043ac3c70ca&oe=580717A5");
@@ -95,12 +100,17 @@ public class MainActivity extends AppCompatActivity {
             public List<Message> loadMoreMessages() {
                 Log.d("info", "loadMoreMessages()");
 
-                ArrayList<Message> messages = new ArrayList<>();
-                for (int i = 0; i < 50; i++)
-                    messages.add(getRandomMessage());
-
-                Log.d("info", "loadMoreMessages() returns");
-                return messages;
+                if (!hasLoadedMore) {
+                    hasLoadedMore = true;
+                    ArrayList<Message> messages = new ArrayList<>();
+                    for (int i = 0; i < 50; i++)
+                        messages.add(getRandomMessage());
+                    Log.d("info", "loadMoreMessages() returns");
+                    return messages;
+                } else {
+                    slyceMessagingFragment.setMoreMessagesExist(false);
+                    return new ArrayList<>();
+                }
             }
         });
 

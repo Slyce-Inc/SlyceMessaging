@@ -98,8 +98,11 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
     }
 
     private void removeSpinner() {
-        mMessages.remove(0);
-        replaceMessages(mMessages, -1);
+        if (mMessages.get(0) instanceof SpinnerMessage) {
+            mMessages.remove(0);
+            mMessageItems.remove(0);
+            mRecyclerAdapter.notifyItemRemoved(0);
+        }
     }
 
     public void setMoreMessagesExist(boolean moreMessagesExist) {
@@ -269,7 +272,8 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
     }
 
     private void loadMoreMessages() {
-        if (moreMessagesExist && mMessages.get(0) instanceof SpinnerMessage) {
+        boolean spinnerExists = moreMessagesExist && mMessages.get(0) instanceof SpinnerMessage;
+        if (spinnerExists) {
             mMessages.remove(0);
         }
         List<Message> messages = loadMoreMessagesListener.loadMoreMessages();
@@ -278,9 +282,8 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
             Message message = messages.get(i);
             mMessages.add(0, message);
         }
-        // FIXME
-        // if (moreMessagesExist)
-        //     mMessages.add(0, new SpinnerMessage());
+        if (spinnerExists && moreMessagesExist)
+            mMessages.add(0, new SpinnerMessage());
         replaceMessages(mMessages, upTo);
     }
 

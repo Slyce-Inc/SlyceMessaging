@@ -50,6 +50,8 @@ public class ReplaceMessagesTask extends AsyncTask {
             mMessageItems.add(message.toMessageItem(context)); // this call is why we need the AsyncTask
         }
 
+        System.out.println();
+
         for (int i = 0; i < mMessageItems.size(); i++) {
             MessageUtils.markMessageItemAtIndexIfFirstOrLastFromSource(i, mMessageItems);
         }
@@ -67,6 +69,7 @@ public class ReplaceMessagesTask extends AsyncTask {
 
         if (upTo >= 0 && upTo < mMessageItems.size()) {
             mRecyclerAdapter.notifyItemRangeInserted(0, upTo);
+            mRecyclerAdapter.notifyItemChanged(upTo);
         } else {
             mRecyclerAdapter.notifyDataSetChanged();
         }
