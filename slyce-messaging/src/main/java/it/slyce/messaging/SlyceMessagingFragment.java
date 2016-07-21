@@ -321,11 +321,12 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
             sendUserTextMessage();
         } else if (v.getId() == R.id.slyce_messaging_image_view_snap) {
             mEntryField.setText("");
-            final File root = new File(Environment.getExternalStorageDirectory() + File.separator + "SlyceMessaging" + File.separator);
+            final File mediaStorageDir = getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+            final File root = new File(mediaStorageDir, "SlyceMessaging");
             root.mkdirs();
             final String fname = "img_" + System.currentTimeMillis() + ".jpg";
-            this.file = new File(root, fname);
-            outputFileUri = Uri.fromFile(this.file);
+            file = new File(root, fname);
+            outputFileUri = Uri.fromFile(file);
             Intent takePhotoIntent = new CameraActivity.IntentBuilder(getActivity().getApplicationContext())
                     .skipConfirm()
                     .to(this.file)
