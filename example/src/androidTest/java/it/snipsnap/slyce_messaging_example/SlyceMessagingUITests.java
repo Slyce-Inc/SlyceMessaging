@@ -22,14 +22,14 @@ import it.slyce.messaging.message.messageItem.MessageRecyclerAdapter;
  */
 
 @RunWith(AndroidJUnit4.class)
-public class SlyceMessagingTests extends ActivityInstrumentationTestCase2<MainActivity> {
+public class SlyceMessagingUITests extends ActivityInstrumentationTestCase2<MainActivity> {
 
-    MainActivity mActivity;
-    SlyceMessagingFragment mFragment;
-    RecyclerView mRecyclerView;
-    MessageRecyclerAdapter mAdapter;
+    private MainActivity mActivity;
+    private SlyceMessagingFragment mFragment;
+    private RecyclerView mRecyclerView;
+    private MessageRecyclerAdapter mAdapter;
 
-    public SlyceMessagingTests() {
+    public SlyceMessagingUITests() {
         super(MainActivity.class);
     }
 
@@ -62,6 +62,20 @@ public class SlyceMessagingTests extends ActivityInstrumentationTestCase2<MainAc
         textMessage.setUserId("ueoanhotneutnhaeuo");
         textMessage.setAvatarUrl("");
         mFragment.addNewMessage(textMessage);
+        checkIsAtBottom();
+    }
+
+    @Test
+    public void addManyMessageButStillAtBottom() {
+        for (int i = 0; i < 10; i++) {
+            TextMessage textMessage = new TextMessage();
+            textMessage.setText("hi");
+            textMessage.setSource(MessageSource.LOCAL_USER);
+            textMessage.setDate(new Date().getTime());
+            textMessage.setUserId("ueoanhotneutnhaeuo");
+            textMessage.setAvatarUrl("");
+            mFragment.addNewMessage(textMessage);
+        }
         checkIsAtBottom();
     }
 }
