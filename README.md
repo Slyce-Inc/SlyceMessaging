@@ -207,6 +207,11 @@ public class MainActivity extends AppCompatActivity {
     <item name="snackbarButtonColor">@color/text_blue</item>
 </style>
 ```
+## Inspired by JSQMessagesViewController
+
+This library was inspired by [JSQMessagesViewController](https://github.com/jessesquires/JSQMessagesViewController), an excellent messages UI library for iOS.
+
+Stay tuned -- we are joining forces with JSQ for the next generation of messages UI libraries: MessageKit for iOS AND Android! https://github.com/MessageKit/MessageKit-Android
 
 ## Developers
 
