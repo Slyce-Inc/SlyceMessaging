@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -272,19 +273,39 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
     }
 
     private void loadMoreMessages() {
-        boolean spinnerExists = moreMessagesExist && mMessages.get(0) instanceof SpinnerMessage;
-        if (spinnerExists) {
-            mMessages.remove(0);
-        }
-        List<Message> messages = loadMoreMessagesListener.loadMoreMessages();
-        int upTo = messages.size();
-        for (int i = messages.size() - 1; i >= 0; i--) {
-            Message message = messages.get(i);
-            mMessages.add(0, message);
-        }
-        if (spinnerExists && moreMessagesExist)
-            mMessages.add(0, new SpinnerMessage());
-        replaceMessages(mMessages, upTo);
+        new AsyncTask<Void, Void, Void>() {
+            private boolean spinnerExists;
+            private List<Message> messages;
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                spinnerExists = moreMessagesExist && mMessages.get(0) instanceof SpinnerMessage;
+                if (spinnerExists) {
+                    mMessages.remove(0);
+                }
+            }
+
+            @Override
+            protected Void doInBackground(Void... voids) {
+                messages = loadMoreMessagesListener.loadMoreMessages();
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                int upTo = messages.size();
+                for (int i = messages.size() - 1; i >= 0; i--) {
+                    Message message = messages.get(i);
+                    mMessages.add(0, message);
+                }
+                if (spinnerExists && moreMessagesExist)
+                    mMessages.add(0, new SpinnerMessage());
+                replaceMessages(mMessages, upTo);
+            }
+        };
+
     }
 
     private void replaceMessages(List<Message> messages, int upTo) {
