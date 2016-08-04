@@ -22,9 +22,18 @@ allprojects {
         flatDir {
             dirs 'libs'
         }
+        maven {
+            url "https://s3.amazonaws.com/repo.commonsware.com"
+        }
     }
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+ext {
+    supportLibVersion = "24.1.1"
+    testRunnerVersion = "0.5"
+    espressoVersion = "2.2.2"
 }
