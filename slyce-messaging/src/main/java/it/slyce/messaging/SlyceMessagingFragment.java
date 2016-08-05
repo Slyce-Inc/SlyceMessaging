@@ -190,7 +190,20 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
         mMessages = new ArrayList<>();
         mMessageItems = new ArrayList<>();
         mRecyclerAdapter = new MessageRecyclerAdapter(mMessageItems, customSettings);
-        mLinearLayoutManager = new LinearLayoutManager(this.getActivity().getApplicationContext());
+        mLinearLayoutManager = new LinearLayoutManager(this.getActivity().getApplicationContext()){
+            @Override
+            public boolean canScrollVertically() {
+                return !mRefresher.isRefreshing();
+            }
+
+            @Override
+            public void onLayoutChildren(RecyclerView.Recycler recycler, RecyclerView.State state) {
+                try {
+                    super.onLayoutChildren(recycler, state);
+                } catch (IndexOutOfBoundsException e) {
+                }
+            }
+        };
         mLinearLayoutManager.setStackFromEnd(true);
 
         // Setup recycler view
@@ -280,6 +293,7 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
+                mRefresher.setIsRefreshing(true);
                 spinnerExists = moreMessagesExist && mMessages.get(0) instanceof SpinnerMessage;
                 if (spinnerExists) {
                     mMessages.remove(0);
@@ -302,10 +316,14 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
                 }
                 if (spinnerExists && moreMessagesExist)
                     mMessages.add(0, new SpinnerMessage());
+                mRefresher.setIsRefreshing(false);
                 replaceMessages(mMessages, upTo);
             }
-        };
+        }.execute();
+    }
 
+    public void replaceMessages(List<Message> messages) {
+        replaceMessages(messages, -1);
     }
 
     private void replaceMessages(List<Message> messages, int upTo) {
