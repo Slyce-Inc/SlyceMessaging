@@ -5,17 +5,24 @@ package it.slyce.messaging.utils;
  * @Date 7/13/16
  */
 public class Refresher {
-    private boolean mIsRefreshing;
+    private int mRefreshingCount;
 
     public Refresher(boolean mIsRefreshing) {
-        this.mIsRefreshing = mIsRefreshing;
+        if (mIsRefreshing)
+            this.mRefreshingCount = 1;
+        else
+            this.mRefreshingCount = 0;
     }
 
     public boolean isRefreshing() {
-        return mIsRefreshing;
+        return mRefreshingCount > 0;
     }
 
     public void setIsRefreshing(boolean mIsRefreshing) {
-        this.mIsRefreshing = mIsRefreshing;
+        if (mIsRefreshing) {
+            mRefreshingCount++;
+        } else if (mRefreshingCount > 0) {
+            mRefreshingCount--;
+        }
     }
 }

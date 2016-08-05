@@ -65,6 +65,7 @@ public class ReplaceMessagesTask extends AsyncTask {
             return;
         }
 
+
         if (upTo >= 0 && upTo < mMessageItems.size()) {
             mRecyclerAdapter.notifyItemRangeInserted(0, upTo);
             mRecyclerAdapter.notifyItemChanged(upTo);
