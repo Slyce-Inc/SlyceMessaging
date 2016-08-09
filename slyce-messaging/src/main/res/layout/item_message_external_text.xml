@@ -31,11 +31,27 @@
             app:font="museo_sans_500.otf"
             tools:text="JF"/>
 
+
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/message_scout_text_image_view_avatar"
             android:layout_width="48dp"
             android:layout_height="48dp" />
+
     </FrameLayout>
+
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_alignEnd="@+id/message_scout_text_image_view_avatar_group"
+        android:layout_alignStart="@+id/message_scout_text_image_view_avatar_group"
+        android:layout_alignLeft="@+id/message_scout_text_image_view_avatar_group"
+        android:layout_alignRight="@+id/message_scout_text_image_view_avatar_group"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="JR40M"
+        android:textSize="12sp"
+        android:layout_marginTop="3dp"
+        android:layout_below="@+id/message_scout_text_image_view_avatar_group"/>
 
     <ImageView
         android:id="@+id/message_scout_text_image_view_carrot"

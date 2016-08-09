@@ -44,6 +44,7 @@ public abstract class MessageMediaItem extends MessageItem {
             // Populate views with content
             messageMediaViewHolder.timestamp.setText(date != null ? date : "");
             messageMediaViewHolder.initials.setText(initials != null ? initials : "");
+            messageMediaViewHolder.username.setText(message.getDisplayName() != null ? message.getDisplayName() : "");
 
             messageMediaViewHolder.media.setWidthToHeightRatio(widthToHeightRatio);
             messageMediaViewHolder.media.setImageUrlToLoadOnLayout(mediaUrl);
@@ -73,6 +74,7 @@ public abstract class MessageMediaItem extends MessageItem {
             messageMediaViewHolder.avatar.setVisibility(isFirstConsecutiveMessageFromSource && !TextUtils.isEmpty(avatarUrl) ? View.VISIBLE : View.INVISIBLE);
             messageMediaViewHolder.avatarContainer.setVisibility(isFirstConsecutiveMessageFromSource ? View.VISIBLE : View.INVISIBLE);
             messageMediaViewHolder.initials.setVisibility(isFirstConsecutiveMessageFromSource && TextUtils.isEmpty(avatarUrl) ? View.VISIBLE : View.GONE);
+            messageMediaViewHolder.username.setVisibility(isFirstConsecutiveMessageFromSource ? View.VISIBLE : View.GONE);
             messageMediaViewHolder.media.setVisibility(!TextUtils.isEmpty(mediaUrl) ? View.VISIBLE : View.INVISIBLE);
             messageMediaViewHolder.timestamp.setVisibility(isLastConsecutiveMessageFromSource ? View.VISIBLE : View.GONE);
         }

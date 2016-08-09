@@ -17,6 +17,7 @@ public class MessageViewHolder extends RecyclerView.ViewHolder {
     public TextView timestamp;
     public ViewGroup avatarContainer;
     public CustomSettings customSettings;
+    public TextView username;
 
     public MessageViewHolder(View itemView, CustomSettings customSettings) {
         super(itemView);

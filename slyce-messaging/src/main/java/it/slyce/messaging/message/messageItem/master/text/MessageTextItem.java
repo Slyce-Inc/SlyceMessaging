@@ -46,6 +46,8 @@ public class MessageTextItem extends MessageItem {
             messageTextViewHolder.initials.setText(initials  != null ? initials : "");
             messageTextViewHolder.text.setText(text != null ? text : "");
             messageTextViewHolder.timestamp.setText(date != null ? date : "");
+            messageTextViewHolder.username.setText(message.getDisplayName() != null ? message.getDisplayName() : "");
+
 
             messageTextViewHolder.bubble.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
@@ -77,6 +79,7 @@ public class MessageTextItem extends MessageItem {
             messageTextViewHolder.avatarContainer.setVisibility(isFirstConsecutiveMessageFromSource ? View.VISIBLE : View.INVISIBLE);
             messageTextViewHolder.carrot.setVisibility(isFirstConsecutiveMessageFromSource ? View.VISIBLE : View.INVISIBLE);
             messageTextViewHolder.initials.setVisibility(isFirstConsecutiveMessageFromSource && TextUtils.isEmpty(avatarUrl) ? View.VISIBLE : View.GONE);
+            messageTextViewHolder.username.setVisibility(isFirstConsecutiveMessageFromSource ? View.VISIBLE : View.GONE);
             messageTextViewHolder.timestamp.setVisibility(isLastConsecutiveMessageFromSource ? View.VISIBLE : View.GONE);
         }
     }

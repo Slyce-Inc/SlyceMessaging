@@ -37,6 +37,20 @@
             android:layout_height="48dp" />
     </FrameLayout>
 
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_alignEnd="@+id/message_user_text_view_group_avatar"
+        android:layout_alignStart="@+id/message_user_text_view_group_avatar"
+        android:layout_alignLeft="@+id/message_user_text_view_group_avatar"
+        android:layout_alignRight="@+id/message_user_text_view_group_avatar"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="JR40M"
+        android:textSize="12sp"
+        android:layout_marginTop="3dp"
+        android:layout_below="@+id/message_user_text_view_group_avatar"/>
+
     <ImageView
         android:id="@+id/message_user_text_image_view_carrot"
         android:layout_width="16dp"

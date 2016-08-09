@@ -28,6 +28,7 @@ public class MessageInternalUserTextViewHolder extends MessageTextViewHolder {
         timestamp = (TextView) itemView.findViewById(R.id.message_user_text_text_view_timestamp);
         avatarContainer = (ViewGroup) itemView.findViewById(R.id.message_user_text_view_group_avatar);
         bubble = (FrameLayout) itemView.findViewById(R.id.message_user_text_view_group_bubble);
+        username = (TextView) itemView.findViewById(R.id.username);
 
         Drawable drawable = ContextCompat.getDrawable(itemView.getContext(), R.drawable.shape_rounded_rectangle_white);
         // Drawable drawable = itemView.getContext().getDrawable();

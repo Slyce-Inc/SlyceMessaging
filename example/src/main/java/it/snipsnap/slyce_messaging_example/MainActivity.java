@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
             message.setAvatarUrl("https://lh3.googleusercontent.com/-Y86IN-vEObo/AAAAAAAAAAI/AAAAAAAKyAM/6bec6LqLXXA/s0-c-k-no-ns/photo.jpg");
             message.setUserId("LP");
             message.setSource(MessageSource.EXTERNAL_USER);
+            message.setDisplayName("FD100F");
         } else {
             message.setAvatarUrl("https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/10989174_799389040149643_722795835011402620_n.jpg?oh=bff552835c414974cc446043ac3c70ca&oe=580717A5");
             message.setUserId("MP");
