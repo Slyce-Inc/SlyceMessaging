@@ -12,6 +12,10 @@ public class GeneralTextMessage extends Message {
         this.text = text;
     }
 
+    public String getText() {
+        return this.text;
+    }
+
     @Override
     public MessageItem toMessageItem(Context context) {
         return new MessageGeneralTextItem(this);

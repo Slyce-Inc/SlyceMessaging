@@ -20,7 +20,7 @@ public class SpinnerItem extends MessageItem {
 
     @Override
     public MessageItemType getMessageItemType() {
-        return MessageItemType.GENERAL;
+        return MessageItemType.SPINNER;
     }
 
     @Override

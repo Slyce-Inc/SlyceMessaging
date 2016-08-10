@@ -12,6 +12,7 @@ import it.slyce.messaging.message.messageItem.externalUser.media.MessageExternal
 import it.slyce.messaging.message.messageItem.externalUser.text.MessageExternalUserTextViewHolder;
 import it.slyce.messaging.message.messageItem.internalUser.media.MessageInternalUserViewHolder;
 import it.slyce.messaging.message.messageItem.internalUser.text.MessageInternalUserTextViewHolder;
+import it.slyce.messaging.message.messageItem.master.general.MessageGeneralTextViewHolder;
 import it.slyce.messaging.message.messageItem.spinner.SpinnerViewHolder;
 import it.slyce.messaging.utils.CustomSettings;
 
@@ -60,9 +61,14 @@ public class MessageRecyclerAdapter extends RecyclerView.Adapter<MessageViewHold
                 viewHolder = new MessageInternalUserTextViewHolder(userTextView, customSettings);
                 break;
 
-            case GENERAL:
+            case SPINNER:
                 View spinnerView = inflater.inflate(R.layout.item_spinner, parent, false);
                 viewHolder = new SpinnerViewHolder(spinnerView, customSettings);
+                break;
+
+            case GENERAL_TEXT:
+                View generalTextView = inflater.inflate(R.layout.item_message_general_text, parent, false);
+                viewHolder = new MessageGeneralTextViewHolder(generalTextView, customSettings);
                 break;
         }
 

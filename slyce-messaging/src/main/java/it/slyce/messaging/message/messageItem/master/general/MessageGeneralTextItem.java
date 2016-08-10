@@ -18,12 +18,14 @@ public class MessageGeneralTextItem extends MessageItem {
     @Override
     public void buildMessageItem(
             MessageViewHolder messageViewHolder) {
-        // TODO
+        MessageGeneralTextViewHolder viewHolder = (MessageGeneralTextViewHolder) messageViewHolder;
+        GeneralTextMessage generalTextMessage = (GeneralTextMessage) message;
+        viewHolder.messageTextView.setText(generalTextMessage.getText());
     }
 
     @Override
     public MessageItemType getMessageItemType() {
-        return MessageItemType.GENERAL;
+        return MessageItemType.GENERAL_TEXT;
     }
 
     @Override
