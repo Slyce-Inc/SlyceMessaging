@@ -17,25 +17,17 @@ Basic features of the API:
 
 ## Installation
 
-Download the [arr file](https://github.com/snipsnap/SlyceMessaging/releases/download/1.0.5/slyce-messaging.aar). In your project do File -> New -> New Module. Select "Import .JAR/.AAR Package". Select the file you downloaded and give the subproject any name you want, and click "finish".
-
-Now do File -> Project Structure. On the left hand side, at the bottom, select your app's module. Under the "dependencies" tab, add a module dependency to the module you created above.
-
-If you get compilation or runtime errors, try adding the following to your app's gradle file:
+Add the following to your app's gradle file:
 
 ```ruby
 repositories {
-    maven {
-        url "https://s3.amazonaws.com/repo.commonsware.com"
-    }
+    jcenter()
+    maven { url "https://s3.amazonaws.com/repo.commonsware.com" }
+    maven { url "https://jitpack.io" }
 }
 
 dependencies {
-    compile 'com.android.support:design:23.2.1'
-    compile 'com.makeramen:roundedimageview:2.2.1'
-    compile 'de.hdodenhof:circleimageview:2.0.0'
-    compile 'com.github.bumptech.glide:glide:3.7.0'
-    compile 'com.commonsware.cwac:cam2:0.6.2'
+    compile 'com.github.Slyce-Inc:SlyceMessaging:1.0.6'
 }
 ```
 
