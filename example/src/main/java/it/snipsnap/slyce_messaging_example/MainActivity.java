@@ -15,6 +15,7 @@ import java.util.concurrent.TimeUnit;
 import it.slyce.messaging.SlyceMessagingFragment;
 import it.slyce.messaging.listeners.LoadMoreMessagesListener;
 import it.slyce.messaging.listeners.UserSendsMessageListener;
+import it.slyce.messaging.message.GeneralTextMessage;
 import it.slyce.messaging.message.MediaMessage;
 import it.slyce.messaging.message.Message;
 import it.slyce.messaging.message.MessageSource;
@@ -106,8 +107,12 @@ public class MainActivity extends AppCompatActivity {
                 if (!hasLoadedMore) {
                     hasLoadedMore = true;
                     ArrayList<Message> messages = new ArrayList<>();
+                    GeneralTextMessage generalTextMessage = new GeneralTextMessage();
+                    generalTextMessage.setText("Started group");
+                    messages.add(generalTextMessage);
                     for (int i = 0; i < 50; i++)
                         messages.add(getRandomMessage());
+                    messages.add(generalTextMessage);
                     Log.d("info", "loadMoreMessages() returns");
                     return messages;
                 } else {
