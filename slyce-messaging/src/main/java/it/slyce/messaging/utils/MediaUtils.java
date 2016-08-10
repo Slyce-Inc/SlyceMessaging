@@ -2,10 +2,6 @@ package it.slyce.messaging.utils;
 
 import android.content.Context;
 
-/**
- * @Author Matthew Page
- * @Date 7/13/16
- */
 public class MediaUtils {
     public static float getWidthToHeightRatio(String url, Context context) {
         if (context == null)

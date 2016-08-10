@@ -18,10 +18,6 @@ import it.slyce.messaging.utils.CustomSettings;
 import it.slyce.messaging.utils.MessageUtils;
 import it.slyce.messaging.utils.ScrollUtils;
 
-/**
- * @Author Matthew Page
- * @Date 7/13/16
- */
 public class AddNewMessageTask extends AsyncTask {
     private List<Message> messages;
     private List<MessageItem> mMessageItems;

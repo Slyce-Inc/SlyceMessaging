@@ -5,10 +5,6 @@ import java.util.List;
 import it.slyce.messaging.message.messageItem.MessageItem;
 import it.slyce.messaging.message.messageItem.MessageItemType;
 
-/**
- * @Author Matthew Page
- * @Date 7/13/16
- */
 public class MessageUtils {
 
     public static void markMessageItemAtIndexIfFirstOrLastFromSource(int i, List<MessageItem> messageItems) {

@@ -6,10 +6,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-/**
- * @Author Matthew Page
- * @Date 7/13/16
- */
 public class ScrollUtils {
     private static final int SMOOTH_SCROLL_IF_THIS_MUCH = 100000;
 

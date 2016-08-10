@@ -1,9 +1,5 @@
 package it.slyce.messaging.utils;
 
-/**
- * @Auther Matthew Page
- * @Date 7/13/16
- */
 public class Refresher {
     private int mRefreshingCount;
 

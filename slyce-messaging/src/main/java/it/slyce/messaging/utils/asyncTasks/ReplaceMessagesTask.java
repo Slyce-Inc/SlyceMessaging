@@ -11,10 +11,6 @@ import it.slyce.messaging.message.messageItem.MessageRecyclerAdapter;
 import it.slyce.messaging.utils.MessageUtils;
 import it.slyce.messaging.utils.Refresher;
 
-/**
- * @Author Matthew Page
- * @Date 7/13/16
- */
 public class ReplaceMessagesTask extends AsyncTask {
     private List<Message> mMessages;
     private List<MessageItem> mMessageItems;
