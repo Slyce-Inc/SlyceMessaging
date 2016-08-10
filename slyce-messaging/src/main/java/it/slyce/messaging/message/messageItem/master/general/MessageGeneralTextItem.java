@@ -23,8 +23,7 @@ public class MessageGeneralTextItem extends MessageItem {
 
     @Override
     public MessageItemType getMessageItemType() {
-        // TODO
-        return null;
+        return MessageItemType.GENERAL;
     }
 
     @Override

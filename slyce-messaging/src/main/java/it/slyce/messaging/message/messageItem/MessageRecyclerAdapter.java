@@ -60,7 +60,7 @@ public class MessageRecyclerAdapter extends RecyclerView.Adapter<MessageViewHold
                 viewHolder = new MessageInternalUserTextViewHolder(userTextView, customSettings);
                 break;
 
-            case SPINNER:
+            case GENERAL:
                 View spinnerView = inflater.inflate(R.layout.item_spinner, parent, false);
                 viewHolder = new SpinnerViewHolder(spinnerView, customSettings);
                 break;

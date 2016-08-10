@@ -60,6 +60,6 @@ public class MessageUtils {
     }
 
     private static boolean isSpinnerMessage(int i, List<MessageItem> messageItems) {
-        return messageItems.get(i).getMessageItemType() == MessageItemType.SPINNER;
+        return messageItems.get(i).getMessageItemType() == MessageItemType.GENERAL;
     }
 }

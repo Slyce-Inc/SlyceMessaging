@@ -1,7 +1,5 @@
 package it.slyce.messaging.message.messageItem.spinner;
 
-import android.view.View;
-
 import it.slyce.messaging.message.MessageSource;
 import it.slyce.messaging.message.messageItem.MessageItem;
 import it.slyce.messaging.message.messageItem.MessageItemType;
@@ -22,7 +20,7 @@ public class SpinnerItem extends MessageItem {
 
     @Override
     public MessageItemType getMessageItemType() {
-        return MessageItemType.SPINNER;
+        return MessageItemType.GENERAL;
     }
 
     @Override
