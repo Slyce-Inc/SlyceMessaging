@@ -1,6 +1,7 @@
 # Slyce Messaging API
 
-![](https://circleci.com/gh/snipsnap/SlyceMessaging.svg?style=shield&circle-token=46075f470208f71a4836c234126bb773c51219d8)
+![](https://circleci.com/gh/snipsnap/SlyceMessaging.svg?style=shield&circle-token=46075f470208f71a4836c234126bb773c51219d8) [![](https://jitpack.io/v/Slyce-Inc/SlyceMessaging.svg)](https://jitpack.io/#Slyce-Inc/SlyceMessaging)
+
 
 ![](sample-photos/example.png?raw=true) ![](sample-photos/chat-with-image.png?raw=true)
 
