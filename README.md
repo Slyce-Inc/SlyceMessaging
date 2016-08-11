@@ -101,7 +101,7 @@ public interface LoadMoreMessagesListener {
 ```
 
 ### General Messages
-We now allow for messages to enter the feed that come from the app itself rather than one of the users. This message can also contain a sequence of options. Example photos are provided.
+We now allow for messages to enter the feed that come from the app itself rather than one of the users. This message can also contain a sequence of options.
 
 ```java
 public class GeneralTextMessage extends Message {
