@@ -39,10 +39,10 @@ public class MessageGeneralOptionsItem extends MessageItem {
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        viewHolder.titleTextView.setText(generalTextMessage.getFinalText());
                         viewHolder.optionsLinearLayout.removeAllViews();
                         generalTextMessage.setSelected();
-                        generalTextMessage.getOnOptionSelectedListener().onOptionSelected(finalI);
+                        String text = generalTextMessage.getOnOptionSelectedListener().onOptionSelected(finalI);
+                        viewHolder.titleTextView.setText(text);
                     }
                 });
                 viewHolder.optionsLinearLayout.addView(button);

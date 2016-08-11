@@ -10,8 +10,8 @@ public class GeneralOptionsMessage extends Message {
     private String title;
     private String[] options;
     private OnOptionSelectedListener onOptionSelectedListener;
-    private String finalText;
     private boolean selected;
+    private String finalText;
 
     public GeneralOptionsMessage() {
         this.selected = false;
@@ -41,14 +41,6 @@ public class GeneralOptionsMessage extends Message {
         this.title = title;
     }
 
-    public String getFinalText() {
-        return finalText;
-    }
-
-    public void setFinalText(String finalText) {
-        this.finalText = finalText;
-    }
-
     @Override
     public MessageItem toMessageItem(Context context) {
         return new MessageGeneralOptionsItem(this, context);
@@ -60,5 +52,13 @@ public class GeneralOptionsMessage extends Message {
 
     public boolean isSelected() {
         return selected;
+    }
+
+    public void setFinalText(String finalText) {
+        this.finalText = finalText;
+    }
+
+    public String getFinalText() {
+        return finalText;
     }
 }

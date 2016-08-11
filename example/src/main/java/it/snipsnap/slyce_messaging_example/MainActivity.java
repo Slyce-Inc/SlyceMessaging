@@ -4,7 +4,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -115,8 +114,12 @@ public class MainActivity extends AppCompatActivity {
                     generalTextMessage.setOptions(new String[]{"Accept", "Reject"});
                     generalTextMessage.setOnOptionSelectedListener(new OnOptionSelectedListener() {
                         @Override
-                        public void onOptionSelected(int optionSelected) {
-                            Toast.makeText(MainActivity.this, optionSelected + "", Toast.LENGTH_SHORT).show();
+                        public String onOptionSelected(int optionSelected) {
+                            if (optionSelected == 0) {
+                                return "Accepted";
+                            } else {
+                                return "Rejected";
+                            }
                         }
                     });
                     messages.add(generalTextMessage);
