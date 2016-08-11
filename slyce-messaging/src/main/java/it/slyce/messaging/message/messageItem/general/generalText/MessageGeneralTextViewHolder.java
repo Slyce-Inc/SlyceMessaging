@@ -1,4 +1,4 @@
-package it.slyce.messaging.message.messageItem.master.general;
+package it.slyce.messaging.message.messageItem.general.generalText;
 
 import android.view.View;
 import android.widget.TextView;

@@ -10,9 +10,10 @@ import java.util.List;
 import it.slyce.messaging.R;
 import it.slyce.messaging.message.messageItem.externalUser.media.MessageExternalUserMediaViewHolder;
 import it.slyce.messaging.message.messageItem.externalUser.text.MessageExternalUserTextViewHolder;
+import it.slyce.messaging.message.messageItem.general.generalOptions.MessageGeneralOptionsViewHolder;
 import it.slyce.messaging.message.messageItem.internalUser.media.MessageInternalUserViewHolder;
 import it.slyce.messaging.message.messageItem.internalUser.text.MessageInternalUserTextViewHolder;
-import it.slyce.messaging.message.messageItem.master.general.MessageGeneralTextViewHolder;
+import it.slyce.messaging.message.messageItem.general.generalText.MessageGeneralTextViewHolder;
 import it.slyce.messaging.message.messageItem.spinner.SpinnerViewHolder;
 import it.slyce.messaging.utils.CustomSettings;
 
@@ -69,6 +70,11 @@ public class MessageRecyclerAdapter extends RecyclerView.Adapter<MessageViewHold
             case GENERAL_TEXT:
                 View generalTextView = inflater.inflate(R.layout.item_message_general_text, parent, false);
                 viewHolder = new MessageGeneralTextViewHolder(generalTextView, customSettings);
+                break;
+
+            case GENERAL_OPTIONS:
+                View generalOptionsView = inflater.inflate(R.layout.item_message_general_options, parent, false);
+                viewHolder = new MessageGeneralOptionsViewHolder(generalOptionsView, customSettings);
                 break;
         }
 

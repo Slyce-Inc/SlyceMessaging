@@ -1,4 +1,4 @@
-package it.slyce.messaging.message.messageItem.master.general;
+package it.slyce.messaging.message.messageItem.general.generalText;
 
 import it.slyce.messaging.message.GeneralTextMessage;
 import it.slyce.messaging.message.MessageSource;

@@ -3,7 +3,7 @@ package it.slyce.messaging.message;
 import android.content.Context;
 
 import it.slyce.messaging.message.messageItem.MessageItem;
-import it.slyce.messaging.message.messageItem.master.general.MessageGeneralTextItem;
+import it.slyce.messaging.message.messageItem.general.generalText.MessageGeneralTextItem;
 
 public class GeneralTextMessage extends Message {
     private String text;
