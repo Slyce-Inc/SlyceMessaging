@@ -6,10 +6,6 @@ import it.slyce.messaging.message.messageItem.MessageItem;
 import it.slyce.messaging.message.messageItem.MessageItemType;
 import it.slyce.messaging.message.messageItem.MessageViewHolder;
 
-/**
- * @Author Matthew Page
- * @Date 8/10/16
- */
 public class MessageGeneralTextItem extends MessageItem {
     public MessageGeneralTextItem(GeneralTextMessage message) {
         super(message);
