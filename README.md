@@ -27,7 +27,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.github.Slyce-Inc:SlyceMessaging:1.0.6'
+    compile 'com.github.Slyce-Inc:SlyceMessaging:1.1.2'
 }
 ```
 
@@ -97,6 +97,26 @@ public interface UserClicksAvatarPictureListener {
 
 public interface LoadMoreMessagesListener {
     public List<Message> loadMoreMessages();
+}
+```
+
+### General Messages
+We now allow for messages to enter the feed that come from the app itself rather than one of the users. This message can also contain a sequence of options. Example photos are provided.
+
+```java
+public class GeneralTextMessage extends Message {
+    public void setText(String text);
+}
+
+public class GeneralOptionsMessage extends Message {
+    public void setTitle(String title);
+    public void setOptions(String[] options);
+    public void setOnOptionSelectedListener(OnOptionSelectedListener onOptionSelectedListener);
+}
+
+public interface OnOptionSelectedListener {
+    String onOptionSelected(int optionSelected); 
+            // Returns the string that should replace the title text after the options are removed.
 }
 ```
 
