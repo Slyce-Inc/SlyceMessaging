@@ -5,5 +5,6 @@ package it.slyce.messaging.message;
  */
 public enum MessageSource {
     LOCAL_USER,
-    EXTERNAL_USER
+    EXTERNAL_USER,
+    GENERAL
 }

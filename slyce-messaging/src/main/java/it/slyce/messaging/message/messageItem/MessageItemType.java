@@ -8,7 +8,9 @@ public enum MessageItemType {
     INCOMING_TEXT,
     OUTGOING_MEDIA,
     OUTGOING_TEXT,
-    SPINNER;
+    SPINNER,
+    GENERAL_TEXT,
+    GENERAL_OPTIONS;
 
     public static final MessageItemType values[] = values();
 }

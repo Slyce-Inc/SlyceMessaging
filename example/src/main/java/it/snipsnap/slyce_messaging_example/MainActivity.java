@@ -4,6 +4,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,7 +15,9 @@ import java.util.concurrent.TimeUnit;
 
 import it.slyce.messaging.SlyceMessagingFragment;
 import it.slyce.messaging.listeners.LoadMoreMessagesListener;
+import it.slyce.messaging.listeners.OnOptionSelectedListener;
 import it.slyce.messaging.listeners.UserSendsMessageListener;
+import it.slyce.messaging.message.GeneralOptionsMessage;
 import it.slyce.messaging.message.MediaMessage;
 import it.slyce.messaging.message.Message;
 import it.slyce.messaging.message.MessageSource;
@@ -106,8 +109,20 @@ public class MainActivity extends AppCompatActivity {
                 if (!hasLoadedMore) {
                     hasLoadedMore = true;
                     ArrayList<Message> messages = new ArrayList<>();
+                    GeneralOptionsMessage generalTextMessage = new GeneralOptionsMessage();
+                    generalTextMessage.setTitle("Started group");
+                    generalTextMessage.setFinalText("Accepted");
+                    generalTextMessage.setOptions(new String[]{"Accept", "Reject"});
+                    generalTextMessage.setOnOptionSelectedListener(new OnOptionSelectedListener() {
+                        @Override
+                        public void onOptionSelected(int optionSelected) {
+                            Toast.makeText(MainActivity.this, optionSelected + "", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    messages.add(generalTextMessage);
                     for (int i = 0; i < 50; i++)
                         messages.add(getRandomMessage());
+                    messages.add(generalTextMessage);
                     Log.d("info", "loadMoreMessages() returns");
                     return messages;
                 } else {

@@ -3,6 +3,7 @@
 
     <color name="background_black">#000000</color>
     <color name="background_gray_lightest">#F3F3F9</color>
+    <color name="background_gray_light">#BFBFBF</color>
     <color name="background_white">#FFFFFF</color>
     <color name="background_navy">#353556</color>
     <color name="background_gray">#BDBDBD</color>
