@@ -36,7 +36,13 @@ public class MessageUtils {
     }
 
     private static boolean previousMessageIsFromAnotherSender(int i, List<MessageItem> messageItems) {
-        return !messageItems.get(i - 1).getMessage().getUserId().equals(messageItems.get(i).getMessage().getUserId());
+        String lastUserID = messageItems.get(i - 1).getMessage().getUserId();
+        String currentUserID = messageItems.get(i).getMessage().getUserId();
+        if(lastUserID != null && currentUserID != null){
+            return !lastUserID.equals(currentUserID);
+        }
+
+        return false;
     }
 
     private static boolean previousMessageIsSpinner(int i, List<MessageItem> messageItems) {

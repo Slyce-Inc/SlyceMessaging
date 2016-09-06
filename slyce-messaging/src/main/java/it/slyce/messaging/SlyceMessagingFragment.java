@@ -227,12 +227,6 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
         loadMoreMessagesIfNecessary();
         startLoadMoreMessagesListener();
 
-        if (ContextCompat.checkSelfPermission(getActivity().getApplicationContext(),
-                Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ||
-                        ContextCompat.checkSelfPermission(getActivity().getApplicationContext(),
-                                Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
-            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 232);
-
         return rootView;
     }
 

@@ -53,17 +53,6 @@
         android:layout_marginTop="3dp"
         android:layout_below="@+id/message_scout_text_image_view_avatar_group"/>
 
-    <ImageView
-        android:id="@+id/message_scout_text_image_view_carrot"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
-        android:layout_toLeftOf="@+id/message_scout_text_view_group_bubble"
-        android:layout_alignTop="@+id/message_scout_text_view_group_bubble"
-        android:layout_marginRight="-4dp"
-        android:scaleType="fitCenter"
-        android:adjustViewBounds="true"
-        app:srcCompat="@drawable/vd_ic_scout_carrot"
-        android:tint="@color/background_white"/>
 
     <FrameLayout
         android:id="@+id/message_scout_text_view_group_bubble"

@@ -22,7 +22,6 @@ public class MessageExternalUserTextViewHolder extends MessageTextViewHolder {
         super(itemView, customSettings);
 
         avatar = (ImageView) itemView.findViewById(R.id.message_scout_text_image_view_avatar);
-        carrot = (ImageView) itemView.findViewById(R.id.message_scout_text_image_view_carrot);
         text = (TextView) itemView.findViewById(R.id.message_scout_text_text_view_text);
         timestamp = (TextView) itemView.findViewById(R.id.message_scout_text_text_view_timestamp);
         avatarContainer = (ViewGroup) itemView.findViewById(R.id.message_scout_text_image_view_avatar_group);
@@ -34,7 +33,6 @@ public class MessageExternalUserTextViewHolder extends MessageTextViewHolder {
         // Drawable drawable = itemView.getContext().getDrawable();
         drawable.setColorFilter(customSettings.externalBubbleBackgroundColor, PorterDuff.Mode.SRC_ATOP);
         bubble.setBackground(drawable);
-        carrot.setColorFilter(customSettings.externalBubbleBackgroundColor);
         text.setTextColor(customSettings.externalBubbleTextColor);
         timestamp.setTextColor(customSettings.timestampColor);
     }
