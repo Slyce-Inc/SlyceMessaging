@@ -30,23 +30,7 @@ public class MessageUtils {
     }
 
     private static boolean previousMessageIsNotFromSameSource(int i, List<MessageItem> messageItems) {
-        return i == 0 ||
-                previousMessageIsSpinner(i, messageItems) ||
-                previousMessageIsFromAnotherSender(i, messageItems);
-    }
-
-    private static boolean previousMessageIsFromAnotherSender(int i, List<MessageItem> messageItems) {
-        String lastUserID = messageItems.get(i - 1).getMessage().getUserId();
-        String currentUserID = messageItems.get(i).getMessage().getUserId();
-        if(lastUserID != null && currentUserID != null){
-            return !lastUserID.equals(currentUserID);
-        }
-
-        return false;
-    }
-
-    private static boolean previousMessageIsSpinner(int i, List<MessageItem> messageItems) {
-        return isSpinnerMessage(i - 1, messageItems);
+        return true;
     }
 
     private static boolean isTheLastConsecutiveMessageFromSource(int i, List<MessageItem> messageItems) {
