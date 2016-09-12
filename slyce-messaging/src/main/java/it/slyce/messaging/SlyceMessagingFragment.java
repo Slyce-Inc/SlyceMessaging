@@ -1,9 +1,7 @@
 package it.slyce.messaging;
 
-import android.Manifest;
 import android.app.Fragment;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.net.Uri;
@@ -12,11 +10,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -55,6 +52,8 @@ import it.slyce.messaging.utils.asyncTasks.AddNewMessageTask;
 import it.slyce.messaging.utils.asyncTasks.ReplaceMessagesTask;
 import it.slyce.messaging.view.ViewUtils;
 
+
+
 /**
  * Created by John C. Hunchar on 1/12/16.
  */
@@ -62,7 +61,7 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
 
     private static final int START_RELOADING_DATA_AT_SCROLL_VALUE = 5000; // TODO: maybe change this? make it customizable?
 
-    private EditText mEntryField;
+    public EditText mEntryField;
     private LinearLayoutManager mLinearLayoutManager;
     private List<Message> mMessages;
     private List<MessageItem> mMessageItems;
