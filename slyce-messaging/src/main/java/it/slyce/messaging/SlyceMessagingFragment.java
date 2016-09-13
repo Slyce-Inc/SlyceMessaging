@@ -343,12 +343,14 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
     }
 
     private void updateTimestampAtValue(final int i) {
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                mRecyclerAdapter.notifyItemChanged(i);
-            }
-        });
+        if (getActivity() != null) {
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    mRecyclerAdapter.notifyItemChanged(i);
+                }
+            });
+        }
     }
 
     private File file;
