@@ -37,7 +37,7 @@ public class MessageTextItem extends MessageItem {
             final MessageTextViewHolder messageTextViewHolder = (MessageTextViewHolder) messageViewHolder;
 
             // Get content
-            String date = DateUtils.getTimestamp(message.getDate());
+            String date = DateUtils.getTimestamp(context, message.getDate());
             String text = ((TextMessage)message).getText();
             this.avatarUrl = message.getAvatarUrl();
             this.initials = message.getInitials();
