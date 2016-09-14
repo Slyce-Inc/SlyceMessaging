@@ -427,7 +427,7 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
 
     private void sendUserTextMessage() {
         String text = ViewUtils.getStringFromEditText(mEntryField);
-        if (text.replace(" ","").length() <= 0)
+        if (text == null || text.replace(" ","").length() <= 0)
             return;
         mEntryField.setText("");
 
