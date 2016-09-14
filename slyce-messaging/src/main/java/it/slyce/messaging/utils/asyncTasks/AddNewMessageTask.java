@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import it.slyce.messaging.R;
 import java.util.List;
 
 import it.slyce.messaging.message.Message;
@@ -74,8 +75,8 @@ public class AddNewMessageTask extends AsyncTask {
             if (isAtTop) {
                 ScrollUtils.scrollToTopAfterDelay(mRecyclerView, mRecyclerAdapter);
             }
-            Snackbar snackbar = Snackbar.make(mRecyclerView, "New message!", Snackbar.LENGTH_SHORT)
-                    .setAction("VIEW", new View.OnClickListener() {
+            Snackbar snackbar = Snackbar.make(mRecyclerView, context.getText(R.string.message_new), Snackbar.LENGTH_SHORT)
+                    .setAction(context.getText(R.string.message_view), new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             mRecyclerView.smoothScrollToPosition(mRecyclerAdapter.getItemCount() - 1);
