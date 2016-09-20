@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
+import it.slyce.messaging.R;
 import it.slyce.messaging.message.MessageSource;
 import it.slyce.messaging.message.TextMessage;
 import it.slyce.messaging.utils.DateUtils;
@@ -37,7 +38,7 @@ public class MessageTextItem extends MessageItem {
             final MessageTextViewHolder messageTextViewHolder = (MessageTextViewHolder) messageViewHolder;
 
             // Get content
-            String date = DateUtils.getTimestamp(message.getDate());
+            String date = DateUtils.getTimestamp(context, message.getDate());
             String text = ((TextMessage)message).getText();
             this.avatarUrl = message.getAvatarUrl();
             this.initials = message.getInitials();
@@ -56,7 +57,8 @@ public class MessageTextItem extends MessageItem {
                     clipboard.setPrimaryClip(clip);
                     Vibrator v = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
                     v.vibrate(150);
-                    Toast.makeText(context, "Text copied", Toast.LENGTH_SHORT).show();
+                    String toastMessage = (String) context.getText(R.string.message_text_copied);
+                    Toast.makeText(context, toastMessage, Toast.LENGTH_SHORT).show();
                     return false;
                 }
             });

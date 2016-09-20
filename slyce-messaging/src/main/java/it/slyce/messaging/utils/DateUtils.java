@@ -1,5 +1,8 @@
 package it.slyce.messaging.utils;
 
+import android.content.Context;
+import android.content.res.Resources;
+import it.slyce.messaging.R;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -8,7 +11,7 @@ import java.util.Date;
  */
 public class DateUtils {
 
-    public static String getTimestamp(long then) {
+    public static String getTimestamp(Context context, long then) {
         long now = System.currentTimeMillis();
 
         // convert to seconds
@@ -17,11 +20,11 @@ public class DateUtils {
 
         int minutesAgo = ((int) (nowSeconds - thenSeconds)) / (60);
         if (minutesAgo < 1)
-            return "Just now";
+            return context.getString(R.string.date_now);
         else if (minutesAgo == 1)
-            return "1 minute ago";
+            return context.getString(R.string.date_a_minute_ago);
         else if (minutesAgo < 60)
-            return minutesAgo + " minutes ago";
+            return minutesAgo + " " + context.getString(R.string.date_minutes_ago);
 
         // convert to minutes
         long nowMinutes = nowSeconds / 60;
@@ -44,7 +47,8 @@ public class DateUtils {
         if (daysAgo == 1) {
             Date date = new Date(then);
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("h:mm a");
-            return "Yesterday " + simpleDateFormat.format(date);
+            String yesterdayString = context.getString(R.string.date_yesterday);
+            return yesterdayString + " " + simpleDateFormat.format(date);
         } else if (daysAgo < 7) {
             Date date = new Date(then);
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE h:mm a");
@@ -76,7 +80,7 @@ public class DateUtils {
         return Integer.parseInt(simpleDateFormate.format(date));
     }
 
-    public static boolean dateNeedsUpdated(long time, String date) {
-        return date == null || date.equals(getTimestamp(time));
+    public static boolean dateNeedsUpdated(Context context, long time, String date) {
+        return date == null || date.equals(getTimestamp(context, time));
     }
 }

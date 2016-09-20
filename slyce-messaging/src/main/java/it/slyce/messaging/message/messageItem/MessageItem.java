@@ -1,5 +1,6 @@
 package it.slyce.messaging.message.messageItem;
 
+import android.content.Context;
 import it.slyce.messaging.message.Message;
 import it.slyce.messaging.message.MessageSource;
 import it.slyce.messaging.utils.DateUtils;
@@ -56,7 +57,7 @@ public abstract class MessageItem {
         return date;
     }
 
-    public void updateDate(long time) {
-        this.date = DateUtils.getTimestamp(time);
+    public void updateDate(Context context, long time) {
+        this.date = DateUtils.getTimestamp(context, time);
     }
 }

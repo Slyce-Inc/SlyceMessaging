@@ -37,7 +37,7 @@ public abstract class MessageMediaItem extends MessageItem {
 
             // Get content
             float widthToHeightRatio = MediaUtils.getWidthToHeightRatio(getMediaMessage().getUrl(), context);
-            date = DateUtils.getTimestamp(message.getDate());
+            date = DateUtils.getTimestamp(context, message.getDate());
             final String mediaUrl = getMediaMessage().getUrl();
             this.avatarUrl = message.getAvatarUrl();
 
@@ -97,7 +97,7 @@ public abstract class MessageMediaItem extends MessageItem {
     }
 
     public boolean dateNeedsUpdated(long time) {
-        return DateUtils.dateNeedsUpdated(time, date);
+        return DateUtils.dateNeedsUpdated(context, time, date);
     }
 
     public void setInitials(String initials) {

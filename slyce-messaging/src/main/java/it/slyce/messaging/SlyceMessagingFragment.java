@@ -245,8 +245,8 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
                     try {
                         MessageItem messageItem = mMessageItems.get(i);
                         Message message = messageItem.getMessage();
-                        if (DateUtils.dateNeedsUpdated(message.getDate(), messageItem.getDate())) {
-                            messageItem.updateDate(message.getDate());
+                        if (DateUtils.dateNeedsUpdated(getActivity(), message.getDate(), messageItem.getDate())) {
+                            messageItem.updateDate(getActivity(), message.getDate());
                             updateTimestampAtValue(i);
                         } else if (i == startHereWhenUpdate) {
                             i++;

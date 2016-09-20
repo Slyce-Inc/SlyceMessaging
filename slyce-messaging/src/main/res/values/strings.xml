@@ -5,7 +5,15 @@
 
     <string name="scout_entry_hint">Write a message...</string>
 
+    <!-- Date -->
+    <string name="date_now">Just now</string>
+    <string name="date_a_minute_ago">1 minute ago</string>
+    <string name="date_minutes_ago">minutes ago</string>
+    <string name="date_yesterday">Yesterday</string>
 
-
+    <!-- Messages -->
+    <string name="message_new">New message!</string>
+    <string name="message_text_copied">Text copied</string>
+    <string name="message_view">VIEW</string>
 
 </resources>
