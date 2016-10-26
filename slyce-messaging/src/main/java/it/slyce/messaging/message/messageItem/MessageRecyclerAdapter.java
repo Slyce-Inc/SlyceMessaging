@@ -11,7 +11,7 @@ import it.slyce.messaging.R;
 import it.slyce.messaging.message.messageItem.externalUser.media.MessageExternalUserMediaViewHolder;
 import it.slyce.messaging.message.messageItem.externalUser.text.MessageExternalUserTextViewHolder;
 import it.slyce.messaging.message.messageItem.general.generalOptions.MessageGeneralOptionsViewHolder;
-import it.slyce.messaging.message.messageItem.internalUser.media.MessageInternalUserViewHolder;
+import it.slyce.messaging.message.messageItem.internalUser.media.MessageInternalUserMediaViewHolder;
 import it.slyce.messaging.message.messageItem.internalUser.text.MessageInternalUserTextViewHolder;
 import it.slyce.messaging.message.messageItem.general.generalText.MessageGeneralTextViewHolder;
 import it.slyce.messaging.message.messageItem.spinner.SpinnerViewHolder;
@@ -54,7 +54,7 @@ public class MessageRecyclerAdapter extends RecyclerView.Adapter<MessageViewHold
 
             case OUTGOING_MEDIA:
                 View userMediaView = inflater.inflate(R.layout.item_message_user_media, parent, false);
-                viewHolder = new MessageInternalUserViewHolder(userMediaView, customSettings);
+                viewHolder = new MessageInternalUserMediaViewHolder(userMediaView, customSettings);
                 break;
 
             case OUTGOING_TEXT:
