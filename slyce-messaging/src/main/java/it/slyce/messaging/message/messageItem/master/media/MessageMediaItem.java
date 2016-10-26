@@ -5,16 +5,14 @@ import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
 
-import com.bumptech.glide.Glide;
-
+import it.slyce.messaging.ViewImageActivity;
 import it.slyce.messaging.message.MediaMessage;
 import it.slyce.messaging.message.MessageSource;
-import it.slyce.messaging.utils.MediaUtils;
-import it.slyce.messaging.utils.DateUtils;
-import it.slyce.messaging.ViewImageActivity;
 import it.slyce.messaging.message.messageItem.MessageItem;
 import it.slyce.messaging.message.messageItem.MessageItemType;
 import it.slyce.messaging.message.messageItem.MessageViewHolder;
+import it.slyce.messaging.utils.DateUtils;
+import it.slyce.messaging.utils.MediaUtils;
 
 /**
  * Created by matthewpage on 6/27/16.
@@ -43,22 +41,9 @@ public abstract class MessageMediaItem extends MessageItem {
 
             // Populate views with content
             messageMediaViewHolder.timestamp.setText(date != null ? date : "");
-            messageMediaViewHolder.initials.setText(initials != null ? initials : "");
 
             messageMediaViewHolder.media.setWidthToHeightRatio(widthToHeightRatio);
             messageMediaViewHolder.media.setImageUrlToLoadOnLayout(mediaUrl);
-
-            if (isFirstConsecutiveMessageFromSource) {
-                Glide.with(context).load(avatarUrl).into(messageMediaViewHolder.avatar);
-            }
-
-            messageViewHolder.avatar.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                    if (messageMediaViewHolder.customSettings.userClicksAvatarPictureListener != null)
-                        messageMediaViewHolder.customSettings.userClicksAvatarPictureListener.userClicksAvatarPhoto(message.getUserId());
-                }
-            });
 
             messageMediaViewHolder.media.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -70,9 +55,6 @@ public abstract class MessageMediaItem extends MessageItem {
                 }
             });
 
-            messageMediaViewHolder.avatar.setVisibility(isFirstConsecutiveMessageFromSource && !TextUtils.isEmpty(avatarUrl) ? View.VISIBLE : View.INVISIBLE);
-            messageMediaViewHolder.avatarContainer.setVisibility(isFirstConsecutiveMessageFromSource ? View.VISIBLE : View.INVISIBLE);
-            messageMediaViewHolder.initials.setVisibility(isFirstConsecutiveMessageFromSource && TextUtils.isEmpty(avatarUrl) ? View.VISIBLE : View.GONE);
             messageMediaViewHolder.media.setVisibility(!TextUtils.isEmpty(mediaUrl) ? View.VISIBLE : View.INVISIBLE);
             messageMediaViewHolder.timestamp.setVisibility(isLastConsecutiveMessageFromSource ? View.VISIBLE : View.GONE);
         }

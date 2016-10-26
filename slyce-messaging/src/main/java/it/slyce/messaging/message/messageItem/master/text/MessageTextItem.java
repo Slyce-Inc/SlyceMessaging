@@ -4,19 +4,16 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.os.Vibrator;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
-
-import com.bumptech.glide.Glide;
 
 import it.slyce.messaging.R;
 import it.slyce.messaging.message.MessageSource;
 import it.slyce.messaging.message.TextMessage;
-import it.slyce.messaging.utils.DateUtils;
 import it.slyce.messaging.message.messageItem.MessageItem;
 import it.slyce.messaging.message.messageItem.MessageItemType;
 import it.slyce.messaging.message.messageItem.MessageViewHolder;
+import it.slyce.messaging.utils.DateUtils;
 
 /**
  * Created by matthewpage on 6/27/16.
@@ -44,7 +41,6 @@ public class MessageTextItem extends MessageItem {
             this.initials = message.getInitials();
 
             // Populate views with content
-            messageTextViewHolder.initials.setText(initials  != null ? initials : "");
             messageTextViewHolder.text.setText(text != null ? text : "");
             messageTextViewHolder.timestamp.setText(date != null ? date : "");
 
@@ -63,22 +59,7 @@ public class MessageTextItem extends MessageItem {
                 }
             });
 
-            messageViewHolder.avatar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (messageTextViewHolder.customSettings.userClicksAvatarPictureListener != null)
-                        messageTextViewHolder.customSettings.userClicksAvatarPictureListener.userClicksAvatarPhoto(message.getUserId());
-                }
-            });
-
-            if (isFirstConsecutiveMessageFromSource) {
-                Glide.with(context).load(avatarUrl).into(messageTextViewHolder.avatar);
-            }
-
-            messageTextViewHolder.avatar.setVisibility(isFirstConsecutiveMessageFromSource && !TextUtils.isEmpty(avatarUrl) ? View.VISIBLE : View.INVISIBLE);
-            messageTextViewHolder.avatarContainer.setVisibility(isFirstConsecutiveMessageFromSource ? View.VISIBLE : View.INVISIBLE);
             messageTextViewHolder.carrot.setVisibility(isFirstConsecutiveMessageFromSource ? View.VISIBLE : View.INVISIBLE);
-            messageTextViewHolder.initials.setVisibility(isFirstConsecutiveMessageFromSource && TextUtils.isEmpty(avatarUrl) ? View.VISIBLE : View.GONE);
             messageTextViewHolder.timestamp.setVisibility(isLastConsecutiveMessageFromSource ? View.VISIBLE : View.GONE);
         }
     }
