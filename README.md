@@ -46,8 +46,8 @@ You must initialize the fragment by declaring an XML tag like the following:
 ### SlyceMessagingFragment
 
 ```java
-public void setUserSendsMessageListener(UserSendsMessageListener listener); // gets called when the user sends a message
-public void setUserClicksAvatarPhotoListener(UserClicksAvatarPhotoListener listener); // gets called when a user clicks an avatar photo. Optional.
+public void setOnSendMessageListener(UserSendsMessageListener listener); // gets called when the user sends a message
+public void setUserClicksAvatarPictureListener(UserClicksAvatarPictureListener listener); // gets called when a user clicks an avatar photo. Optional.
 public void setDefaultAvatarUrl(String url); // The avatar for the current user.
 public void setDefaultUserId(String id); // A unique identifier for the current user.
 public void setPictureButtonVisible(boolean bool); // Used to toggle whether the user can send picture messages. Default is true.
@@ -63,7 +63,7 @@ public void replaceMessages(List<MessageItems> messages);
 ### Message System
 ```java
 public abstract class Message {
-    public void setDate(String date);
+    public void setDate(long date);
 	public void setSource(MessageSource source);
 	public void setAvatarUrl(String url);
 	public void setDisplayName(String name);
