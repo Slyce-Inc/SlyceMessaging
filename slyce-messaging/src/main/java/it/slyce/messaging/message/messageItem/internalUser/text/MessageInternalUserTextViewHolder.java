@@ -22,18 +22,17 @@ public class MessageInternalUserTextViewHolder extends MessageTextViewHolder {
         super(itemView, customSettings);
 
         avatar = (ImageView) itemView.findViewById(R.id.message_user_text_image_view_avatar);
-        carrot = (ImageView) itemView.findViewById(R.id.message_user_text_image_view_carrot);
         initials = (TextView) itemView.findViewById(R.id.message_user_text_text_view_initials);
         text = (TextView) itemView.findViewById(R.id.message_user_text_text_view_text);
         timestamp = (TextView) itemView.findViewById(R.id.message_user_text_text_view_timestamp);
         avatarContainer = (ViewGroup) itemView.findViewById(R.id.message_user_text_view_group_avatar);
         bubble = (FrameLayout) itemView.findViewById(R.id.message_user_text_view_group_bubble);
+        username = (TextView) itemView.findViewById(R.id.username);
 
         Drawable drawable = ContextCompat.getDrawable(itemView.getContext(), R.drawable.shape_rounded_rectangle_white);
         // Drawable drawable = itemView.getContext().getDrawable();
         drawable.setColorFilter(customSettings.localBubbleBackgroundColor, PorterDuff.Mode.SRC_ATOP);
         bubble.setBackground(drawable);
-        carrot.setColorFilter(customSettings.localBubbleBackgroundColor);
         text.setTextColor(customSettings.localBubbleTextColor);
         timestamp.setTextColor(customSettings.timestampColor);
     }

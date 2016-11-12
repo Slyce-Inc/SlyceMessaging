@@ -12,7 +12,6 @@ import it.slyce.messaging.message.messageItem.MessageViewHolder;
  * Created by matthewpage on 6/27/16.
  */
 public abstract class MessageTextViewHolder extends MessageViewHolder {
-    public ImageView carrot;
     public TextView text;
     public FrameLayout bubble;
 

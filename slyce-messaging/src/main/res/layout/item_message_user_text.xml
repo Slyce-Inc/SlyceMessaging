@@ -37,24 +37,26 @@
             android:layout_height="48dp" />
     </FrameLayout>
 
-    <ImageView
-        android:id="@+id/message_user_text_image_view_carrot"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
-        android:layout_toRightOf="@+id/message_user_text_view_group_bubble"
-        android:layout_alignTop="@+id/message_user_text_view_group_bubble"
-        android:layout_marginLeft="-4dp"
-        android:scaleType="fitCenter"
-        android:adjustViewBounds="true"
-        app:srcCompat="@drawable/vd_ic_user_carrot"
-        android:tint="@color/background_white"/>
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_alignEnd="@+id/message_user_text_view_group_avatar"
+        android:layout_alignStart="@+id/message_user_text_view_group_avatar"
+        android:layout_alignLeft="@+id/message_user_text_view_group_avatar"
+        android:layout_alignRight="@+id/message_user_text_view_group_avatar"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="JR40M"
+        android:textSize="12sp"
+        android:layout_marginTop="3dp"
+        android:layout_below="@+id/message_user_text_view_group_avatar"/>
 
     <FrameLayout
         android:id="@+id/message_user_text_view_group_bubble"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toLeftOf="@+id/message_user_text_view_group_avatar"
-        android:background="@drawable/shape_rounded_rectangle_white"
+        android:background="@drawable/shape_rounded_rectangle_gray"
         android:padding="16dp">
 
         <it.slyce.messaging.view.text.FontTextView
@@ -67,6 +69,7 @@
             android:textSize="14sp"
             app:font="museo_sans_500.otf"
             tools:text="In need of pizza. Can you help?"/>
+
     </FrameLayout>
 
     <it.slyce.messaging.view.text.FontTextView
@@ -82,4 +85,5 @@
         android:textColor="@color/text_gray_darkest"
         android:textSize="10sp"
         tools:text="12:29pm" />
+
 </RelativeLayout>

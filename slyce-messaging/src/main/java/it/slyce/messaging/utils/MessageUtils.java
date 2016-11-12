@@ -26,17 +26,7 @@ public class MessageUtils {
     }
 
     private static boolean previousMessageIsNotFromSameSource(int i, List<MessageItem> messageItems) {
-        return i == 0 ||
-                previousMessageIsSpinner(i, messageItems) ||
-                previousMessageIsFromAnotherSender(i, messageItems);
-    }
-
-    private static boolean previousMessageIsFromAnotherSender(int i, List<MessageItem> messageItems) {
-        return messageItems.get(i - 1).getMessageSource() != messageItems.get(i).getMessageSource();
-    }
-
-    private static boolean previousMessageIsSpinner(int i, List<MessageItem> messageItems) {
-        return isSpinnerMessage(i - 1, messageItems);
+        return true;
     }
 
     private static boolean isTheLastConsecutiveMessageFromSource(int i, List<MessageItem> messageItems) {

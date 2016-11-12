@@ -23,5 +23,6 @@ public class MessageInternalUserViewHolder extends MessageMediaViewHolder {
         initials = (TextView) itemView.findViewById(R.id.message_user_media_text_view_initials);
         timestamp = (TextView) itemView.findViewById(R.id.message_user_media_text_view_timestamp);
         avatarContainer = (ViewGroup) itemView.findViewById(R.id.message_user_media_view_group_avatar);
+        username = (TextView) itemView.findViewById(R.id.username);
     }
 }
