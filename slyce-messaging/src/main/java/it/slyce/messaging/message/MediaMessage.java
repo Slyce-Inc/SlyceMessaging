@@ -1,6 +1,7 @@
 package it.slyce.messaging.message;
 
 import android.content.Context;
+import android.view.View;
 
 import it.slyce.messaging.message.messageItem.MessageItem;
 import it.slyce.messaging.message.messageItem.externalUser.media.MessageExternalUserMediaItem;
@@ -11,6 +12,8 @@ import it.slyce.messaging.message.messageItem.internalUser.media.MessageInternal
  */
 public class MediaMessage extends Message {
     private String url;
+
+    public View.OnClickListener onClickListener;
 
     public String getUrl() {
         return url;
