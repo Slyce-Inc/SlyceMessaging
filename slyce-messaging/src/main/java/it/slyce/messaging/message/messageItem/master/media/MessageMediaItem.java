@@ -7,14 +7,14 @@ import android.view.View;
 
 import com.bumptech.glide.Glide;
 
+import it.slyce.messaging.ViewImageActivity;
 import it.slyce.messaging.message.MediaMessage;
 import it.slyce.messaging.message.MessageSource;
-import it.slyce.messaging.utils.MediaUtils;
-import it.slyce.messaging.utils.DateUtils;
-import it.slyce.messaging.ViewImageActivity;
 import it.slyce.messaging.message.messageItem.MessageItem;
 import it.slyce.messaging.message.messageItem.MessageItemType;
 import it.slyce.messaging.message.messageItem.MessageViewHolder;
+import it.slyce.messaging.utils.DateUtils;
+import it.slyce.messaging.utils.MediaUtils;
 
 /**
  * Created by matthewpage on 6/27/16.
@@ -60,15 +60,19 @@ public abstract class MessageMediaItem extends MessageItem {
                 }
             });
 
-            messageMediaViewHolder.media.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(context, ViewImageActivity.class);
-                    intent.putExtra("URL", mediaUrl);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    context.startActivity(intent);
-                }
-            });
+            if (getMediaMessage().onClickListener != null) {
+                messageMediaViewHolder.media.setOnClickListener(getMediaMessage().onClickListener);
+            } else {
+                messageMediaViewHolder.media.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(context, ViewImageActivity.class);
+                        intent.putExtra("URL", mediaUrl);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        context.startActivity(intent);
+                    }
+                });
+            }
 
             messageMediaViewHolder.avatar.setVisibility(isFirstConsecutiveMessageFromSource && !TextUtils.isEmpty(avatarUrl) ? View.VISIBLE : View.INVISIBLE);
             messageMediaViewHolder.avatarContainer.setVisibility(isFirstConsecutiveMessageFromSource ? View.VISIBLE : View.INVISIBLE);
