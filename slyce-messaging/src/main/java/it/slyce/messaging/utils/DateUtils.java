@@ -15,6 +15,7 @@ public class DateUtils {
         long now = System.currentTimeMillis();
 
         // convert to seconds
+        //test commit
         long nowSeconds = now / 1000;
         long thenSeconds = then / 1000;
 
