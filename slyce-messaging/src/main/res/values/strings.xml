@@ -3,12 +3,12 @@
     <!-- Application -->
     <string name="app_name">SnipSnapApp</string>
 
-    <string name="scout_entry_hint">Write a message...</string>
+    <string name="scout_entry_hint">Type your message here</string>
 
     <!-- Date -->
-    <string name="date_now">Just now Robert</string>
+    <string name="date_now">Just now</string>
     <string name="date_a_minute_ago">1 minute ago</string>
-    <string name="date_minutes_ago">minutes ago</string>
+    <string name="date_minutes_ago">{{x}} minutes ago</string>
     <string name="date_yesterday">Yesterday</string>
 
     <!-- Messages -->

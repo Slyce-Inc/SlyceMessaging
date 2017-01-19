@@ -25,7 +25,7 @@ public class DateUtils {
         else if (minutesAgo == 1)
             return context.getString(R.string.date_a_minute_ago);
         else if (minutesAgo < 60)
-            return minutesAgo + " " + context.getString(R.string.date_minutes_ago);
+            return context.getString(R.string.date_minutes_ago).replaceFirst("\\{\\{x\\}\\}",minutesAgo+"");
 
         // convert to minutes
         long nowMinutes = nowSeconds / 60;

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SnipSnapApp</string>
+    <string name="scout_entry_hint">Ecrire votre message ici</string>
+
+    <!-- Date -->
+    <string name="date_now">A l\’instant</string>
+    <string name="date_a_minute_ago">il y a 1 minute</string>
+    <string name="date_minutes_ago"> il y a {{x}} minutes</string>
+    <string name="date_yesterday">Hier</string>
+
+    <!-- Messages -->
+    <string name="message_new">New message!</string>
+    <string name="message_text_copied">Text copied</string>
+    <string name="message_view">VIEW</string>
+
+</resources>
