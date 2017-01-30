@@ -26,15 +26,14 @@ ext {
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "24.0.1"
+    buildToolsVersion "25.0.2"
 
     defaultConfig {
-        minSdkVersion 16
+        minSdkVersion 15
         targetSdkVersion 24
-        versionCode 102
-        versionName "4.0"
+        versionCode 103
+        versionName "4.1"
         multiDexEnabled true
-        generatedDensities = []
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -85,9 +84,9 @@ dependencies {
     compile "com.android.support:support-v13:$rootProject.ext.supportLibVersion"
 
     // Image
-    compile 'com.makeramen:roundedimageview:2.2.1'
+    compile 'com.makeramen:roundedimageview:2.3.0'
     compile 'de.hdodenhof:circleimageview:2.1.0'
-    compile 'com.commonsware.cwac:cam2:0.6.2'
+    compile 'com.commonsware.cwac:cam2:0.7.3'
     compile 'com.github.bumptech.glide:glide:3.7.0'
 }
 
