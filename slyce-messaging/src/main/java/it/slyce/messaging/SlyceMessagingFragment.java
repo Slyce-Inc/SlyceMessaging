@@ -2,6 +2,7 @@ package it.slyce.messaging;
 
 import android.Manifest;
 import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
@@ -25,6 +26,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.commonsware.cwac.cam2.CameraActivity;
 import com.commonsware.cwac.cam2.ZoomStyle;
@@ -49,11 +51,14 @@ import it.slyce.messaging.message.messageItem.MessageItem;
 import it.slyce.messaging.message.messageItem.MessageRecyclerAdapter;
 import it.slyce.messaging.utils.CustomSettings;
 import it.slyce.messaging.utils.DateUtils;
+import it.slyce.messaging.utils.KeyboardOpenedRecyclerViewScrollToBottomController;
 import it.slyce.messaging.utils.Refresher;
 import it.slyce.messaging.utils.ScrollUtils;
 import it.slyce.messaging.utils.asyncTasks.AddNewMessageTask;
 import it.slyce.messaging.utils.asyncTasks.ReplaceMessagesTask;
 import it.slyce.messaging.view.ViewUtils;
+import it.slyce.messaging.view.inputToolbar.SlyceMessagingInputToolbar;
+import it.slyce.messaging.view.inputToolbar.TakePictureSlyceMessagingInputToolbar;
 
 /**
  * Created by John C. Hunchar on 1/12/16.
@@ -78,17 +83,28 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
     private String defaultAvatarUrl;
     private String defaultDisplayName;
     private String defaultUserId;
+    private String defaultInitials;
     private int startHereWhenUpdate;
     private long recentUpdatedTime;
     private boolean moreMessagesExist;
 
-    public void setPictureButtonVisible(final boolean bool) {
+    private SlyceMessagingInputToolbar inputToolbar = new TakePictureSlyceMessagingInputToolbar(this);
+    private LinearLayout inputToolbarLayout;
+
+    ScheduledExecutorService scheduleTaskExecutor;
+
+
+    public EditText getInputEditText() {
+        return mEntryField;
+    }
+
+    public void setInputToolbarVisible(final boolean bool) {
         if (getActivity() != null)
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    ImageView imageView = (ImageView) rootView.findViewById(R.id.slyce_messaging_image_view_snap);
-                    imageView.setVisibility(bool ? View.VISIBLE : View.GONE);
+                    View inputToolbar = rootView.findViewById(R.id.slyce_messaging_leftInputToolbar);
+                    inputToolbar.setVisibility(bool ? View.VISIBLE : View.GONE);
                 }
             });
     }
@@ -132,6 +148,10 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
 
     public void setDefaultDisplayName(String defaultDisplayName) {
         this.defaultDisplayName = defaultDisplayName;
+    }
+
+    public void setDefaultUserInitials(String defaultUserInitials){
+        this.defaultInitials = defaultUserInitials;
     }
 
     public void setDefaultUserId(String defaultUserId) {
@@ -179,12 +199,12 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
         // Setup views
         mEntryField = (EditText) rootView.findViewById(R.id.slyce_messaging_edit_text_entry_field);
         ImageView mSendButton = (ImageView) rootView.findViewById(R.id.slyce_messaging_image_view_send);
-        ImageView mSnapButton = (ImageView) rootView.findViewById(R.id.slyce_messaging_image_view_snap);
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.slyce_messaging_recycler_view);
 
         // Add interfaces
         mSendButton.setOnClickListener(this);
-        mSnapButton.setOnClickListener(this);
+        inputToolbarLayout = (LinearLayout)rootView.findViewById(R.id.slyce_messaging_leftInputToolbar);
+        buildInputToolbarLayout();
 
         // Init variables for recycler view
         mMessages = new ArrayList<>();
@@ -217,6 +237,7 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
                     }
                 }
         );
+        mRecyclerView.getViewTreeObserver().addOnGlobalLayoutListener(new KeyboardOpenedRecyclerViewScrollToBottomController(mRecyclerView));
 
         startUpdateTimestampsThread();
         startHereWhenUpdate = 0;
@@ -237,7 +258,7 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
     }
 
     private void startUpdateTimestampsThread() {
-        ScheduledExecutorService scheduleTaskExecutor = Executors.newScheduledThreadPool(1);
+        scheduleTaskExecutor = Executors.newScheduledThreadPool(1);
         scheduleTaskExecutor.scheduleAtFixedRate(new Runnable() {
             @Override
             public void run() {
@@ -353,44 +374,41 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
         }
     }
 
-    private File file;
-    private Uri outputFileUri;
+    public void setInputToolbar(SlyceMessagingInputToolbar inputToolbar) {
+        this.inputToolbar=inputToolbar;
+    }
+
+    public SlyceMessagingInputToolbar getInputToolbar(){
+        return this.inputToolbar;
+    }
+
+    private void buildInputToolbarLayout() {
+        inputToolbarLayout.removeAllViews();
+        getInputToolbar().inflateInputToolbarViews(this.getActivity(), inputToolbarLayout);
+        inputToolbarLayout.requestLayout();
+    }
 
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.slyce_messaging_image_view_send) {
             sendUserTextMessage();
-        } else if (v.getId() == R.id.slyce_messaging_image_view_snap) {
-            mEntryField.setText("");
-            final File mediaStorageDir = getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-            final File root = new File(mediaStorageDir, "SlyceMessaging");
-            root.mkdirs();
-            final String fname = "img_" + System.currentTimeMillis() + ".jpg";
-            file = new File(root, fname);
-            outputFileUri = Uri.fromFile(file);
-            Intent takePhotoIntent = new CameraActivity.IntentBuilder(getActivity().getApplicationContext())
-                    .skipConfirm()
-                    .to(this.file)
-                    .zoomStyle(ZoomStyle.SEEKBAR)
-                    .updateMediaStore()
-                    .build();
-            Intent pickPhotoIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            pickPhotoIntent.setType("image/*");
-            Intent chooserIntent = Intent.createChooser(pickPhotoIntent, "Take a photo or select one from your device");
-            chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[] {takePhotoIntent});
-            try {
-                startActivityForResult(chooserIntent, 1);
-            } catch (RuntimeException exception) {
-                Log.d("debug", exception.getMessage());
-                exception.printStackTrace();
-            }
+        } else {
+            getInputToolbar().onInputToolbarViewClicked(this, v);
         }
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 232 || (data == null && this.file.exists())) {
+
+        SlyceMessagingInputToolbar inputToolbar = getInputToolbar();
+
+        if (! (inputToolbar instanceof TakePictureSlyceMessagingInputToolbar) )
+            return;
+
+        TakePictureSlyceMessagingInputToolbar takePictureSlyceMessagingInputToolbar = (TakePictureSlyceMessagingInputToolbar)inputToolbar;
+
+        if (requestCode == 232 || (data == null && takePictureSlyceMessagingInputToolbar.getFile().exists())) {
             return;
         }
         try {
@@ -412,22 +430,25 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
                     return;
                 }
                 if (isCamera || data == null || data.getData() == null) {
-                    selectedImageUri = outputFileUri;
+                    selectedImageUri = takePictureSlyceMessagingInputToolbar.getOutputFile();
                 } else {
                     selectedImageUri = data == null ? null : data.getData();
                 }
+
                 MediaMessage message = new MediaMessage();
                 message.setUrl(selectedImageUri.toString());
                 message.setDate(System.currentTimeMillis());
                 message.setDisplayName(this.defaultDisplayName);
+                message.setInitials(this.defaultInitials);
                 message.setSource(MessageSource.LOCAL_USER);
                 message.setAvatarUrl(this.defaultAvatarUrl);
                 message.setUserId(this.defaultUserId);
-                addNewMessage(message);
+                addMessageOnUserSendMessage(message);
+
                 ScrollUtils.scrollToBottomAfterDelay(mRecyclerView, mRecyclerAdapter);
                 if (listener != null)
                     listener.onUserSendsMediaMessage(selectedImageUri);
-            }
+        }
         } catch (RuntimeException exception) {
             Log.d("debug", exception.getMessage());
             exception.printStackTrace();
@@ -446,12 +467,25 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
         message.setAvatarUrl(defaultAvatarUrl);
         message.setSource(MessageSource.LOCAL_USER);
         message.setDisplayName(defaultDisplayName);
+        message.setInitials(defaultInitials);
         message.setText(text);
         message.setUserId(defaultUserId);
-        addNewMessage(message);
+        addMessageOnUserSendMessage(message);
 
         ScrollUtils.scrollToBottomAfterDelay(mRecyclerView, mRecyclerAdapter);
         if (listener != null)
             listener.onUserSendsTextMessage(message.getText());
+    }
+
+    protected void addMessageOnUserSendMessage(Message message){
+        addNewMessage(message);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        if (scheduleTaskExecutor != null)
+            scheduleTaskExecutor.shutdown();
     }
 }

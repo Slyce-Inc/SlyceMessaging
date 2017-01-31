@@ -17,6 +17,7 @@ import it.slyce.messaging.utils.DateUtils;
 import it.slyce.messaging.message.messageItem.MessageItem;
 import it.slyce.messaging.message.messageItem.MessageItemType;
 import it.slyce.messaging.message.messageItem.MessageViewHolder;
+import it.slyce.messaging.utils.ViewHideKeyboardUtils;
 
 /**
  * Created by matthewpage on 6/27/16.
@@ -47,6 +48,13 @@ public class MessageTextItem extends MessageItem {
             messageTextViewHolder.initials.setText(initials  != null ? initials : "");
             messageTextViewHolder.text.setText(text != null ? text : "");
             messageTextViewHolder.timestamp.setText(date != null ? date : "");
+
+            messageTextViewHolder.bubble.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ViewHideKeyboardUtils.RequestKeyboardHide(view);
+                }
+            });
 
             messageTextViewHolder.bubble.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
