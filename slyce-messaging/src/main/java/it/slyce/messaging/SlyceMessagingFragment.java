@@ -439,7 +439,8 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
                 message.setSource(MessageSource.LOCAL_USER);
                 message.setAvatarUrl(this.defaultAvatarUrl);
                 message.setUserId(this.defaultUserId);
-                addNewMessage(message);
+                addMessageOnUserSendMessage(message);
+
                 ScrollUtils.scrollToBottomAfterDelay(mRecyclerView, mRecyclerAdapter);
                 if (listener != null)
                     listener.onUserSendsMediaMessage(selectedImageUri);
@@ -465,10 +466,14 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
         message.setInitials(defaultInitials);
         message.setText(text);
         message.setUserId(defaultUserId);
-        addNewMessage(message);
+        addMessageOnUserSendMessage(message);
 
         ScrollUtils.scrollToBottomAfterDelay(mRecyclerView, mRecyclerAdapter);
         if (listener != null)
             listener.onUserSendsTextMessage(message.getText());
+    }
+
+    protected void addMessageOnUserSendMessage(Message message){
+        addNewMessage(message);
     }
 }
