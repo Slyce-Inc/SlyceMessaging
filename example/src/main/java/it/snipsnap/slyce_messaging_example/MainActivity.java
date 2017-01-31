@@ -84,9 +84,10 @@ public class MainActivity extends AppCompatActivity {
         hasLoadedMore = false;
 
         slyceMessagingFragment = (SlyceMessagingFragment) getFragmentManager().findFragmentById(R.id.fragment_for_slyce_messaging);
-        slyceMessagingFragment.setDefaultAvatarUrl("https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/10989174_799389040149643_722795835011402620_n.jpg?oh=bff552835c414974cc446043ac3c70ca&oe=580717A5");
-        slyceMessagingFragment.setDefaultDisplayName("Matthew Page");
+        //slyceMessagingFragment.setDefaultAvatarUrl("https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/10989174_799389040149643_722795835011402620_n.jpg?oh=bff552835c414974cc446043ac3c70ca&oe=580717A5");
+        //slyceMessagingFragment.setDefaultDisplayName("Matthew Page");
         slyceMessagingFragment.setDefaultUserId("uhtnaeohnuoenhaeuonthhntouaetnheuontheuo");
+        slyceMessagingFragment.setDefaultUserInitials("MP");
 
         slyceMessagingFragment.setOnSendMessageListener(new UserSendsMessageListener() {
             @Override

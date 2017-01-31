@@ -82,6 +82,7 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
     private String defaultAvatarUrl;
     private String defaultDisplayName;
     private String defaultUserId;
+    private String defaultInitials;
     private int startHereWhenUpdate;
     private long recentUpdatedTime;
     private boolean moreMessagesExist;
@@ -144,6 +145,10 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
 
     public void setDefaultDisplayName(String defaultDisplayName) {
         this.defaultDisplayName = defaultDisplayName;
+    }
+
+    public void setDefaultUserInitials(String defaultUserInitials){
+        this.defaultInitials = defaultUserInitials;
     }
 
     public void setDefaultUserId(String defaultUserId) {
@@ -430,6 +435,7 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
                 message.setUrl(selectedImageUri.toString());
                 message.setDate(System.currentTimeMillis());
                 message.setDisplayName(this.defaultDisplayName);
+                message.setInitials(this.defaultInitials);
                 message.setSource(MessageSource.LOCAL_USER);
                 message.setAvatarUrl(this.defaultAvatarUrl);
                 message.setUserId(this.defaultUserId);
@@ -456,6 +462,7 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
         message.setAvatarUrl(defaultAvatarUrl);
         message.setSource(MessageSource.LOCAL_USER);
         message.setDisplayName(defaultDisplayName);
+        message.setInitials(defaultInitials);
         message.setText(text);
         message.setUserId(defaultUserId);
         addNewMessage(message);
