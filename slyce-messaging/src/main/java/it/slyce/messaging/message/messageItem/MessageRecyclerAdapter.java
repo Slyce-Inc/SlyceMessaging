@@ -1,9 +1,12 @@
 package it.slyce.messaging.message.messageItem;
 
+import android.app.Activity;
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 
 import java.util.List;
 
@@ -16,6 +19,7 @@ import it.slyce.messaging.message.messageItem.internalUser.text.MessageInternalU
 import it.slyce.messaging.message.messageItem.general.generalText.MessageGeneralTextViewHolder;
 import it.slyce.messaging.message.messageItem.spinner.SpinnerViewHolder;
 import it.slyce.messaging.utils.CustomSettings;
+import it.slyce.messaging.utils.ViewHideKeyboardUtils;
 
 /**
  * Created by John C. Hunchar on 5/12/16.
@@ -82,10 +86,17 @@ public class MessageRecyclerAdapter extends RecyclerView.Adapter<MessageViewHold
     }
 
     @Override
-    public void onBindViewHolder(MessageViewHolder messageViewHolder, int position) {
+    public void onBindViewHolder(final MessageViewHolder messageViewHolder, int position) {
         if (messageViewHolder == null) {
             return;
         }
+
+        messageViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ViewHideKeyboardUtils.RequestKeyboardHide(view);
+            }
+        });
 
         // Build the item
         MessageItem messageItem = getMessageItemByPosition(position);
