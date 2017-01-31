@@ -382,7 +382,7 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
 
     private void buildInputToolbarLayout() {
         inputToolbarLayout.removeAllViews();
-        getInputToolbar().inflateInputToolbarViews(this.getContext(), inputToolbarLayout);
+        getInputToolbar().inflateInputToolbarViews(this.getActivity(), inputToolbarLayout);
         inputToolbarLayout.requestLayout();
     }
 
