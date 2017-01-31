@@ -51,6 +51,7 @@ import it.slyce.messaging.message.messageItem.MessageItem;
 import it.slyce.messaging.message.messageItem.MessageRecyclerAdapter;
 import it.slyce.messaging.utils.CustomSettings;
 import it.slyce.messaging.utils.DateUtils;
+import it.slyce.messaging.utils.KeyboardOpenedRecyclerViewScrollToBottomController;
 import it.slyce.messaging.utils.Refresher;
 import it.slyce.messaging.utils.ScrollUtils;
 import it.slyce.messaging.utils.asyncTasks.AddNewMessageTask;
@@ -234,6 +235,7 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
                     }
                 }
         );
+        mRecyclerView.getViewTreeObserver().addOnGlobalLayoutListener(new KeyboardOpenedRecyclerViewScrollToBottomController(mRecyclerView));
 
         startUpdateTimestampsThread();
         startHereWhenUpdate = 0;
