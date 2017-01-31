@@ -91,6 +91,8 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
     private SlyceMessagingInputToolbar inputToolbar = new TakePictureSlyceMessagingInputToolbar(this);
     private LinearLayout inputToolbarLayout;
 
+    ScheduledExecutorService scheduleTaskExecutor;
+
 
     public EditText getInputEditText() {
         return mEntryField;
@@ -256,7 +258,7 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
     }
 
     private void startUpdateTimestampsThread() {
-        ScheduledExecutorService scheduleTaskExecutor = Executors.newScheduledThreadPool(1);
+        scheduleTaskExecutor = Executors.newScheduledThreadPool(1);
         scheduleTaskExecutor.scheduleAtFixedRate(new Runnable() {
             @Override
             public void run() {
@@ -477,5 +479,13 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
 
     protected void addMessageOnUserSendMessage(Message message){
         addNewMessage(message);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        if (scheduleTaskExecutor != null)
+            scheduleTaskExecutor.shutdown();
     }
 }
