@@ -110,10 +110,10 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
         if (this.moreMessagesExist == moreMessagesExist)
             return;
         this.moreMessagesExist = moreMessagesExist;
-        if (moreMessagesExist)
+        /*if (moreMessagesExist)
             addSpinner();
         else
-            removeSpinner();
+            removeSpinner();*/
         loadMoreMessagesIfNecessary();
     }
 
