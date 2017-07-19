@@ -87,7 +87,6 @@ dependencies {
     // Image
     compile 'com.makeramen:roundedimageview:2.2.1'
     compile 'de.hdodenhof:circleimageview:2.1.0'
-    compile 'com.commonsware.cwac:cam2:0.6.2'
     compile 'com.github.bumptech.glide:glide:3.7.0'
 }
 
