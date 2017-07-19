@@ -26,9 +26,6 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.commonsware.cwac.cam2.CameraActivity;
-import com.commonsware.cwac.cam2.ZoomStyle;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
@@ -361,29 +358,7 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
         if (v.getId() == R.id.slyce_messaging_image_view_send) {
             sendUserTextMessage();
         } else if (v.getId() == R.id.slyce_messaging_image_view_snap) {
-            mEntryField.setText("");
-            final File mediaStorageDir = getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-            final File root = new File(mediaStorageDir, "SlyceMessaging");
-            root.mkdirs();
-            final String fname = "img_" + System.currentTimeMillis() + ".jpg";
-            file = new File(root, fname);
-            outputFileUri = Uri.fromFile(file);
-            Intent takePhotoIntent = new CameraActivity.IntentBuilder(getActivity().getApplicationContext())
-                    .skipConfirm()
-                    .to(this.file)
-                    .zoomStyle(ZoomStyle.SEEKBAR)
-                    .updateMediaStore()
-                    .build();
-            Intent pickPhotoIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            pickPhotoIntent.setType("image/*");
-            Intent chooserIntent = Intent.createChooser(pickPhotoIntent, "Take a photo or select one from your device");
-            chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[] {takePhotoIntent});
-            try {
-                startActivityForResult(chooserIntent, 1);
-            } catch (RuntimeException exception) {
-                Log.d("debug", exception.getMessage());
-                exception.printStackTrace();
-            }
+            if (listener != null) listener.onUserSendsMediaMessage();
         }
     }
 
@@ -395,38 +370,7 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
         }
         try {
             if (requestCode == 1 && resultCode == getActivity().RESULT_OK) {
-                final boolean isCamera;
-                if (data == null) {
-                    isCamera = true;
-                } else {
-                    final String action = data.getAction();
-                    if (action == null) {
-                        isCamera = false;
-                    } else {
-                        isCamera = action.equals(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                    }
-                }
-
-                Uri selectedImageUri;
-                if (isCamera && data != null) { // if there is no picture
-                    return;
-                }
-                if (isCamera || data == null || data.getData() == null) {
-                    selectedImageUri = outputFileUri;
-                } else {
-                    selectedImageUri = data == null ? null : data.getData();
-                }
-                MediaMessage message = new MediaMessage();
-                message.setUrl(selectedImageUri.toString());
-                message.setDate(System.currentTimeMillis());
-                message.setDisplayName(this.defaultDisplayName);
-                message.setSource(MessageSource.LOCAL_USER);
-                message.setAvatarUrl(this.defaultAvatarUrl);
-                message.setUserId(this.defaultUserId);
-                addNewMessage(message);
-                ScrollUtils.scrollToBottomAfterDelay(mRecyclerView, mRecyclerAdapter);
-                if (listener != null)
-                    listener.onUserSendsMediaMessage(selectedImageUri);
+                
             }
         } catch (RuntimeException exception) {
             Log.d("debug", exception.getMessage());
