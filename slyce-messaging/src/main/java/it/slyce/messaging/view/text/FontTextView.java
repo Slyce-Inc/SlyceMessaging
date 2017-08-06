@@ -53,7 +53,7 @@ public class FontTextView extends TextView {
                     defStyleAttr,
                     defStyleRes);
 
-            font = a.getString(R.styleable.FontTextView_font);
+            font = a.getString(R.styleable.FontTextView_fontCustom);
             a.recycle();
         }
 
