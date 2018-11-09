@@ -27,7 +27,6 @@
             android:textAllCaps="true"
             android:textColor="@color/text_white"
             android:textSize="16sp"
-            app:font="museo_sans_500.otf"
             tools:text="JF" />
 
         <de.hdodenhof.circleimageview.CircleImageView

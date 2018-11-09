@@ -95,8 +95,8 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onUserSendsMediaMessage(Uri imageUri) {
-                Log.d("inf", "******************************** " + imageUri);
+            public void onUserSendsMediaMessage() {
+                Log.d("inf", "******************************** ");
             }
         });
 

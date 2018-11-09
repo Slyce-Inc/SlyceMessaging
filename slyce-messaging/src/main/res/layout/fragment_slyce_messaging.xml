@@ -70,8 +70,7 @@
             android:paddingTop="12dp"
             android:textColor="@color/text_navy"
             android:textColorHint="@color/text_navy_transparent_50"
-            android:textSize="14sp"
-            app:font="museo_sans_300.otf" />
+            android:textSize="14sp" />
 
 
         <ImageView
