@@ -23,6 +23,8 @@
         <attr name="roundedImageView_widthToHeightRatio" format="float"/>
     </declare-styleable>
 
+
+
     <declare-styleable name="FontEditText">
         <attr name="editText_font" format="string"/>
     </declare-styleable>
