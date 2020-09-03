@@ -46,7 +46,7 @@
         android:scaleType="fitCenter"
         android:adjustViewBounds="true"
         app:srcCompat="@drawable/vd_ic_scout_carrot"
-        android:tint="@color/background_white"/>
+        app:tint="@color/background_white" />
 
     <FrameLayout
         android:id="@+id/message_scout_text_view_group_bubble"
