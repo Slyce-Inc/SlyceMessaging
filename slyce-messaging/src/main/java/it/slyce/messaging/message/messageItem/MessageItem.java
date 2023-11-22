@@ -1,6 +1,8 @@
 package it.slyce.messaging.message.messageItem;
 
 import android.content.Context;
+
+import it.slyce.messaging.listeners.MessageClickListener;
 import it.slyce.messaging.message.Message;
 import it.slyce.messaging.message.MessageSource;
 import it.slyce.messaging.utils.DateUtils;
@@ -23,7 +25,7 @@ public abstract class MessageItem {
     }
 
     public abstract void buildMessageItem(
-            MessageViewHolder messageViewHolder);
+            MessageViewHolder messageViewHolder, MessageClickListener listener);
 
     public abstract MessageItemType getMessageItemType();
 

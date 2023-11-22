@@ -1,5 +1,6 @@
 package it.slyce.messaging.message.messageItem.general.generalText;
 
+import it.slyce.messaging.listeners.MessageClickListener;
 import it.slyce.messaging.message.GeneralTextMessage;
 import it.slyce.messaging.message.MessageSource;
 import it.slyce.messaging.message.messageItem.MessageItem;
@@ -13,7 +14,7 @@ public class MessageGeneralTextItem extends MessageItem {
 
     @Override
     public void buildMessageItem(
-            MessageViewHolder messageViewHolder) {
+            MessageViewHolder messageViewHolder, MessageClickListener listener) {
         MessageGeneralTextViewHolder viewHolder = (MessageGeneralTextViewHolder) messageViewHolder;
         GeneralTextMessage generalTextMessage = (GeneralTextMessage) message;
         viewHolder.messageTextView.setText(generalTextMessage.getText());

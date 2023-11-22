@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.bumptech.glide.Glide;
 
+import it.slyce.messaging.listeners.MessageClickListener;
 import it.slyce.messaging.message.MediaMessage;
 import it.slyce.messaging.message.MessageSource;
 import it.slyce.messaging.utils.MediaUtils;
@@ -29,7 +30,7 @@ public abstract class MessageMediaItem extends MessageItem {
 
     @Override
     public void buildMessageItem(
-            MessageViewHolder messageViewHolder) {
+            MessageViewHolder messageViewHolder, MessageClickListener listener) {
 
         if (message != null &&  messageViewHolder != null && messageViewHolder instanceof MessageMediaViewHolder) {
 

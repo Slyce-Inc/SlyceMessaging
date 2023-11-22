@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import it.slyce.messaging.R;
+import it.slyce.messaging.listeners.MessageClickListener;
 import it.slyce.messaging.message.GeneralOptionsMessage;
 import it.slyce.messaging.message.MessageSource;
 import it.slyce.messaging.message.messageItem.MessageItem;
@@ -23,7 +24,7 @@ public class MessageGeneralOptionsItem extends MessageItem {
     }
 
     @Override
-    public void buildMessageItem(MessageViewHolder messageViewHolder) {
+    public void buildMessageItem(MessageViewHolder messageViewHolder, MessageClickListener listener) {
         final MessageGeneralOptionsViewHolder viewHolder = (MessageGeneralOptionsViewHolder) messageViewHolder;
         final GeneralOptionsMessage generalTextMessage = (GeneralOptionsMessage) message;
         if (!generalTextMessage.isSelected()) {

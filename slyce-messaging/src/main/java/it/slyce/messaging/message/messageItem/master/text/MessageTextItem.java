@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 
 import it.slyce.messaging.R;
+import it.slyce.messaging.listeners.MessageClickListener;
 import it.slyce.messaging.message.MessageSource;
 import it.slyce.messaging.message.TextMessage;
 import it.slyce.messaging.utils.DateUtils;
@@ -32,7 +33,7 @@ public class MessageTextItem extends MessageItem {
 
     @Override
     public void buildMessageItem(
-            MessageViewHolder messageViewHolder) {
+            MessageViewHolder messageViewHolder, MessageClickListener listener) {
 
         if (message != null &&  messageViewHolder != null && messageViewHolder instanceof MessageTextViewHolder) {
             final MessageTextViewHolder messageTextViewHolder = (MessageTextViewHolder) messageViewHolder;
@@ -60,6 +61,13 @@ public class MessageTextItem extends MessageItem {
                     String toastMessage = (String) context.getText(R.string.message_text_copied);
                     Toast.makeText(context, toastMessage, Toast.LENGTH_SHORT).show();
                     return false;
+                }
+            });
+
+            messageTextViewHolder.bubble.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                 listener.onClickMessage(message);
                 }
             });
 

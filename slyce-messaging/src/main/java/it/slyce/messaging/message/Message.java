@@ -15,12 +15,22 @@ public abstract class Message {
     String userId;
     String initials;
 
+    String messageId;
+
     public long getDate() {
         return date;
     }
 
     public void setDate(long date) {
         this.date = date;
+    }
+
+    public void setMessageId(String messageId) {
+        this.messageId = messageId;
+    }
+
+    public String getMessageId() {
+        return messageId;
     }
 
     public MessageSource getSource() {

@@ -34,6 +34,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import it.slyce.messaging.listeners.LoadMoreMessagesListener;
+import it.slyce.messaging.listeners.MessageClickListener;
 import it.slyce.messaging.listeners.UserClicksAvatarPictureListener;
 import it.slyce.messaging.listeners.UserSendsMessageListener;
 import it.slyce.messaging.message.Message;
@@ -66,6 +67,7 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
     private View rootView;
 
     private LoadMoreMessagesListener loadMoreMessagesListener;
+    private MessageClickListener messageClickListener;
     private UserSendsMessageListener listener;
     private CustomSettings customSettings;
     private Refresher mRefresher;
@@ -99,6 +101,10 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
             mMessageItems.remove(0);
             mRecyclerAdapter.notifyItemRemoved(0);
         }
+    }
+
+    public void setMessageClickListener(MessageClickListener listener) {
+        this.messageClickListener = listener;
     }
 
     public void setMoreMessagesExist(boolean moreMessagesExist) {
@@ -184,7 +190,7 @@ public class SlyceMessagingFragment extends Fragment implements OnClickListener 
         // Init variables for recycler view
         mMessages = new ArrayList<>();
         mMessageItems = new ArrayList<>();
-        mRecyclerAdapter = new MessageRecyclerAdapter(mMessageItems, customSettings);
+        mRecyclerAdapter = new MessageRecyclerAdapter(mMessageItems, customSettings, messageClickListener);
         mLinearLayoutManager = new LinearLayoutManager(this.getActivity().getApplicationContext()){
             @Override
             public boolean canScrollVertically() {
