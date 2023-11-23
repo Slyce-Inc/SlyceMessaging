@@ -1,5 +1,6 @@
 package it.slyce.messaging.message.messageItem.spinner;
 
+import it.slyce.messaging.listeners.MessageClickListener;
 import it.slyce.messaging.message.MessageSource;
 import it.slyce.messaging.message.messageItem.MessageItem;
 import it.slyce.messaging.message.messageItem.MessageItemType;
@@ -14,7 +15,7 @@ public class SpinnerItem extends MessageItem {
     }
 
     @Override
-    public void buildMessageItem(MessageViewHolder messageViewHolder) {
+    public void buildMessageItem(MessageViewHolder messageViewHolder, MessageClickListener listener) {
 
     }
 

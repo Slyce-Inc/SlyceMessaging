@@ -1,6 +1,6 @@
 package it.slyce.messaging.message.messageItem;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import java.util.List;
 
 import it.slyce.messaging.R;
+import it.slyce.messaging.listeners.MessageClickListener;
 import it.slyce.messaging.message.messageItem.externalUser.media.MessageExternalUserMediaViewHolder;
 import it.slyce.messaging.message.messageItem.externalUser.text.MessageExternalUserTextViewHolder;
 import it.slyce.messaging.message.messageItem.general.generalOptions.MessageGeneralOptionsViewHolder;
@@ -27,10 +28,12 @@ public class MessageRecyclerAdapter extends RecyclerView.Adapter<MessageViewHold
     private List<MessageItem> mMessageItems;
 
     private CustomSettings customSettings;
+    private MessageClickListener messageClickListener;
 
-    public MessageRecyclerAdapter(List<MessageItem> messageItems, CustomSettings customSettings) {
+    public MessageRecyclerAdapter(List<MessageItem> messageItems, CustomSettings customSettings, MessageClickListener listener) {
         mMessageItems = messageItems;
         this.customSettings = customSettings;
+        this.messageClickListener = listener;
     }
 
     @Override
@@ -90,7 +93,7 @@ public class MessageRecyclerAdapter extends RecyclerView.Adapter<MessageViewHold
         // Build the item
         MessageItem messageItem = getMessageItemByPosition(position);
         if (messageItem != null) {
-            messageItem.buildMessageItem(messageViewHolder);
+            messageItem.buildMessageItem(messageViewHolder, messageClickListener);
         }
     }
 

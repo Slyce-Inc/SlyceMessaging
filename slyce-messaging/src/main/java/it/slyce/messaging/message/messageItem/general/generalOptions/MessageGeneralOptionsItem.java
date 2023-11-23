@@ -3,11 +3,12 @@ package it.slyce.messaging.message.messageItem.general.generalOptions;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.support.v4.content.ContextCompat;
+import androidx.core.content.ContextCompat;
 import android.view.View;
 import android.widget.Button;
 
 import it.slyce.messaging.R;
+import it.slyce.messaging.listeners.MessageClickListener;
 import it.slyce.messaging.message.GeneralOptionsMessage;
 import it.slyce.messaging.message.MessageSource;
 import it.slyce.messaging.message.messageItem.MessageItem;
@@ -23,7 +24,7 @@ public class MessageGeneralOptionsItem extends MessageItem {
     }
 
     @Override
-    public void buildMessageItem(MessageViewHolder messageViewHolder) {
+    public void buildMessageItem(MessageViewHolder messageViewHolder, MessageClickListener listener) {
         final MessageGeneralOptionsViewHolder viewHolder = (MessageGeneralOptionsViewHolder) messageViewHolder;
         final GeneralOptionsMessage generalTextMessage = (GeneralOptionsMessage) message;
         if (!generalTextMessage.isSelected()) {
